@@ -1,109 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-<head<link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="Carryme logo.png">
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('PWA Service Worker Operational:', reg.scope))
-                    .catch(err => console.error('PWA Registration Aborted:', err));
-            });
-        }
-    </script>>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CarryMe Store | Premium Indian Lifestyle Collection</title>
     <meta name="description" content="Shop premium home decor, towels, and traditional jewelry. Order instantly via WhatsApp. Express shipping across India.">
     <meta name="theme-color" content="#f97316">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="Carryme logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        main {
-            content-visibility: auto;
-            contain-intrinsic-size: 0 500px;
-        }
-        .product-card img {
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
+        /* Force explicit structural constraints even if Tailwind fails to load */
+        html, body {
+            margin: 0;
+            padding: 0;
             width: 100%;
+            overflow-x: hidden;
+            background-color: #f9fafb;
+        }
+        .grid-container {
+            display: grid !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 1rem !important;
+            padding: 1rem !important;
+            max-width: 32rem !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        .forced-card img {
+            width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 1 / 1 !important;
+            object-fit: cover !important;
+            border-radius: 0.75rem !important;
         }
     </style>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(err => console.log(err));
+            });
+        }
+    </script>
 </head>
 <body class="bg-gray-50 font-sans pb-28 antialiased">
 
     <header class="bg-white p-4 shadow-sm sticky top-0 z-50 flex justify-between items-center border-b-4 border-orange-500">
         <div>
-            <h1 class="text-2xl font-black tracking-tight text-gray-900">CarryMe <span class="text-orange-500">Store</span></h1>
-            <p class="text-[10px] text-gray-500 font-semibold tracking-wider uppercase -mt-1">Premium Indian Collection</p>
+            <h1 class="text-2xl font-black tracking-tight text-gray-900" style="font-weight: 900 !important;">CarryMe <span class="text-orange-500">Store</span></h1>
+            <p class="text-[10px] text-gray-500 font-bold tracking-wider uppercase -mt-1" style="font-weight: 700 !important;">Premium Indian Collection</p>
         </div>
-        <a href="https://www.instagram.com/carryme_stores?igsh=bnhnaGNranllbjJk" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-xs px-3 py-1.5 rounded-full font-bold shadow-sm hover:opacity-90 transition">
+        <a href="https://www.instagram.com/carryme_stores?igsh=bnhnaGNranllbjJk" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-xs px-3 py-1.5 rounded-full font-bold shadow-sm">
             Follow Us 📸
         </a>
     </header>
 
     <div class="fixed bottom-24 right-4 z-50">
-        <a href="https://wa.me/919250036334?text=Namaste!%20I%20need%20help%20with%20an%20order." target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2.5 rounded-full shadow-2xl hover:bg-blue-700 transition transform active:scale-95 duration-200">
+        <a href="https://wa.me/919250036334?text=Namaste!%20I%20need%20help%20with%20an%20order." target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2.5 rounded-full shadow-2xl transition transform active:scale-95 duration-200">
             <span class="relative flex h-2 w-2">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
             </span>
-            <span class="text-xs font-black tracking-wide">AI HELP 🤖</span>
+            <span class="text-xs font-black tracking-wide" style="font-weight: 900 !important;">AI HELP 🤖</span>
         </a>
     </div>
 
-    <main class="p-4 grid grid-cols-2 gap-4 max-w-lg mx-auto mt-2">
+    <main class="grid-container">
         
-        <div class="product-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between">
-            <div class="relative bg-gray-100">
+        <div class="forced-card bg-white rounded-2xl shadow-sm border border-gray-100 p-2 flex flex-col justify-between">
+            <div class="relative">
                 <img src="Gym collection towels.png" alt="Gym Collection Towels" loading="eager" decoding="async">
                 <span class="absolute bottom-2 left-2 bg-emerald-600 text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded">GYM</span>
             </div>
-            <div class="p-3">
-                <h3 class="font-bold text-gray-800 text-sm leading-tight line-clamp-1">Gym Collection Towels</h3>
+            <div class="pt-2">
+                <h3 class="font-bold text-gray-800 text-sm leading-tight line-clamp-1" style="font-weight: 700 !important;">Gym Collection Towels</h3>
                 <p class="text-[11px] text-gray-500 mt-0.5 font-medium">Premium Comfort / शोषक</p>
-                <a href="https://wa.me/919250036334?text=Mujhe%20Gym%20Towel%20chahiye" target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-gray-950 hover:bg-gray-800 text-white text-center py-2 rounded-xl font-bold text-xs transition active:scale-95">
+                <a href="https://wa.me/919250036334?text=Mujhe%20Gym%20Towel%20chahiye" target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-gray-950 text-white text-center py-2 rounded-xl font-bold text-xs">
                     Order / खरीदें 🛒
                 </a>
             </div>
         </div>
 
-        <div class="product-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between">
-            <div class="relative bg-gray-100">
+        <div class="forced-card bg-white rounded-2xl shadow-sm border border-gray-100 p-2 flex flex-col justify-between">
+            <div class="relative">
                 <img src="Golden earrings set.jpg" alt="Golden Earrings Set" loading="eager" decoding="async">
                 <span class="absolute bottom-2 left-2 bg-amber-600 text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded">LUXURY</span>
             </div>
-            <div class="p-3">
-                <h3 class="font-bold text-gray-800 text-sm leading-tight line-clamp-1">Golden Earrings Set</h3>
+            <div class="pt-2">
+                <h3 class="font-bold text-gray-800 text-sm leading-tight line-clamp-1" style="font-weight: 700 !important;">Golden Earrings Set</h3>
                 <p class="text-[11px] text-gray-500 mt-0.5 font-medium">Traditional Look / झुमके</p>
-                <a href="https://wa.me/919250036334?text=Golden%20Earrings%20ki%20details%20chahiye" target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-gray-950 hover:bg-gray-800 text-white text-center py-2 rounded-xl font-bold text-xs transition active:scale-95">
+                <a href="https://wa.me/919250036334?text=Golden%20Earrings%20ki%20details%20chahiye" target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-gray-950 text-white text-center py-2 rounded-xl font-bold text-xs">
                     Order / खरीदें 🛒
                 </a>
             </div>
         </div>
 
-        <div class="product-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between">
-            <div class="relative bg-gray-100">
+        <div class="forced-card bg-white rounded-2xl shadow-sm border border-gray-100 p-2 flex flex-col justify-between">
+            <div class="relative">
                 <img src="home decor.png" alt="Premium Home Decor" loading="lazy" decoding="async">
                 <span class="absolute bottom-2 left-2 bg-blue-600 text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded">HOME</span>
             </div>
-            <div class="p-3">
-                <h3 class="font-bold text-gray-800 text-sm leading-tight line-clamp-1">Premium Home Decor</h3>
+            <div class="pt-2">
+                <h3 class="font-bold text-gray-800 text-sm leading-tight line-clamp-1" style="font-weight: 700 !important;">Premium Home Decor</h3>
                 <p class="text-[11px] text-gray-500 mt-0.5 font-medium">Artisanal Craft / सजावट</p>
-                <a href="https://wa.me/919250036334?text=Interested%20in%20Home%20Decor" target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-gray-950 hover:bg-gray-800 text-white text-center py-2 rounded-xl font-bold text-xs transition active:scale-95">
+                <a href="https://wa.me/919250036334?text=Interested%20in%20Home%20Decor" target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-gray-950 text-white text-center py-2 rounded-xl font-bold text-xs">
                     Order / खरीदें 🛒
                 </a>
             </div>
         </div>
 
-        <div class="product-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between">
-            <div class="relative bg-gray-100">
+        <div class="forced-card bg-white rounded-2xl shadow-sm border border-gray-100 p-2 flex flex-col justify-between">
+            <div class="relative">
                 <img src="face towel.png" alt="Soft Face Towels" loading="lazy" decoding="async">
                 <span class="absolute bottom-2 left-2 bg-purple-600 text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded">DAILY</span>
             </div>
-            <div class="p-3">
-                <h3 class="font-bold text-gray-800 text-sm leading-tight line-clamp-1">Soft Face Towels</h3>
+            <div class="pt-2">
+                <h3 class="font-bold text-gray-800 text-sm leading-tight line-clamp-1" style="font-weight: 700 !important;">Soft Face Towels</h3>
                 <p class="text-[11px] text-gray-500 mt-0.5 font-medium">100% Cotton / रुमाल</p>
-                <a href="https://wa.me/919250036334?text=Interested%20in%20Face%20Towels" target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-gray-950 hover:bg-gray-800 text-white text-center py-2 rounded-xl font-bold text-xs transition active:scale-95">
+                <a href="https://wa.me/919250036334?text=Interested%20in%20Face%20Towels" target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-gray-950 text-white text-center py-2 rounded-xl font-bold text-xs">
                     Order / खरीदें 🛒
                 </a>
             </div>
@@ -113,7 +127,7 @@
 
     <footer class="fixed bottom-0 w-full p-3 bg-white/90 backdrop-blur-md border-t border-gray-200 z-40">
         <div class="max-w-lg mx-auto">
-            <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20view%20your%20latest%20product%20catalog." target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 block w-full bg-green-600 hover:bg-green-700 text-white text-center py-3 rounded-xl font-extrabold shadow-lg shadow-green-600/20 text-sm tracking-wide transition transform active:scale-[0.98]">
+            <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20view%20your%20latest%20product%20catalog." target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 block w-full bg-green-600 text-white text-center py-3 rounded-xl font-extrabold shadow-lg text-sm tracking-wide">
                 <span>💬 CHAT WITH US ON WHATSAPP</span>
             </a>
         </div>
