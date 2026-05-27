@@ -1,0 +1,25 @@
+{
+  "short_name": "CarryMe",
+  "name": "CarryMe Store | Premium Collection",
+  "description": "Shop premium home decor, towels, and traditional jewelry. Order instantly via WhatsApp.",
+  "icons": [
+    {
+      "src": "Carryme logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "Carryme logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#ffffff",
+  "theme-color": "#f97316",
+  "display": "standalone",
+  "orientation": "portrait",
+  "categories": ["shopping", "lifestyle"]
+}
