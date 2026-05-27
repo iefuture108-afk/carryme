@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarryMe Store | Premium Indian Home & Lifestyle</title>
+    <title>CarryMe Store | Search Brands & Products</title>
     <meta name="description" content="Shop premium home decor, organic towels, sofa covers, and luxury lifestyle items. Order instantly via WhatsApp. Express shipping across India.">
     <meta name="theme-color" content="#f97316">
     <link rel="manifest" href="manifest.json">
@@ -17,11 +17,11 @@
             overflow-x: hidden;
             background-color: #f1f5f9;
         }
-        .grid-container {
+        .product-grid {
             display: grid !important;
             grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-            gap: 1rem !important;
-            padding: 1rem !important;
+            gap: 0.75rem !important;
+            padding: 0.75rem !important;
             max-width: 32rem !important;
             margin-left: auto !important;
             margin-right: auto !important;
@@ -31,16 +31,23 @@
             height: auto !important;
             aspect-ratio: 1 / 1 !important;
             object-fit: cover !important;
-            border-radius: 0.75rem !important;
+            border-radius: 0.5rem 0.5rem 0 0 !important;
+        }
+        .category-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .category-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
         @keyframes marquee {
-            0% { transform: translateX(0%); }
+            0 { transform: translateX(0%); }
             100% { transform: translateX(-50%); }
         }
         .animate-marquee {
             display: flex;
             width: max-content;
-            animation: marquee 20s linear infinite;
+            animation: marquee 22s linear infinite;
         }
     </style>
     <script>
@@ -51,219 +58,308 @@
         }
     </script>
 </head>
-<body class="bg-slate-100 font-sans pb-32 antialiased selection:bg-orange-500 selection:text-white">
+<body class="bg-slate-100 font-sans pb-32 antialiased text-slate-800">
 
-    <div class="bg-gradient-to-r from-orange-600 via-amber-500 to-orange-600 text-white text-[11px] font-black tracking-widest uppercase overflow-hidden py-1.5 shadow-sm">
+    <div class="bg-gradient-to-r from-orange-600 via-red-500 to-orange-600 text-white text-[11px] font-black tracking-widest uppercase overflow-hidden py-1.5 shadow-sm">
         <div class="animate-marquee whitespace-nowrap flex gap-8">
-            <span>✨ FLAT 10% OFF ON WHATSAPP ORDERS ✨ EXPRESS SHIPPING ACROSS INDIA 🚀 COD AVAILABLE 📦 PREMIUM INDIAN LIFESTYLINGS 🌟&nbsp;</span>
-            <span>✨ FLAT 10% OFF ON WHATSAPP ORDERS ✨ EXPRESS SHIPPING ACROSS INDIA 🚀 COD AVAILABLE 📦 PREMIUM INDIAN LIFESTYLINGS 🌟&nbsp;</span>
+            <span>✨ SNAPDEAL PREMIUM VALUE SALE ✨ EXTRA 10% OFF ON WHATSAPP ORDERING ✨ COD AVAILABLE IN TIER-1/2/3 CITIES 📦 EXPRESS INDIA DELIVERY 🚀&nbsp;</span>
+            <span>✨ SNAPDEAL PREMIUM VALUE SALE ✨ EXTRA 10% OFF ON WHATSAPP ORDERING ✨ COD AVAILABLE IN TIER-1/2/3 CITIES 📦 EXPRESS INDIA DELIVERY 🚀&nbsp;</span>
         </div>
     </div>
 
-    <header class="bg-white/95 backdrop-blur-md p-4 shadow-sm sticky top-0 z-50 flex justify-between items-center border-b-2 border-orange-500/30">
-        <div class="flex items-center gap-2.5">
-            <div class="h-10 w-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl p-0.5 shadow-md flex items-center justify-center">
-                <img src="Carryme logo.png" alt="CarryMe" class="h-full w-full object-contain rounded-lg bg-white" onerror="this.src='https://api.dicebear.com/7.x/initials/svg?seed=CM&backgroundColor=f97316'">
+    <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-200">
+        <div class="max-w-lg mx-auto px-4 pt-3 pb-2 flex justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <img src="Carryme logo.png" alt="Logo" class="h-8 w-8 object-contain rounded-md bg-slate-50" onerror="this.src='https://api.dicebear.com/7.x/initials/svg?seed=CM&backgroundColor=f97316'">
+                <span class="text-xl font-black text-slate-900 tracking-tight">CarryMe<span class="text-red-500">.com</span></span>
             </div>
-            <div>
-                <h1 class="text-2xl font-black tracking-tight text-slate-900" style="font-weight: 900 !important;">CarryMe <span class="text-orange-500">Store</span></h1>
-                <p class="text-[9px] text-slate-500 font-extrabold tracking-widest uppercase -mt-1">Premium Indian Living</p>
+            <div class="flex items-center gap-4 text-xs font-bold text-slate-600">
+                <a href="#auth" class="hover:text-red-500 flex items-center gap-1">👤 Login</a>
+                <a href="#cart" class="hover:text-red-500 relative flex items-center gap-1">
+                    🛒 My Cart
+                    <span class="absolute -top-2 -right-2 bg-red-500 text-white font-black text-[9px] rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                </a>
+                <a href="#download" class="hidden sm:inline bg-red-500 text-white px-2.5 py-1 rounded-full text-[10px]">App 📲</a>
             </div>
         </div>
-        <a href="https://www.instagram.com/carryme_stores?igsh=bnhnaGNranllbjJk" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-[11px] px-3.5 py-2 rounded-full font-bold shadow-md active:scale-95 transition-all">
-            Follow Us 📸
-        </a>
+
+        <div class="max-w-lg mx-auto px-4 pb-3">
+            <div class="relative flex items-center">
+                <input type="text" id="storeSearchInput" placeholder="Search for Brands & Products..." class="w-full bg-slate-100 text-xs py-2.5 pl-9 pr-4 rounded-lg font-medium border border-transparent focus:outline-none focus:bg-white focus:border-red-500 transition-all text-slate-800">
+                <span class="absolute left-3 text-slate-400 text-sm">🔍</span>
+            </div>
+        </div>
+
+        <div class="bg-slate-50 border-t border-slate-100">
+            <div class="max-w-lg mx-auto flex gap-4 overflow-x-auto py-2.5 px-4 category-scroll text-[11px] font-black text-slate-600 uppercase tracking-wider whitespace-nowrap">
+                <a href="#linens" class="text-red-500 border-b-2 border-red-500 pb-0.5">Home & Kitchen</a>
+                <a href="#mens" class="hover:text-red-500">Men's Fashion</a>
+                <a href="#womens" class="hover:text-red-500">Women's Fashion</a>
+                <a href="#kids" class="hover:text-red-500">Kid's Fashion</a>
+                <a href="#beauty" class="hover:text-red-500">Beauty & Health</a>
+                <a href="#electronics" class="hover:text-red-500">Electronics</a>
+                <a href="#sports" class="hover:text-red-500">Sports & Fitness</a>
+            </div>
+        </div>
     </header>
 
-    <div class="fixed bottom-24 right-4 z-50 flex flex-col items-end gap-2">
-        <div class="bg-white px-3 py-1.5 rounded-xl shadow-xl border border-slate-100 text-[10px] font-bold text-slate-700 animate-bounce flex items-center gap-1">
-            <span class="w-1.5 h-1.5 bg-green-500 rounded-full inline-block animate-pulse"></span> Chat with CarryAssist!
+    <div class="fixed bottom-24 right-4 z-50 flex flex-col items-end gap-1">
+        <div class="bg-white px-2.5 py-1 rounded-lg shadow-lg border border-slate-100 text-[9px] font-extrabold text-slate-600 uppercase flex items-center gap-1 animate-bounce">
+            <span class="w-1.5 h-1.5 bg-green-500 rounded-full inline-block animate-pulse"></span> CarryAssist Online
         </div>
-        <a href="https://wa.me/919250036334?text=Namaste%20CarryAssist!%20I%20need%20help%20choosing%20products%20and%20completing%20my%20order." target="_blank" rel="noopener noreferrer" class="relative group h-14 w-14 rounded-full bg-gradient-to-tr from-blue-600 to-sky-500 flex items-center justify-center shadow-2xl transition transform active:scale-95 border-2 border-white">
-            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=CarryAssist&backgroundColor=2563eb" alt="AI Assistant Avatar" class="h-10 w-10 object-contain rounded-full">
-            <span class="absolute -top-1 -right-1 h-3.5 w-3.5 bg-green-500 rounded-full border-2 border-white"></span>
+        <a href="https://wa.me/919250036334?text=Namaste%20CarryAssist!%20I%20am%20looking%20for%20premium%20deals%20and%20need%20help%20placing%20an%20order." target="_blank" rel="noopener noreferrer" class="h-14 w-14 rounded-full bg-white p-0.5 shadow-2xl border-2 border-red-500 flex items-center justify-center transition-transform active:scale-95 overflow-hidden">
+            <img src="image0.png" alt="AI Assistant Avatar" class="h-full w-full object-cover rounded-full" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=CarryAssist'">
         </a>
     </div>
 
-    <section class="max-w-lg mx-auto mt-6 px-4">
-        <div class="flex items-center gap-2 mb-2">
-            <span class="h-5 w-1 bg-orange-500 rounded-full"></span>
-            <h2 class="text-lg font-extrabold text-slate-900 uppercase tracking-wide">Premium Towels & Linens</h2>
+    <section class="max-w-lg mx-auto mt-4 px-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <span class="h-4 w-1 bg-red-500 rounded-full"></span>
+            <h2 class="text-sm font-black text-slate-900 uppercase tracking-wide">⚡ Deal Of The Day</h2>
         </div>
-        <p class="text-xs text-slate-500 -mt-1 mb-2">100% Cotton, ultra-absorbent high-velocity performance layers.</p>
+        <span class="text-[11px] font-bold text-red-500 bg-red-50 px-2 py-0.5 rounded">Limited Offer</span>
     </section>
 
-    <div class="grid-container !pt-0">
-        <div class="forced-card bg-white rounded-2xl shadow-md border border-slate-100 p-2.5 flex flex-col justify-between hover:border-orange-200 transition-all">
-            <div class="relative">
+    <main class="product-grid !py-2">
+        <div class="forced-card bg-white rounded-xl shadow-sm border border-slate-200/60 overflow-hidden flex flex-col justify-between hover:shadow-md transition-all">
+            <div class="relative bg-slate-50">
                 <img src="Gym collection towels.png" alt="Gym Collection Towels" loading="eager" decoding="async">
-                <span class="absolute bottom-2 left-2 bg-emerald-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded tracking-wider uppercase shadow-sm">🏋️‍♂️ GYM</span>
+                <span class="absolute top-2 left-2 bg-red-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded">69% OFF</span>
             </div>
-            <div class="pt-2">
-                <h3 class="font-extrabold text-slate-800 text-sm leading-tight line-clamp-1">Gym Collection Towels</h3>
-                <p class="text-[11px] text-slate-500 mt-0.5 font-medium">Premium Comfort / शोषक</p>
-                <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20order%20the%20Gym%20Collection%20Towels." target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-slate-900 hover:bg-orange-600 text-white text-center py-2.5 rounded-xl font-bold text-xs transition-colors shadow-sm">
-                    Order / खरीदें 🛒
-                </a>
+            <div class="p-2.5 flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-bold text-slate-800 text-xs leading-snug line-clamp-2">Gym Collection Towels - Premium Absorbent</h3>
+                    <div class="flex items-center gap-1 mt-1 text-[10px] text-amber-500 font-bold">
+                        <span>3.5/5 ⭐⭐⭐⭐★</span> <span class="text-slate-400 font-medium">(111)</span>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <div class="flex items-baseline gap-1.5">
+                        <span class="text-sm font-black text-slate-900">₹309</span>
+                        <span class="text-[11px] font-bold text-slate-400 line-through">₹999</span>
+                    </div>
+                    <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20order%20the%20Gym%20Collection%20Towels%20for%20₹309." target="_blank" rel="noopener noreferrer" class="block w-full mt-2 bg-red-500 hover:bg-red-600 text-white text-center py-2 rounded-lg font-black text-[11px] transition-colors uppercase tracking-wider">
+                        Buy Now / खरीदें
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="forced-card bg-white rounded-2xl shadow-md border border-slate-100 p-2.5 flex flex-col justify-between hover:border-orange-200 transition-all">
-            <div class="relative">
+        <div class="forced-card bg-white rounded-xl shadow-sm border border-slate-200/60 overflow-hidden flex flex-col justify-between hover:shadow-md transition-all">
+            <div class="relative bg-slate-50">
                 <img src="hand towel (1).png" alt="Premium Hand Towel" loading="eager" decoding="async">
-                <span class="absolute bottom-2 left-2 bg-amber-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded tracking-wider uppercase shadow-sm">🤝 COMFORE</span>
+                <span class="absolute top-2 left-2 bg-red-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded">27% OFF</span>
             </div>
-            <div class="pt-2">
-                <h3 class="font-extrabold text-slate-800 text-sm leading-tight line-clamp-1">Premium Hand Towel</h3>
-                <p class="text-[11px] text-slate-500 mt-0.5 font-medium">Ultra Soft / हस्त रुमाल</p>
-                <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20order%20the%20Premium%20Hand%20Towel." target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-slate-900 hover:bg-orange-600 text-white text-center py-2.5 rounded-xl font-bold text-xs transition-colors shadow-sm">
-                    Order / खरीदें 🛒
-                </a>
+            <div class="p-2.5 flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-bold text-slate-800 text-xs leading-snug line-clamp-2">Premium Cotton Unisex Hand Towel Set</h3>
+                    <div class="flex items-center gap-1 mt-1 text-[10px] text-amber-500 font-bold">
+                        <span>4.3/5 ⭐⭐⭐⭐⭐</span> <span class="text-slate-400 font-medium">(587)</span>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <div class="flex items-baseline gap-1.5">
+                        <span class="text-sm font-black text-slate-900">₹168</span>
+                        <span class="text-[11px] font-bold text-slate-400 line-through">₹230</span>
+                    </div>
+                    <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20order%20the%20Premium%20Hand%20Towel%20for%20₹168." target="_blank" rel="noopener noreferrer" class="block w-full mt-2 bg-red-500 hover:bg-red-600 text-white text-center py-2 rounded-lg font-black text-[11px] transition-colors uppercase tracking-wider">
+                        Buy Now / खरीदें
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="forced-card bg-white rounded-2xl shadow-md border border-slate-100 p-2.5 flex flex-col justify-between hover:border-orange-200 transition-all">
-            <div class="relative">
+        <div class="forced-card bg-white rounded-xl shadow-sm border border-slate-200/60 overflow-hidden flex flex-col justify-between hover:shadow-md transition-all">
+            <div class="relative bg-slate-50">
+                <img src="Table cover.png" alt="Premium Table Cover" loading="lazy" decoding="async">
+                <span class="absolute top-2 left-2 bg-red-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded">72% OFF</span>
+            </div>
+            <div class="p-2.5 flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-bold text-slate-800 text-xs leading-snug line-clamp-2">Artisanal Block-Printed Premium Table Cover</h3>
+                    <div class="flex items-center gap-1 mt-1 text-[10px] text-amber-500 font-bold">
+                        <span>3.9/5 ⭐⭐⭐⭐★</span> <span class="text-slate-400 font-medium">(261)</span>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <div class="flex items-baseline gap-1.5">
+                        <span class="text-sm font-black text-slate-900">₹221</span>
+                        <span class="text-[11px] font-bold text-slate-400 line-through">₹788</span>
+                    </div>
+                    <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20order%20the%20Premium%20Table%20Cover%20for%20₹221." target="_blank" rel="noopener noreferrer" class="block w-full mt-2 bg-red-500 hover:bg-red-600 text-white text-center py-2 rounded-lg font-black text-[11px] transition-colors uppercase tracking-wider">
+                        Buy Now / खरीदें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="forced-card bg-white rounded-xl shadow-sm border border-slate-200/60 overflow-hidden flex flex-col justify-between hover:shadow-md transition-all">
+            <div class="relative bg-slate-50">
                 <img src="face towel.png" alt="Soft Face Towels" loading="lazy" decoding="async">
-                <span class="absolute bottom-2 left-2 bg-purple-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded tracking-wider uppercase shadow-sm">✨ DAILY</span>
+                <span class="absolute top-2 left-2 bg-red-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded">75% OFF</span>
             </div>
-            <div class="pt-2">
-                <h3 class="font-bold text-slate-800 text-sm leading-tight line-clamp-1">Soft Face Towels</h3>
-                <p class="text-[11px] text-slate-500 mt-0.5 font-medium">100% Cotton / रुमाल</p>
-                <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20order%20the%20Soft%20Face%20Towels." target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-slate-900 hover:bg-orange-600 text-white text-center py-2.5 rounded-xl font-bold text-xs transition-colors shadow-sm">
-                    Order / खरीदें 🛒
-                </a>
+            <div class="p-2.5 flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-bold text-slate-800 text-xs leading-snug line-clamp-2">Soft Organic Cotton Face Towels (Pack of 4)</h3>
+                    <div class="flex items-center gap-1 mt-1 text-[10px] text-amber-500 font-bold">
+                        <span>4.0/5 ⭐⭐⭐⭐★</span> <span class="text-slate-400 font-medium">(15)</span>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <div class="flex items-baseline gap-1.5">
+                        <span class="text-sm font-black text-slate-900">₹253</span>
+                        <span class="text-[11px] font-bold text-slate-400 line-through">₹999</span>
+                    </div>
+                    <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20order%20the%20Soft%20Face%20Towels%20for%20₹253." target="_blank" rel="noopener noreferrer" class="block w-full mt-2 bg-red-500 hover:bg-red-600 text-white text-center py-2 rounded-lg font-black text-[11px] transition-colors uppercase tracking-wider">
+                        Buy Now / खरीदें
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="forced-card bg-white rounded-2xl shadow-md border border-slate-100 p-2.5 flex flex-col justify-between hover:border-orange-200 transition-all">
-            <div class="relative">
+        <div class="forced-card bg-white rounded-xl shadow-sm border border-slate-200/60 overflow-hidden flex flex-col justify-between hover:shadow-md transition-all">
+            <div class="relative bg-slate-50">
+                <img src="Sofa cover.png" alt="Luxury Sofa Cover Set" loading="lazy" decoding="async">
+                <span class="absolute top-2 left-2 bg-red-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded">55% OFF</span>
+            </div>
+            <div class="p-2.5 flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-bold text-slate-800 text-xs leading-snug line-clamp-2">Luxury Elastic Sofa Shield Weave Cover Set</h3>
+                    <div class="flex items-center gap-1 mt-1 text-[10px] text-amber-500 font-bold">
+                        <span>4.2/5 ⭐⭐⭐⭐★</span> <span class="text-slate-400 font-medium">(29)</span>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <div class="flex items-baseline gap-1.5">
+                        <span class="text-sm font-black text-slate-900">₹253</span>
+                        <span class="text-[11px] font-bold text-slate-400 line-through">₹566</span>
+                    </div>
+                    <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20order%20the%20Luxury%20Sofa%20Cover%20Set%20for%20₹253." target="_blank" rel="noopener noreferrer" class="block w-full mt-2 bg-red-500 hover:bg-red-600 text-white text-center py-2 rounded-lg font-black text-[11px] transition-colors uppercase tracking-wider">
+                        Buy Now / खरीदें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="forced-card bg-white rounded-xl shadow-sm border border-slate-200/60 overflow-hidden flex flex-col justify-between hover:shadow-md transition-all">
+            <div class="relative bg-slate-50">
                 <img src="Luxury collection towels.png" alt="Luxury Collection Towels" loading="lazy" decoding="async">
-                <span class="absolute bottom-2 left-2 bg-blue-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded tracking-wider uppercase shadow-sm">💎 LUXURY</span>
+                <span class="absolute top-2 left-2 bg-red-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded">87% OFF</span>
             </div>
-            <div class="pt-2">
-                <h3 class="font-bold text-slate-800 text-sm leading-tight line-clamp-1">Luxury Collection Towels</h3>
-                <p class="text-[11px] text-slate-500 mt-0.5 font-medium">Plush Royal Weave / शाही तौलिया</p>
-                <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20order%20the%20Luxury%20Collection%20Towels." target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-slate-900 hover:bg-orange-600 text-white text-center py-2.5 rounded-xl font-bold text-xs transition-colors shadow-sm">
-                    Order / खरीदें 🛒
-                </a>
-            </div>
-        </div>
-
-        <div class="forced-card bg-white rounded-2xl shadow-md border border-slate-100 p-2.5 flex flex-col justify-between hover:border-orange-200 transition-all">
-            <div class="relative">
-                <img src="sport towel.png" alt="High Performance Sport Towel" loading="lazy" decoding="async">
-                <span class="absolute bottom-2 left-2 bg-cyan-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded tracking-wider uppercase shadow-sm">⚡ SPORT</span>
-            </div>
-            <div class="pt-2">
-                <h3 class="font-bold text-slate-800 text-sm leading-tight line-clamp-1">Sport Performance Towel</h3>
-                <p class="text-[11px] text-slate-500 mt-0.5 font-medium">Quick-Dry Mesh / खेल तौलिया</p>
-                <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20order%20the%20Sport%20Performance%20Towel." target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-slate-900 hover:bg-orange-600 text-white text-center py-2.5 rounded-xl font-bold text-xs transition-colors shadow-sm">
-                    Order / खरीदें 🛒
-                </a>
+            <div class="p-2.5 flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-bold text-slate-800 text-xs leading-snug line-clamp-2">Plush Egyptian Cotton Royal Bath Towels</h3>
+                    <div class="flex items-center gap-1 mt-1 text-[10px] text-amber-500 font-bold">
+                        <span>4.5/5 ⭐⭐⭐⭐⭐</span> <span class="text-slate-400 font-medium">(510)</span>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <div class="flex items-baseline gap-1.5">
+                        <span class="text-sm font-black text-slate-900">₹406</span>
+                        <span class="text-[11px] font-bold text-slate-400 line-through">₹3196</span>
+                    </div>
+                    <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20order%20the%20Luxury%20Royal%20Bath%20Towels%20for%20₹406." target="_blank" rel="noopener noreferrer" class="block w-full mt-2 bg-red-500 hover:bg-red-600 text-white text-center py-2 rounded-lg font-black text-[11px] transition-colors uppercase tracking-wider">
+                        Buy Now / खरीदें
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="forced-card bg-white rounded-2xl shadow-md border border-slate-100 p-2.5 flex flex-col justify-between hover:border-orange-200 transition-all">
-            <div class="relative">
-                <img src="Hand towel.png" alt="Classic Hand Towel" loading="lazy" decoding="async">
-                <span class="absolute bottom-2 left-2 bg-slate-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded tracking-wider uppercase shadow-sm">🌿 CLASSIC</span>
+        <div class="forced-card bg-white rounded-xl shadow-sm border border-slate-200/60 overflow-hidden flex flex-col justify-between hover:shadow-md transition-all">
+            <div class="relative bg-slate-50">
+                <img src="sport towel.png" alt="Sport Towel" loading="lazy" decoding="async">
+                <span class="absolute top-2 left-2 bg-red-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded">71% OFF</span>
             </div>
-            <div class="pt-2">
-                <h3 class="font-bold text-slate-800 text-sm leading-tight line-clamp-1">Classic Hand Towel</h3>
-                <p class="text-[11px] text-slate-500 mt-0.5 font-medium">Everyday Essential / साधारण तौलिया</p>
-                <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20order%20the%20Classic%20Hand%20Towel." target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-slate-900 hover:bg-orange-600 text-white text-center py-2.5 rounded-xl font-bold text-xs transition-colors shadow-sm">
-                    Order / खरीदें 🛒
-                </a>
+            <div class="p-2.5 flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-bold text-slate-800 text-xs leading-snug line-clamp-2">High Performance Microfiber Sport Towel</h3>
+                    <div class="flex items-center gap-1 mt-1 text-[10px] text-amber-500 font-bold">
+                        <span>4.0/5 ⭐⭐⭐⭐★</span> <span class="text-slate-400 font-medium">(94)</span>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <div class="flex items-baseline gap-1.5">
+                        <span class="text-sm font-black text-slate-900">₹294</span>
+                        <span class="text-[11px] font-bold text-slate-400 line-through">₹999</span>
+                    </div>
+                    <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20order%20the%20Microfiber%20Sport%20Towel%20for%20₹294." target="_blank" rel="noopener noreferrer" class="block w-full mt-2 bg-red-500 hover:bg-red-600 text-white text-center py-2 rounded-lg font-black text-[11px] transition-colors uppercase tracking-wider">
+                        Buy Now / खरीदें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="forced-card bg-white rounded-xl shadow-sm border border-slate-200/60 overflow-hidden flex flex-col justify-between hover:shadow-md transition-all">
+            <div class="relative bg-slate-50">
+                <img src="home decor.png" alt="Home Decor" loading="lazy" decoding="async">
+                <span class="absolute top-2 left-2 bg-red-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded">81% OFF</span>
+            </div>
+            <div class="p-2.5 flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-bold text-slate-800 text-xs leading-snug line-clamp-2">Artisanal Traditional Home Decor Centerpiece</h3>
+                    <div class="flex items-center gap-1 mt-1 text-[10px] text-amber-500 font-bold">
+                        <span>4.1/5 ⭐⭐⭐⭐★</span> <span class="text-slate-400 font-medium">(1163)</span>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <div class="flex items-baseline gap-1.5">
+                        <span class="text-sm font-black text-slate-900">₹394</span>
+                        <span class="text-[11px] font-bold text-slate-400 line-through">₹2099</span>
+                    </div>
+                    <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20order%20the%20Home%20Decor%20Centerpiece%20for%20₹394." target="_blank" rel="noopener noreferrer" class="block w-full mt-2 bg-red-500 hover:bg-red-600 text-white text-center py-2 rounded-lg font-black text-[11px] transition-colors uppercase tracking-wider">
+                        Buy Now / खरीदें
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="max-w-lg mx-auto mt-2 px-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <span class="h-4 w-1 bg-slate-800 rounded-full"></span>
+            <h2 class="text-sm font-black text-slate-900 uppercase tracking-wide">🆕 New Arrivals</h2>
+        </div>
+    </section>
+
+    <div class="max-w-lg mx-auto px-4 py-2">
+        <div class="bg-white rounded-xl p-3 border border-slate-200/60 flex items-center gap-3">
+            <div class="h-16 w-16 bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-xl">📦</div>
+            <div class="flex-1">
+                <h4 class="text-xs font-black text-slate-900 leading-tight">Explore More on Snapdeal Collection</h4>
+                <p class="text-[10px] text-slate-500 mt-0.5 leading-snug">Discover lifestyle essentials, traditional Indian craftsmanship, and special deals curated by our lead automation engineers.</p>
             </div>
         </div>
     </div>
 
     <section class="max-w-lg mx-auto mt-6 px-4">
-        <div class="flex items-center gap-2 mb-2">
-            <span class="h-5 w-1 bg-orange-500 rounded-full"></span>
-            <h2 class="text-lg font-extrabold text-slate-900 uppercase tracking-wide">Exquisite Home Decor</h2>
-        </div>
-        <p class="text-xs text-slate-500 -mt-1 mb-2">Artisanal table arrangements and premium interior drapings.</p>
-    </section>
-
-    <div class="grid-container !pt-0">
-        <div class="forced-card bg-white rounded-2xl shadow-md border border-slate-100 p-2.5 flex flex-col justify-between hover:border-orange-200 transition-all">
-            <div class="relative">
-                <img src="Table cover.png" alt="Premium Table Cover" loading="lazy" decoding="async">
-                <span class="absolute bottom-2 left-2 bg-indigo-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded tracking-wider uppercase shadow-sm">🍽️ TABLE</span>
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/60">
+            <div class="flex items-center gap-2 mb-2">
+                <div class="h-6 w-6 bg-red-50 text-red-500 rounded-md flex items-center justify-center text-xs">✨</div>
+                <h3 class="text-xs font-black text-slate-900 uppercase tracking-wider">Our Story & Trust</h3>
             </div>
-            <div class="pt-2">
-                <h3 class="font-bold text-slate-800 text-sm leading-tight line-clamp-1">Premium Table Cover</h3>
-                <p class="text-[11px] text-slate-500 mt-0.5 font-medium">Artisanal Design / मेज़पोश</p>
-                <a href="https://wa.me/919250036334?text=Namaste!%20I%20am%20interested%20in%20ordering%20the%20Premium%20Table%20Cover." target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-slate-900 hover:bg-orange-600 text-white text-center py-2.5 rounded-xl font-bold text-xs transition-colors shadow-sm">
-                    Order / खरीदें 🛒
-                </a>
-            </div>
-        </div>
-
-        <div class="forced-card bg-white rounded-2xl shadow-md border border-slate-100 p-2.5 flex flex-col justify-between hover:border-orange-200 transition-all">
-            <div class="relative">
-                <img src="Sofa cover.png" alt="Luxury Sofa Cover Set" loading="lazy" decoding="async">
-                <span class="absolute bottom-2 left-2 bg-amber-700 text-white text-[9px] font-black px-1.5 py-0.5 rounded tracking-wider uppercase shadow-sm">🛋️ SOFA</span>
-            </div>
-            <div class="pt-2">
-                <h3 class="font-bold text-slate-800 text-sm leading-tight line-clamp-1">Luxury Sofa Cover Set</h3>
-                <p class="text-[11px] text-slate-500 mt-0.5 font-medium">Premium Shield Weave / सोफा कवर</p>
-                <a href="https://wa.me/919250036334?text=Namaste!%20I%20am%20interested%20in%20ordering%20the%20Luxury%20Sofa%20Cover%20Set." target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-slate-900 hover:bg-orange-600 text-white text-center py-2.5 rounded-xl font-bold text-xs transition-colors shadow-sm">
-                    Order / खरीदें 🛒
-                </a>
-            </div>
-        </div>
-
-        <div class="forced-card bg-white rounded-2xl shadow-md border border-slate-100 p-2.5 flex flex-col justify-between hover:border-orange-200 transition-all">
-            <div class="relative">
-                <img src="home decor.png" alt="Artisanal Interior Decor Centerpiece" loading="lazy" decoding="async">
-                <span class="absolute bottom-2 left-2 bg-rose-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded tracking-wider uppercase shadow-sm">🏠 DESIGN</span>
-            </div>
-            <div class="pt-2">
-                <h3 class="font-bold text-slate-800 text-sm leading-tight line-clamp-1">Artisanal Interior Decor</h3>
-                <p class="text-[11px] text-slate-500 mt-0.5 font-medium">Elegant Styling / गृह सज्जा</p>
-                <a href="https://wa.me/919250036334?text=Namaste!%20I%20am%20interested%20in%20viewing%20the%20Artisanal%20Interior%20Decor." target="_blank" rel="noopener noreferrer" class="block w-full mt-3 bg-slate-900 hover:bg-orange-600 text-white text-center py-2.5 rounded-xl font-bold text-xs transition-colors shadow-sm">
-                    Order / खरीदें 🛒
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <section class="max-w-lg mx-auto mt-8 px-4">
-        <div class="bg-white rounded-3xl p-5 shadow-xl border border-slate-100">
-            <div class="flex items-center gap-2.5 mb-3">
-                <div class="h-7 w-7 bg-orange-100 rounded-lg flex items-center justify-center text-sm">✨</div>
-                <h3 class="text-base font-black text-slate-900 uppercase tracking-wider">About Our Legacy</h3>
-            </div>
-            <p class="text-xs leading-relaxed text-slate-600 mb-5">
-                Welcome to <span class="font-extrabold text-slate-800">CarryMe Stores</span>. We curate and distribute premium textiles, high-fidelity daily cotton essentials, and traditional home accents sourced directly from master production clusters across India. Lightweight components guarantee immediate device rendering, while direct human delivery nodes assure conversion satisfaction.
+            <p class="text-[11px] leading-relaxed text-slate-600 mb-4">
+                Welcome to <span class="font-extrabold text-slate-800">CarryMe Stores</span>. We distribute premium textiles, high-fidelity daily cotton essentials, and traditional home accents sourced directly from master weaver tracks across India. Hyper-optimized components ensure offline speed, while direct conversion funnels protect consumer data profiles cleanly.
             </p>
 
-            <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200/50 flex items-center gap-4 mb-5">
-                <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=CarryMeFounder" alt="Founder Portrait" class="h-12 w-12 rounded-full border bg-orange-100 border-orange-200">
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-100 flex items-center gap-3 mb-4">
+                <div class="h-12 w-12 rounded-full border-2 border-red-500 bg-white overflow-hidden flex-shrink-0">
+                    <img src="image0.png" alt="Founder Portrait" class="h-full w-full object-cover" onerror="this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=CarryMeFounder'">
+                </div>
                 <div>
-                    <h4 class="text-xs font-black text-slate-900 tracking-wide uppercase">Core Engineering Lead</h4>
-                    <p class="text-[11px] font-bold text-orange-600 -mt-0.5">Founder, CarryMe Group</p>
-                    <p class="text-[11px] text-slate-500 mt-1 leading-tight">"Bridging legacy Indian craft with hyper-optimized direct-to-consumer digital conversion infrastructure."</p>
+                    <h4 class="text-[10px] font-black text-slate-900 uppercase tracking-wide">Core Engineering Lead</h4>
+                    <p class="text-[10px] font-bold text-red-500 -mt-0.5">Founder, CarryMe Group</p>
+                    <p class="text-[10px] text-slate-500 mt-1 leading-tight">"Bridging legendary Indian craftsmanship with ultra-performing direct-to-consumer digital infrastructure pipelines."</p>
                 </div>
             </div>
 
-            <div class="border-t border-slate-100 pt-4">
-                <div class="flex items-center gap-2 mb-2">
-                    <span class="flex h-2 w-2 relative">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
-                    </span>
-                    <h4 class="text-xs font-black text-slate-800 uppercase tracking-wide">Live Orders Tracking Portal</h4>
+            <div class="border-t border-slate-100 pt-3">
+                <div class="flex items-center gap-1.5 mb-1.5">
+                    <span class="w-1.5 h-1.5 bg-red-500 rounded-full inline-block animate-pulse"></span>
+                    <h4 class="text-[11px] font-black text-slate-800 uppercase tracking-wide">Live Orders Tracking Portal</h4>
                 </div>
-                <p class="text-[11px] text-slate-500 leading-snug mb-3">
-                    Already requested items via WhatsApp? Access instant status checking parameters by providing your name code details below.
-                </p>
                 <div class="flex gap-2">
-                    <input type="text" id="custNameInput" placeholder="Enter Your Order Name/ID..." class="bg-slate-50 border border-slate-200 text-xs rounded-xl px-3 py-2.5 w-full font-medium focus:outline-none focus:ring-2 focus:ring-orange-500/20 text-slate-800">
-                    <button onclick="triggerOrderCheck()" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-black tracking-wide uppercase px-4 py-2.5 rounded-xl transition-colors shadow-md shadow-orange-500/10">
+                    <input type="text" id="custNameInput" placeholder="Enter Your Order ID or Buyer Name..." class="bg-slate-50 border border-slate-200 text-xs rounded-lg px-3 py-2 w-full font-medium focus:outline-none focus:ring-1 focus:ring-red-500 text-slate-800">
+                    <button onclick="triggerOrderCheck()" class="bg-red-500 hover:bg-red-600 text-white text-[11px] font-black uppercase px-4 py-2 rounded-lg transition-colors shadow-sm">
                         Track
                     </button>
                 </div>
@@ -271,9 +367,9 @@
         </div>
     </section>
 
-    <footer class="fixed bottom-0 w-full p-3 bg-white/90 backdrop-blur-md border-t border-slate-200 z-40">
+    <footer class="fixed bottom-0 w-full p-3 bg-white/95 backdrop-blur-md border-t border-slate-200 z-40">
         <div class="max-w-lg mx-auto">
-            <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20view%20your%20latest%20product%20catalog." target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 block w-full bg-green-600 text-white text-center py-3 rounded-xl font-extrabold shadow-lg shadow-green-600/20 text-sm tracking-wide transition transform active:scale-[0.98]">
+            <a href="https://wa.me/919250036334?text=Namaste!%20I%20want%20to%20view%20your%20latest%20product%20catalog." target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 block w-full bg-green-600 hover:bg-green-700 text-white text-center py-2.5 rounded-xl font-black shadow-lg shadow-green-600/20 text-xs tracking-wide transition-transform active:scale-[0.98]">
                 <span>💬 CHAT WITH US ON WHATSAPP</span>
             </a>
         </div>
@@ -289,6 +385,21 @@
             const textString = encodeURIComponent(`Namaste CarryMe Team! Check status of my order data: ${val}`);
             window.open(`https://wa.me/919250036334?text=${textString}`, '_blank');
         }
+
+        // Live Dynamic Client-Side Searching Proxy Hook
+        document.getElementById('storeSearchInput').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.product-grid > div');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                if(title.includes(term)) {
+                    card.style.setProperty('display', 'flex', 'important');
+                } else {
+                    card.style.setProperty('display', 'none', 'important');
+                }
+            });
+        });
     </script>
 
 </body>
