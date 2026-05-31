@@ -1,218 +1,412 @@
 <!DOCTYPE html>
-<html lang="en-IN">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CarryMe Store | Premium Indian E-commerce Marketplace</title>
-  <meta name="theme-color" content="#050816">
-  
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
+  <title>CarryMe Store | Smart. Stylish. Always With You.</title>
+
+  <meta
+    name="description"
+    content="CarryMe Store - Futuristic AI-powered ecommerce experience for smart accessories, fashion, gadgets and lifestyle products."
+  />
+
+  <meta name="theme-color" content="#050816" />
+
+  <!-- SEO -->
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="CarryMe Store, AI ecommerce India, futuristic store, PWA shopping app, gadgets, lifestyle" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="CarryMe Store" />
+  <meta property="og:description" content="Smart. Stylish. Always With You." />
+  <meta property="og:type" content="website" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; user-select: none; }
-    body { background: #050816; color: white; overflow-x: hidden; }
-    .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); }
-    .neon-gradient { background: linear-gradient(90deg, #00F5FF, #FF00FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .glow-btn { box-shadow: 0 0 20px rgba(0, 245, 255, 0.3); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-    .glow-btn:hover { transform: scale(1.03); box-shadow: 0 0 30px rgba(0, 245, 255, 0.5); }
-    .product-card { transition: all 0.3s ease; }
-    .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0, 245, 255, 0.12); }
-    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #050816;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .hero-gradient {
+      background:
+        radial-gradient(circle at top left,#00f0ff33,transparent 35%),
+        radial-gradient(circle at bottom right,#ff00ff33,transparent 35%),
+        #050816;
+    }
+
+    .glow {
+      box-shadow: 0 0 25px rgba(0,255,255,0.3);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      transition: 0.4s ease;
+    }
+
+    .neon-text {
+      background: linear-gradient(90deg,#00F5FF,#FF00FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .chat-bubble {
+      animation: float 3s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px);}
+      50% { transform: translateY(-8px);}
+      100% { transform: translateY(0px);}
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
   </style>
 </head>
-<body class="bg-[#050816]">
 
-  <nav class="fixed top-0 w-full z-50 glass px-4 py-3.5 flex items-center justify-between">
-    <h1 class="text-xl font-bold neon-gradient tracking-wider">CarryMe</h1>
-    <div class="flex gap-5 items-center text-xs md:text-sm font-medium tracking-wide">
-      <a href="#home-kitchen" class="text-gray-400 hover:text-cyan-400 transition">Home</a>
-      <a href="#womens-fashion" class="text-gray-400 hover:text-purple-400 transition">Women</a>
-      <a href="#kids-fashion" class="text-gray-400 hover:text-orange-400 transition">Kids</a>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 w-full z-50 glass px-6 py-4 flex items-center justify-between">
+    <h1 class="text-2xl font-bold neon-text">
+      CarryMe
+    </h1>
+
+    <div class="flex gap-4 items-center">
+      <a href="#products" class="text-sm">Products</a>
+      <a href="#ai" class="text-sm">AI Assistant</a>
+
+      <a
+        href="https://wa.me/"
+        target="_blank"
+        class="bg-cyan-400 text-black px-4 py-2 rounded-full text-sm font-semibold glow"
+      >
+        WhatsApp
+      </a>
     </div>
   </nav>
 
-  <section class="min-h-[60vh] flex items-center justify-center px-4 pt-24 bg-[radial-gradient(circle_at_top_left,rgba(0,245,255,0.1),transparent_40%)]">
-    <div class="max-w-7xl mx-auto text-center space-y-4">
-      <span class="text-xs text-cyan-400 tracking-widest uppercase font-semibold">Premium Indian D2C Ecosystem</span>
-      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Fastest Shopping Experience.<br><span class="neon-gradient">Direct UPI Checkout.</span></h2>
-      <p class="text-gray-400 text-xs md:text-sm max-w-md mx-auto">Explore catalog collections across high-margin premium categories with real-time checkout configurations.</p>
+  <!-- HERO -->
+  <section class="hero-gradient min-h-screen flex items-center justify-center px-6 pt-24">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+
+      <div>
+        <p class="text-cyan-400 mb-4 uppercase tracking-widest">
+          AI Powered Ecommerce
+        </p>
+
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
+          Smart.<br />
+          Stylish.<br />
+          <span class="neon-text">Always With You.</span>
+        </h1>
+
+        <p class="text-gray-300 text-lg mb-8">
+          Explore futuristic fashion, gadgets, lifestyle products,
+          AI shopping assistance and India-first mobile shopping experiences.
+        </p>
+
+        <div class="flex gap-4 flex-wrap">
+          <a
+            href="#products"
+            class="bg-cyan-400 text-black px-6 py-3 rounded-full font-semibold glow"
+          >
+            Explore Products
+          </a>
+
+          <a
+            href="#ai"
+            class="glass px-6 py-3 rounded-full"
+          >
+            AI Assistant
+          </a>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="glass rounded-3xl p-6 glow">
+          <img
+            src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop"
+            class="rounded-2xl w-full object-cover"
+          />
+
+          <div class="mt-6">
+            <h2 class="text-2xl font-semibold">
+              CarryMe Smart Collection
+            </h2>
+
+            <p class="text-gray-300 mt-2">
+              Futuristic accessories for modern India.
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <main class="max-w-7xl mx-auto px-4 pb-32 space-y-16">
-    
-    <section id="home-kitchen" class="space-y-6">
-      <div class="border-b border-cyan-500/10 pb-3 flex justify-between items-end">
-        <h3 class="text-lg font-semibold tracking-wide text-white">Home & Kitchen Essentials</h3>
-        <span class="text-xs text-cyan-400 font-medium tracking-wider">Wholesale Value</span>
-      </div>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="glass rounded-2xl overflow-hidden product-card p-3 flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="h-36 md:h-44 rounded-xl overflow-hidden bg-zinc-900">
-              <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Home Decor">
-            </div>
-            <h4 class="font-medium text-xs md:text-sm text-gray-200 truncate">Premium Home Decor Pack</h4>
-          </div>
-          <div class="flex justify-between items-center mt-4">
-            <span class="text-cyan-400 font-bold text-sm">₹499</span>
-            <button onclick="addToCart('Premium Home Decor Pack', 499)" class="bg-white/5 hover:bg-cyan-400 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition tracking-wide">Add</button>
-          </div>
-        </div>
-        <div class="glass rounded-2xl overflow-hidden product-card p-3 flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="h-36 md:h-44 rounded-xl overflow-hidden bg-zinc-900">
-              <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Luxury Towels">
-            </div>
-            <h4 class="font-medium text-xs md:text-sm text-gray-200 truncate">Luxury Collection Towels</h4>
-          </div>
-          <div class="flex justify-between items-center mt-4">
-            <span class="text-cyan-400 font-bold text-sm">₹299</span>
-            <button onclick="addToCart('Luxury Collection Towels', 299)" class="bg-white/5 hover:bg-cyan-400 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition tracking-wide">Add</button>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- PRODUCTS -->
+  <section id="products" class="py-24 px-6">
+    <div class="max-w-7xl mx-auto">
 
-    <section id="womens-fashion" class="space-y-6">
-      <div class="border-b border-purple-500/10 pb-3 flex justify-between items-end">
-        <h3 class="text-lg font-semibold tracking-wide text-white">Women's Premium Fashion</h3>
-        <span class="text-xs text-purple-400 font-medium tracking-wider">Reseller Hot-Picks</span>
+      <div class="flex justify-between items-center mb-10">
+        <h2 class="text-4xl font-bold">
+          Trending Products
+        </h2>
+
+        <p class="text-gray-400">
+          AI Curated Collection
+        </p>
       </div>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="glass rounded-2xl overflow-hidden product-card p-3 flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="h-36 md:h-44 rounded-xl overflow-hidden bg-zinc-900">
-              <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Terracotta Jewellery">
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- CARD -->
+        <div class="glass rounded-3xl overflow-hidden product-card">
+          <img
+            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop"
+            class="w-full h-72 object-cover"
+          />
+
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold mb-2">
+              Smart Sneakers
+            </h3>
+
+            <p class="text-gray-400 mb-4">
+              Urban futuristic comfort wear.
+            </p>
+
+            <div class="flex justify-between items-center">
+              <span class="text-cyan-400 text-xl font-bold">
+                ₹1,999
+              </span>
+
+              <button
+                class="bg-cyan-400 text-black px-5 py-2 rounded-full font-semibold"
+              >
+                Buy Now
+              </button>
             </div>
-            <h4 class="font-medium text-xs md:text-sm text-gray-200 truncate">Classic Terracotta Necklace</h4>
-          </div>
-          <div class="flex justify-between items-center mt-4">
-            <span class="text-purple-400 font-bold text-sm">₹349</span>
-            <button onclick="addToCart('Classic Terracotta Necklace', 349)" class="bg-white/5 hover:bg-purple-500 hover:text-white px-3 py-1 rounded-full text-xs font-semibold transition tracking-wide">Add</button>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section id="kids-fashion" class="space-y-6">
-      <div class="border-b border-orange-500/10 pb-3 flex justify-between items-end">
-        <h3 class="text-lg font-semibold tracking-wide text-white">Kid's Play & Comfortwear</h3>
-        <span class="text-xs text-orange-400 font-medium tracking-wider">Premium Stock</span>
-      </div>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="glass rounded-2xl overflow-hidden product-card p-3 flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="h-36 md:h-44 rounded-xl overflow-hidden bg-zinc-900">
-              <img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Cotton Combo">
+        <!-- CARD -->
+        <div class="glass rounded-3xl overflow-hidden product-card">
+          <img
+            src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=1200&auto=format&fit=crop"
+            class="w-full h-72 object-cover"
+          />
+
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold mb-2">
+              AI Smart Watch
+            </h3>
+
+            <p class="text-gray-400 mb-4">
+              Intelligent wearable ecosystem.
+            </p>
+
+            <div class="flex justify-between items-center">
+              <span class="text-cyan-400 text-xl font-bold">
+                ₹3,499
+              </span>
+
+              <button
+                class="bg-cyan-400 text-black px-5 py-2 rounded-full font-semibold"
+              >
+                Buy Now
+              </button>
             </div>
-            <h4 class="font-medium text-xs md:text-sm text-gray-200 truncate">Unisex Cotton Playwear Combo</h4>
-          </div>
-          <div class="flex justify-between items-center mt-4">
-            <span class="text-orange-400 font-bold text-sm">₹399</span>
-            <button onclick="addToCart('Unisex Cotton Playwear Combo', 399)" class="bg-white/5 hover:bg-orange-500 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition tracking-wide">Add</button>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
 
-  <aside id="cart-panel" class="fixed top-0 right-0 h-full w-full max-w-md glass z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-between overflow-hidden" style="background: rgba(5,8,22,0.98);">
-    <div class="p-5 border-b border-white/10 flex justify-between items-center bg-white/5">
-      <h3 class="font-bold tracking-wide text-base flex items-center gap-2">🛒 Your Shopping Basket</h3>
-      <button onclick="toggleCart()" class="text-gray-400 hover:text-white text-2xl p-1">&times;</button>
+        <!-- CARD -->
+        <div class="glass rounded-3xl overflow-hidden product-card">
+          <img
+            src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop"
+            class="w-full h-72 object-cover"
+          />
+
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold mb-2">
+              Premium Headphones
+            </h3>
+
+            <p class="text-gray-400 mb-4">
+              Immersive AI audio experience.
+            </p>
+
+            <div class="flex justify-between items-center">
+              <span class="text-cyan-400 text-xl font-bold">
+                ₹2,499
+              </span>
+
+              <button
+                class="bg-cyan-400 text-black px-5 py-2 rounded-full font-semibold"
+              >
+                Buy Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-    
-    <div id="cart-list" class="flex-1 overflow-y-auto p-5 space-y-3 scrollbar-hide">
-      <p class="text-gray-400 text-xs text-center py-12 tracking-wide">Your basket is currently empty.</p>
-    </div>
-    
-    <div class="p-5 border-t border-white/10 space-y-3 bg-[#050816]">
-      <div class="flex justify-between items-center font-semibold text-sm tracking-wide">
-        <span class="text-gray-400">Total Billable:</span>
-        <span id="cart-aggregate-total" class="text-cyan-400 text-lg font-bold">₹0</span>
+  </section>
+
+  <!-- AI ASSISTANT -->
+  <section id="ai" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="glass rounded-3xl p-10 relative overflow-hidden">
+
+        <div class="absolute top-0 right-0 w-72 h-72 bg-cyan-500/20 blur-3xl"></div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
+
+          <div>
+            <p class="text-cyan-400 uppercase tracking-widest mb-3">
+              AI SHOPPING ASSISTANT
+            </p>
+
+            <h2 class="text-5xl font-bold mb-6">
+              Your Personal AI Shopping Guide
+            </h2>
+
+            <p class="text-gray-300 text-lg mb-8">
+              Ask questions, discover products,
+              get recommendations and shop smarter with AI.
+            </p>
+
+            <div class="flex gap-4 flex-wrap">
+              <a
+                href="/chat"
+                class="bg-cyan-400 text-black px-6 py-3 rounded-full font-semibold glow"
+              >
+                Open AI Chat
+              </a>
+
+              <a
+                href="https://wa.me/"
+                target="_blank"
+                class="glass px-6 py-3 rounded-full"
+              >
+                WhatsApp Support
+              </a>
+            </div>
+          </div>
+
+          <div class="chat-bubble">
+            <div class="glass rounded-3xl p-6">
+              <div class="space-y-4">
+
+                <div class="bg-cyan-400 text-black p-4 rounded-2xl w-fit max-w-xs">
+                  Suggest futuristic products under ₹2000
+                </div>
+
+                <div class="bg-white/10 p-4 rounded-2xl w-fit ml-auto max-w-xs">
+                  Here are AI-curated trending products for you ✨
+                </div>
+
+                <div class="bg-cyan-400 text-black p-4 rounded-2xl w-fit max-w-xs">
+                  Show me premium headphones
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
-      <button onclick="triggerUPIGateway()" class="w-full bg-cyan-400 text-black font-bold py-3.5 rounded-full glow-btn text-xs tracking-widest uppercase">Pay Instantly via UPI App</button>
-      <button onclick="triggerWhatsAppChannel()" class="w-full bg-emerald-600 text-white font-semibold py-3 rounded-full text-xs tracking-wider flex items-center justify-center gap-2">Order manually on WhatsApp</button>
     </div>
-  </aside>
+  </section>
 
-  <button onclick="toggleCart()" class="fixed bottom-6 right-6 z-40 bg-purple-600 text-white px-5 py-3.5 rounded-full shadow-2xl flex items-center gap-2 font-bold tracking-wide text-xs glow-btn">
-    🛍️ Bag (<span id="cart-count">0</span>)
-  </button>
+  <!-- CTA -->
+  <section class="py-20 px-6">
+    <div class="max-w-5xl mx-auto text-center">
 
+      <h2 class="text-5xl font-bold mb-6">
+        India’s Future Shopping Experience
+      </h2>
+
+      <p class="text-gray-400 text-lg mb-10">
+        Mobile-first AI ecommerce ecosystem built for modern creators,
+        shoppers and futuristic digital lifestyles.
+      </p>
+
+      <a
+        href="https://www.carryme.store"
+        class="bg-cyan-400 text-black px-8 py-4 rounded-full text-lg font-semibold glow"
+      >
+        Visit CarryMe Store
+      </a>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/10 py-10 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-6">
+
+      <div>
+        <h2 class="text-2xl font-bold neon-text">
+          CarryMe
+        </h2>
+
+        <p class="text-gray-400 mt-2">
+          Smart. Stylish. Always With You.
+        </p>
+      </div>
+
+      <div class="flex gap-6 text-gray-400">
+        <a href="#">Instagram</a>
+        <a href="#">WhatsApp</a>
+        <a href="#">AI Chat</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- PWA -->
   <script>
-    let cart = [];
-
-    function toggleCart() {
-      const panel = document.getElementById('cart-panel');
-      panel.classList.toggle('translate-x-full');
-    }
-
-    function addToCart(name, price) {
-      cart.push({ name, price });
-      syncCartInterface();
-    }
-
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      syncCartInterface();
-    }
-
-    function syncCartInterface() {
-      document.getElementById('cart-count').innerText = cart.length;
-      const listContainer = document.getElementById('cart-list');
-      
-      if (cart.length === 0) {
-        listContainer.innerHTML = '<p class="text-gray-400 text-xs text-center py-12 tracking-wide">Your basket is currently empty.</p>';
-        document.getElementById('cart-aggregate-total').innerText = '₹0';
-        return;
-      }
-      
-      let itemsHTML = '';
-      let runningTotal = 0;
-      
-      cart.forEach((item, index) => {
-        runningTotal += item.price;
-        itemsHTML += `
-          <div class="flex justify-between items-center glass p-3.5 rounded-xl border border-white/5 animate-fade-in">
-            <div>
-              <p class="text-xs font-medium text-gray-200">${item.name}</p>
-              <p class="text-xs text-cyan-400 mt-0.5 font-semibold">₹${item.price}</p>
-            </div>
-            <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-500 text-xs font-medium tracking-wide p-1">Remove</button>
-          </div>
-        `;
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js");
       });
-      
-      listContainer.innerHTML = itemsHTML;
-      document.getElementById('cart-aggregate-total').innerText = '₹' + runningTotal;
-    }
-
-    // NATIVE INDIAN UPI INTEGRATION FUNCTION
-    function triggerUPIGateway() {
-      if (cart.length === 0) return alert('Your bag is empty!');
-      let grandTotal = cart.reduce((sum, item) => sum + item.price, 0);
-      
-      // Dynamic standard National Payments Corporation of India string configuration
-      let upiString = `upi://pay?pa=priyasrivastav7505-2@okicici&pn=CarryMe%20Store&am=${grandTotal}&cu=INR&tn=CarryMe%20Order%20Payment`;
-      
-      // Auto-triggers target UPI client protocols on devices (GPay, PhonePe, Paytm, BHIM)
-      window.location.href = upiString;
-    }
-
-    // BACKUP CONVERSION TRACKING TEMPLATE
-    function triggerWhatsAppChannel() {
-      if (cart.length === 0) return alert('Your bag is empty!');
-      let grandTotal = cart.reduce((sum, item) => sum + item.price, 0);
-      
-      let messageLayout = `Hello CarryMe Store! I want to confirm an order:\n\n`;
-      cart.forEach((item) => { messageLayout += `🔹 ${item.name} - ₹${item.price}\n`; });
-      messageLayout += `\n*Grand Total billable amount:* ₹${grandTotal}\n\nPlease verify availability and confirm logistics delivery timelines.`;
-      
-      window.open(`https://wa.me/919250036334?text=${encodeURIComponent(messageLayout)}`, '_blank');
     }
   </script>
 
