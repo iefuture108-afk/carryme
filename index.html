@@ -1,4 +1,3 @@
-# Copy and execute this complete block to rewrite index.html with your exact requested layout, categories, and WhatsApp funnel
 cat << 'EOF' > index.html
 <!DOCTYPE html>
 <html lang="en-IN">
@@ -177,21 +176,3 @@ cat << 'EOF' > index.html
 </body>
 </html>
 EOF
-
-# Ensure Vercel routing handles SPA path configurations cleanly without throwing a 404
-cat << 'EOF' > vercel.json
-{
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
-}
-EOF
-
-# Stage your production-ready asset layout changes
-git add index.html vercel.json
-
-# Commit to the global revision timeline
-git commit -m "feat: complete layout reconfiguration for catalog distribution matrix"
-
-# Push directly to trigger your autonomous Vercel build loop
-git push origin main
