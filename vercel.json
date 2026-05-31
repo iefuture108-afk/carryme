@@ -1,5 +1,7 @@
+cat << 'EOF' > vercel.json
 {
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
+EOF
