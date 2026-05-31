@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CarryMe Store | Premium B2B Wholesale Hub</title>
-  <meta name="description" content="CarryMe Store - Futuristic AI-powered B2B e-commerce platform connecting factories directly with Instagram & WhatsApp resellers." />
+  <meta name="description" content="CarryMe Store - Direct factory B2B hub connecting manufacturing units with high-volume resellers." />
   <meta name="theme-color" content="#050816" />
-  <meta name="robots" content="index, follow" />
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -28,14 +27,14 @@
       overflow-x: hidden;
     }
     .glass {
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.07);
     }
     .hero-gradient {
-      background: radial-gradient(circle at top left, #00f0ff20, transparent 40%),
-                  radial-gradient(circle at bottom right, #ff00ff20, transparent 40%),
+      background: radial-gradient(circle at top left, #00f0ff15, transparent 40%),
+                  radial-gradient(circle at bottom right, #ff00ff15, transparent 40%),
                   #050816;
     }
     .neon-text {
@@ -44,20 +43,20 @@
       -webkit-text-fill-color: transparent;
     }
     .glow-btn {
-      box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+      box-shadow: 0 0 20px rgba(0, 245, 255, 0.15);
       transition: all 0.3s ease;
     }
     .glow-btn:hover {
-      box-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
+      box-shadow: 0 0 30px rgba(0, 245, 255, 0.4);
       transform: translateY(-2px);
     }
     .product-card {
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .product-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(0, 245, 255, 0.3);
-      box-shadow: 0 10px 30px -10px rgba(0, 245, 255, 0.15);
+      transform: translateY(-6px);
+      border-color: rgba(0, 245, 255, 0.25);
+      box-shadow: 0 12px 30px -10px rgba(0, 245, 255, 0.15);
     }
     .sticky-whatsapp {
       animation: pulse 2s infinite;
@@ -71,174 +70,189 @@
 </head>
 <body>
 
-  <!-- FIXED NAVIGATION -->
+  <!-- FIXED HEADER -->
   <nav class="fixed top-0 w-full z-50 glass px-6 py-4 flex items-center justify-between">
     <h1 class="text-2xl font-bold neon-text tracking-wide">CarryMe</h1>
     <div class="hidden md:flex gap-8 text-sm tracking-wide">
-      <a href="#home-kitchen" class="hover:text-cyan-400 transition">Home & Kitchen</a>
-      <a href="#womens-fashion" class="hover:text-cyan-400 transition">Women's Fashion</a>
-      <a href="#kids-fashion" class="hover:text-cyan-400 transition">Kid's Fashion</a>
+      <a href="#premium-towels" class="hover:text-cyan-400 transition">Ultra-Premium Towels</a>
+      <a href="#table-covers" class="hover:text-cyan-400 transition">Premium PVC Covers</a>
     </div>
-    <a href="https://wa.me/919250036334?text=Hi%20CarryMe,%20I%20want%20to%20browse%20the%20wholesale%20catalog." 
+    <a href="https://wa.me/919250036334?text=Hi%20CarryMe,%20I%20want%20to%20access%20the%20premium%20wholesale%20dealership%20catalog." 
        target="_blank" 
        class="bg-cyan-400 text-black px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider glow-btn">
-      Bulk Inquiry
+      Bulk Catalog
     </a>
   </nav>
 
-  <!-- HERO SECTION -->
+  <!-- CAMPAIGN HERO -->
   <section class="hero-gradient min-h-screen flex items-center justify-center px-6 pt-24">
     <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center w-full">
       <div>
-        <p class="text-cyan-400 text-xs font-bold uppercase tracking-widest mb-3">Direct Factory B2B Hub</p>
+        <p class="text-cyan-400 text-xs font-bold uppercase tracking-widest mb-3">Direct-from-Factory Edge</p>
         <h1 class="text-4xl sm:text-6xl font-bold leading-tight mb-6">
-          Premium Wholesale.<br />
-          Optimized Pricing.<br />
+          Premium Inventory.<br />
+          Maximize Margins.<br />
           <span class="neon-text">Built For Resellers.</span>
         </h1>
         <p class="text-gray-400 text-base max-w-md mb-8 leading-relaxed">
-          Connect directly with top manufacturing units. High margin setups specifically curated for premium Instagram and WhatsApp store owners in India.
+          Source top-tier kitchenware and home textiles. Optimized margins curated specifically for high-growth Instagram and WhatsApp business storefronts across India.
         </p>
         <div class="flex gap-4">
           <a href="#catalog" class="bg-gradient-to-r from-cyan-400 to-fuchsia-500 text-white px-8 py-3.5 rounded-full font-semibold text-sm tracking-wide glow-btn">
-            View Live Catalog
+            Explore Active Inventory
           </a>
         </div>
       </div>
       <div class="relative hidden md:block">
         <div class="glass rounded-3xl p-4 border border-white/10">
-          <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=1200&auto=format&fit=crop" 
-               alt="B2B Premium Wholesale Hub" class="rounded-2xl w-full object-cover h-[400px]" />
+          <img src="Hand towel Combo 2 pack.png" 
+               alt="CarryMe Premium Master Showcase" class="rounded-2xl w-full object-cover h-[400px]" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PRODUCT ARCHITECTURE SUITE -->
+  <!-- PRODUCT SPECIFICATION PIPELINE -->
   <main id="catalog" class="py-20 px-6 max-w-7xl mx-auto space-y-24">
     
-    <!-- CATEGORY 1: HOME & KITCHEN -->
-    <section id="home-kitchen" class="space-y-8">
+    <!-- CATEGORY 1: HIGH-ABSORPTION PREMIUM TOWELS -->
+    <section id="premium-towels" class="space-y-8">
       <div class="border-l-4 border-cyan-400 pl-4">
-        <h2 class="text-3xl font-bold tracking-tight">Home & Luxury Kitchenware</h2>
-        <p class="text-gray-400 text-sm mt-1">High-margin utility and lifestyle organizers</p>
+        <h2 class="text-3xl font-bold tracking-tight">500 GSM Ultra-Premium Hand Towels</h2>
+        <p class="text-gray-400 text-sm mt-1">Skin-friendly, high-density weave engineered for superior durability</p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Product Card 1 -->
+        
+        <!-- Towel Card 1 -->
         <div class="glass rounded-2xl overflow-hidden product-card border border-white/5">
-          <div class="h-64 overflow-hidden bg-gray-900">
-            <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop" alt="Luxury Collection Towels" class="w-full h-full object-cover" />
+          <div class="h-72 overflow-hidden bg-gray-900 relative">
+            <img src="Hand towel Combo 2 pack.png" alt="Hand towel Combo 2 pack.png" class="w-full h-full object-cover" />
+            <span class="absolute top-3 right-3 bg-cyan-400 text-black font-bold text-[10px] px-2.5 py-1 rounded-full uppercase">Set of 2</span>
           </div>
           <div class="p-6 space-y-4">
-            <h3 class="text-lg font-semibold tracking-wide text-white">Luxury Collection Towel Set</h3>
-            <p class="text-xs text-gray-400">100% Cotton high-absorption performance premium hand and face towel sets.</p>
+            <h3 class="text-lg font-semibold tracking-wide text-white">Hand Towel Combo Pack</h3>
+            <p class="text-xs text-gray-400 font-light">Premium multi-utility set matching bathrooms, kitchens, and travel kits. 1 Pink + 1 White selection.</p>
             <div class="flex justify-between items-center pt-2">
               <div>
-                <p class="text-[10px] uppercase text-gray-500 tracking-wider">Wholesale Price</p>
-                <span class="text-cyan-400 text-xl font-bold">₹449</span>
-              </div>
-              <a href="https://wa.me/919250036334?text=Hi,%20I%20am%20interested%20in%20Luxury%20Collection%20Towel%20Set" target="_blank" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-4 py-2 rounded-full text-xs font-semibold transition">Get MQ / Book</a>
-            </div>
-          </div>
-        </div>
-        <!-- Product Card 2 -->
-        <div class="glass rounded-2xl overflow-hidden product-card border border-white/5">
-          <div class="h-64 overflow-hidden bg-gray-900">
-            <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=600&auto=format&fit=crop" alt="Premium Smart Sofa Covers" class="w-full h-full object-cover" />
-          </div>
-          <div class="p-6 space-y-4">
-            <h3 class="text-lg font-semibold tracking-wide text-white">Elastic Smart Sofa Cover</h3>
-            <p class="text-xs text-gray-400">Universal fit, spill-resistant structural fabric patterns for modern living rooms.</p>
-            <div class="flex justify-between items-center pt-2">
-              <div>
-                <p class="text-[10px] uppercase text-gray-500 tracking-wider">Wholesale Price</p>
-                <span class="text-cyan-400 text-xl font-bold">₹899</span>
-              </div>
-              <a href="https://wa.me/919250036334?text=Hi,%20I%20am%20interested%20in%20Elastic%20Sofa%20Cover" target="_blank" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-4 py-2 rounded-full text-xs font-semibold transition">Get MQ / Book</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CATEGORY 2: WOMEN'S FASHION -->
-    <section id="womens-fashion" class="space-y-8">
-      <div class="border-l-4 border-fuchsia-500 pl-4">
-        <h2 class="text-3xl font-bold tracking-tight">Women's Premium Fashion</h2>
-        <p class="text-gray-400 text-sm mt-1">Trending boutique ensembles and hand-crafted statement jewelry</p>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Product Card 1 -->
-        <div class="glass rounded-2xl overflow-hidden product-card border border-white/5">
-          <div class="h-64 overflow-hidden bg-gray-900">
-            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=600&auto=format&fit=crop" alt="Classic Terracotta Necklace" class="w-full h-full object-cover" />
-          </div>
-          <div class="p-6 space-y-4">
-            <h3 class="text-lg font-semibold tracking-wide text-white">Classic Terracotta Necklace Set</h3>
-            <p class="text-xs text-gray-400">Artisan-crafted eco-friendly natural clay design matching statement casual/ethnic styles.</p>
-            <div class="flex justify-between items-center pt-2">
-              <div>
-                <p class="text-[10px] uppercase text-gray-500 tracking-wider">Wholesale Price</p>
+                <p class="text-[9px] uppercase text-gray-500 tracking-wider">Wholesale Unit Price</p>
                 <span class="text-cyan-400 text-xl font-bold">₹349</span>
               </div>
-              <a href="https://wa.me/919250036334?text=Hi,%20I%20am%20interested%20in%20Classic%20Terracotta%20Necklace%20Set" target="_blank" class="bg-white/10 hover:bg-fuchsia-500 hover:text-white px-4 py-2 rounded-full text-xs font-semibold transition">Get MQ / Book</a>
+              <a href="https://wa.me/919250036334?text=Hi,%20I%20want%20to%20order%20the%20Hand%20towel%20Combo%202%20pack.png" target="_blank" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-4 py-2 rounded-full text-xs font-semibold transition">Book Inventory</a>
             </div>
           </div>
         </div>
-        <!-- Product Card 2 -->
+
+        <!-- Towel Card 2 -->
         <div class="glass rounded-2xl overflow-hidden product-card border border-white/5">
-          <div class="h-64 overflow-hidden bg-gray-900">
-            <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=600&auto=format&fit=crop" alt="Golden Earrings Set" class="w-full h-full object-cover" />
+          <div class="h-72 overflow-hidden bg-gray-900">
+            <img src="hand towel.png" alt="hand towel.png" class="w-full h-full object-cover" />
           </div>
           <div class="p-6 space-y-4">
-            <h3 class="text-lg font-semibold tracking-wide text-white">Minimalist Golden Earring Suite</h3>
-            <p class="text-xs text-gray-400">Anti-tarnish, triple-plated premium lightweight design variants for rapid inventory turn.</p>
+            <h3 class="text-lg font-semibold tracking-wide text-white">Classic Luxury Hand Towel</h3>
+            <p class="text-xs text-gray-400 font-light">High-loop ultra-soft surface structure tailored for daily facial care and premium skincare loops.</p>
             <div class="flex justify-between items-center pt-2">
               <div>
-                <p class="text-[10px] uppercase text-gray-500 tracking-wider">Wholesale Price</p>
-                <span class="text-cyan-400 text-xl font-bold">₹199</span>
+                <p class="text-[9px] uppercase text-gray-500 tracking-wider">Wholesale Unit Price</p>
+                <span class="text-cyan-400 text-xl font-bold">₹180</span>
               </div>
-              <a href="https://wa.me/919250036334?text=Hi,%20I%20am%20interested%20in%20Minimalist%20Golden%20Earring%20Suite" target="_blank" class="bg-white/10 hover:bg-fuchsia-500 hover:text-white px-4 py-2 rounded-full text-xs font-semibold transition">Get MQ / Book</a>
+              <a href="https://wa.me/919250036334?text=Hi,%20I%20want%20to%20order%20the%20hand%20towel.png" target="_blank" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-4 py-2 rounded-full text-xs font-semibold transition">Book Inventory</a>
             </div>
           </div>
         </div>
+
+        <!-- Towel Card 3 -->
+        <div class="glass rounded-2xl overflow-hidden product-card border border-white/5">
+          <div class="h-72 overflow-hidden bg-gray-900">
+            <img src="hand towle clos.png" alt="hand towle clos.png" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-lg font-semibold tracking-wide text-white">500 GSM Microfiber Close-Up</h3>
+            <p class="text-xs text-gray-400 font-light">Deep fiber close-up validation showcasing heavy water absorption capabilities and edge stitching lines.</p>
+            <div class="flex justify-between items-center pt-2">
+              <div>
+                <p class="text-[9px] uppercase text-gray-500 tracking-wider">Wholesale Unit Price</p>
+                <span class="text-cyan-400 text-xl font-bold">₹199</span>
+              </div>
+              <a href="https://wa.me/919250036334?text=Hi,%20I%20want%20to%20order%20the%20hand%20towle%20clos.png" target="_blank" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-4 py-2 rounded-full text-xs font-semibold transition">Book Inventory</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- CATEGORY 3: KID'S FASHION -->
-    <section id="kids-fashion" class="space-y-8">
-      <div class="border-l-4 border-yellow-400 pl-4">
-        <h2 class="text-3xl font-bold tracking-tight">Kid's Play & Comfort Apparel</h2>
-        <p class="text-gray-400 text-sm mt-1">Hypoallergenic high-durability modern kids clothing sets</p>
+    <!-- CATEGORY 2: PREMIUM WATERPROOF TABLE COVERS -->
+    <section id="table-covers" class="space-y-8">
+      <div class="border-l-4 border-fuchsia-500 pl-4">
+        <h2 class="text-3xl font-bold tracking-tight">Premium Premium PVC Table Covers (54 × 78 Inch)</h2>
+        <p class="text-gray-400 text-sm mt-1">100% Waterproof, stain-resistant, scratch-protective protective furniture layouts</p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Product Card 1 -->
+        
+        <!-- Table Cover Card 1 -->
         <div class="glass rounded-2xl overflow-hidden product-card border border-white/5">
-          <div class="h-64 overflow-hidden bg-gray-900">
-            <img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?q=80&w=600&auto=format&fit=crop" alt="Organic Cotton Kids Romper" class="w-full h-full object-cover" />
+          <div class="h-72 overflow-hidden bg-gray-900">
+            <img src="PVC table cover.png" alt="PVC table cover.png" class="w-full h-full object-cover" />
           </div>
           <div class="p-6 space-y-4">
-            <h3 class="text-lg font-semibold tracking-wide text-white">Organic Cotton Comfy Romper</h3>
-            <p class="text-xs text-gray-400">Breathable dynamic weave style fabrics perfect for toddlers and sensitive skin categories.</p>
+            <h3 class="text-lg font-semibold tracking-wide text-white">Waterproof Texture Close-Up</h3>
+            <p class="text-xs text-gray-400 font-light">Detail verification showing direct bead liquid protection layers. Wipe and reuse material properties.</p>
             <div class="flex justify-between items-center pt-2">
               <div>
-                <p class="text-[10px] uppercase text-gray-500 tracking-wider">Wholesale Price</p>
-                <span class="text-cyan-400 text-xl font-bold">₹280</span>
+                <p class="text-[9px] uppercase text-gray-500 tracking-wider">Wholesale Unit Price</p>
+                <span class="text-cyan-400 text-xl font-bold">₹299</span>
               </div>
-              <a href="https://wa.me/919250036334?text=Hi,%20I%20am%20interested%20in%20Organic%20Cotton%20Comfy%20Romper" target="_blank" class="bg-white/10 hover:bg-yellow-400 hover:text-black px-4 py-2 rounded-full text-xs font-semibold transition">Get MQ / Book</a>
+              <a href="https://wa.me/919250036334?text=Hi,%20I%20want%20to%20order%20the%20PVC%20table%20cover.png" target="_blank" class="bg-white/10 hover:bg-fuchsia-500 hover:text-white px-4 py-2 rounded-full text-xs font-semibold transition">Book Inventory</a>
             </div>
           </div>
         </div>
+
+        <!-- Table Cover Card 2 -->
+        <div class="glass rounded-2xl overflow-hidden product-card border border-white/5">
+          <div class="h-72 overflow-hidden bg-gray-900">
+            <img src="PVC Table covers.png" alt="PVC Table covers.png" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-lg font-semibold tracking-wide text-white">Folded Premium PVC Suite</h3>
+            <p class="text-xs text-gray-400 font-light">Showcases exact structural thickness fold and premium retail packaging configuration for storage.</p>
+            <div class="flex justify-between items-center pt-2">
+              <div>
+                <p class="text-[9px] uppercase text-gray-500 tracking-wider">Wholesale Unit Price</p>
+                <span class="text-cyan-400 text-xl font-bold">₹310</span>
+              </div>
+              <a href="https://wa.me/919250036334?text=Hi,%20I%20want%20to%20order%20the%20PVC%20Table%20covers.png" target="_blank" class="bg-white/10 hover:bg-fuchsia-500 hover:text-white px-4 py-2 rounded-full text-xs font-semibold transition">Book Inventory</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table Cover Card 3 -->
+        <div class="glass rounded-2xl overflow-hidden product-card border border-white/5">
+          <div class="h-72 overflow-hidden bg-gray-900">
+            <img src="pvc tcover.png" alt="pvc tcover.png" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-lg font-semibold tracking-wide text-white">Floral Dining Setup (Live View)</h3>
+            <p class="text-xs text-gray-400 font-light">Complete live dining room layout presentation showing premium drape behavior and dust-proof overlay layers.</p>
+            <div class="flex justify-between items-center pt-2">
+              <div>
+                <p class="text-[9px] uppercase text-gray-500 tracking-wider">Wholesale Unit Price</p>
+                <span class="text-cyan-400 text-xl font-bold">₹450</span>
+              </div>
+              <a href="https://wa.me/919250036334?text=Hi,%20I%20want%20to%20order%20the%20pvc%20tcover.png" target="_blank" class="bg-white/10 hover:bg-fuchsia-500 hover:text-white px-4 py-2 rounded-full text-xs font-semibold transition">Book Inventory</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
   </main>
 
-  <!-- PERSISTENT WHATSAPP CONVERSION CTA -->
-  <a href="https://wa.me/919250036334?text=Hi%20CarryMe,%20I%20came%20from%20Instagram.%20Send%20me%20your%20latest%20bulk%20reseller%20price%20sheets." 
+  <!-- AUTOMATED WHATSAPP FLOATING HUB -->
+  <a href="https://wa.me/919250036334?text=Hi%20CarryMe,%20I%20am%20sourcing%20from%20Instagram.%20Please%20provide%20the%20latest%20bulk%20pricing%20spreadsheets." 
      target="_blank" 
      class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110 sticky-whatsapp"
-     aria-label="Chat on WhatsApp">
+     aria-label="Contact Channel">
     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.405 0 11.985 0c3.19 0 6.19 1.242 8.448 3.499 2.259 2.257 3.501 5.253 3.501 8.445 0 6.58-5.343 11.931-11.92 11.931-2.006-.001-3.97-.507-5.73-1.472L0 24zm6.59-4.846c1.6.95 3.182 1.449 4.725 1.451 5.437 0 9.862-4.386 9.864-9.777.001-2.611-1.013-5.067-2.859-6.915C16.48 2.067 14.032 1.05 11.988 1.05c-5.441 0-9.865 4.386-9.868 9.779-.001 1.644.49 3.245 1.419 4.671l-.147.537-1.016 3.714 3.81-.994.524.318z"/>
     </svg>
@@ -252,8 +266,8 @@
         <p class="text-xs text-gray-500 mt-1">© 2026 Direct Manufacturing Edge Network. All rights reserved.</p>
       </div>
       <div class="flex gap-6 text-xs text-gray-400">
-        <a href="https://www.instagram.com/carryme_stores?igsh=bnhnaGNranllbjJk" target="_blank" class="hover:text-white transition">Instagram Feed</a>
-        <a href="#catalog" class="hover:text-white transition">Wholesale Inventory</a>
+        <a href="https://www.instagram.com/carryme_stores?igsh=bnhnaGNranllbjJk" target="_blank" class="hover:text-white transition">Instagram Portal</a>
+        <a href="#catalog" class="hover:text-white transition">Wholesale Hub</a>
       </div>
     </div>
   </footer>
