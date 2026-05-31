@@ -3,65 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CarryMe Store | Premium D2C Premium collection ai assist ecommerce store</title>
-  <meta name="description" content="CarryMe Store - Direct factory B2B hub connecting manufacturing units with high-volume resellers." />
-  <meta name="theme-color" content="#050816" />
+  <title>CarryMe | Premium Home Comfort & Lifestyle Essentials</title>
+  <meta name="description" content="Shop luxury home textiles, premium ultra-soft towels, and elegant dining table protections directly from CarryMe." />
+  <meta name="theme-color" content="#0a0504" />
+  <meta name="robots" content="index, follow" />
   
-  <!-- Tailwind CSS -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts -->
+  <!-- Elegant Premium Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
+      font-family: "Montserrat", sans-serif;
       scroll-behavior: smooth;
     }
     body {
-      background: #050816;
-      color: white;
+      background: #0a0504; /* Premium warm organic dark charcoal shadow */
+      color: #f7ede2; /* Jasmine cream light text */
       overflow-x: hidden;
     }
-    .glass {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+    .serif-brand {
+      font-family: 'Cinzel', serif;
     }
-    .hero-gradient {
-      background: radial-gradient(circle at top left, #00f0ff15, transparent 40%),
-                  radial-gradient(circle at bottom right, #ff00ff15, transparent 40%),
-                  #050816;
+    .premium-blur {
+      background: rgba(25, 15, 12, 0.6);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(212, 163, 115, 0.1);
     }
-    .neon-text {
-      background: linear-gradient(90deg, #00F5FF, #FF00FF);
+    .card-matte {
+      background: rgba(30, 20, 18, 0.4);
+      border: 1px solid rgba(212, 163, 115, 0.08);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card-matte:hover {
+      transform: translateY(-6px);
+      border-color: rgba(212, 163, 115, 0.3);
+      box-shadow: 0 20px 40px -15px rgba(212, 163, 115, 0.15);
+    }
+    .luxe-gradient {
+      background: linear-gradient(135deg, #d4a373, #faedcd);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .glow-btn {
-      box-shadow: 0 0 20px rgba(0, 245, 255, 0.15);
+    .action-btn {
+      background: linear-gradient(90deg, #e6b89c, #d4a373);
       transition: all 0.3s ease;
     }
-    .glow-btn:hover {
-      box-shadow: 0 0 30px rgba(0, 245, 255, 0.4);
-      transform: translateY(-2px);
-    }
-    .product-card {
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .product-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(0, 245, 255, 0.25);
-      box-shadow: 0 12px 30px -10px rgba(0, 245, 255, 0.15);
+    .action-btn:hover {
+      box-shadow: 0 0 25px rgba(212, 163, 115, 0.4);
+      transform: translateY(-1px);
     }
     .sticky-whatsapp {
-      animation: pulse 2s infinite;
+      animation: heart-pulse 2.5s infinite;
     }
-    @keyframes pulse {
+    @keyframes heart-pulse {
       0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
       70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
       100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
@@ -70,111 +71,132 @@
 </head>
 <body>
 
-  <!-- FIXED HEADER -->
-  <nav class="fixed top-0 w-full z-50 glass px-6 py-4 flex items-center justify-between">
-    <h1 class="text-2xl font-bold neon-text tracking-wide">CarryMe</h1>
-    <div class="hidden md:flex gap-8 text-sm tracking-wide">
-      <a href="#premium-towels" class="hover:text-cyan-400 transition">Ultra-Premium Towels</a>
-      <a href="#table-covers" class="hover:text-cyan-400 transition">Premium PVC Covers</a>
-      <a href="#founder-profile" class="hover:text-cyan-400 transition">Our Founder</a>
+  <!-- PROMOTION LINE -->
+  <div class="w-full bg-gradient-to-r from-amber-900 via-stone-800 to-amber-900 text-amber-200 py-2.5 px-6 text-center text-[10px] md:text-xs font-medium tracking-[0.2em] uppercase z-50 relative">
+    ✨ Free Express Delivery Across India on Orders Above ₹999 ✨
+  </div>
+
+  <!-- FIXED PRESTIGE NAVIGATION -->
+  <nav class="fixed top-10 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl z-50 premium-blur px-6 md:px-10 py-4 rounded-full flex items-center justify-between shadow-2xl">
+    <a href="#" class="text-xl md:text-2xl font-bold tracking-[0.15em] text-white serif-brand">CARRYME</a>
+    
+    <div class="hidden md:flex gap-10 text-xs uppercase tracking-[0.2em] font-medium text-stone-300">
+      <a href="#bath-collection" class="hover:text-amber-300 transition-colors">Plush Bath</a>
+      <a href="#table-collection" class="hover:text-amber-300 transition-colors">Dining Luxe</a>
+      <a href="#brand-story" class="hover:text-amber-300 transition-colors">Our House</a>
     </div>
-    <a href="https://wa.me/919250036334?text=Hi%20CarryMe,%20I%20want%20to%20access%20the%20premium%20wholesale%20dealership%20catalog." 
-       target="_blank" 
-       class="bg-cyan-400 text-black px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider glow-btn">
-      Bulk Catalog
-    </a>
+
+    <div class="flex items-center gap-4">
+      <!-- Direct Shopping Bag Tracking UI -->
+      <div class="relative cursor-pointer bg-white/5 p-2.5 rounded-full border border-white/10">
+        <svg class="w-4 h-4 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+        </svg>
+        <span id="bag-count" class="absolute -top-1 -right-1 bg-amber-500 text-black text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+      </div>
+    </div>
   </nav>
 
-  <!-- CAMPAIGN HERO -->
-  <section class="hero-gradient min-h-screen flex items-center justify-center px-6 pt-24">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center w-full">
-      <div>
-        <p class="text-cyan-400 text-xs font-bold uppercase tracking-widest mb-3">Direct-from-Factory Edge</p>
-        <h1 class="text-4xl sm:text-6xl font-bold leading-tight mb-6">
-          Premium Inventory.<br />
-          Maximize Margins.<br />
-          <span class="neon-text">Built For Resellers.</span>
+  <!-- LUXURY CONSUMER HERO -->
+  <section class="min-h-screen flex items-center justify-center px-6 pt-32 pb-12 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,163,115,0.08),transparent_50%)]"></div>
+    
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center w-full relative z-10">
+      <div class="space-y-6 text-center md:text-left">
+        <span class="text-amber-300 text-xs font-semibold uppercase tracking-[0.25em] block">Fine Living Essentials</span>
+        <h1 class="text-4xl sm:text-6xl font-bold leading-[1.15] text-white serif-brand tracking-wide">
+          Wrap Your Home In <br />
+          <span class="luxe-gradient">Pure Luxury.</span>
         </h1>
-        <p class="text-gray-400 text-base max-w-md mb-8 leading-relaxed">
-          Source top-tier kitchenware and home textiles. Optimized margins curated specifically for high-growth Instagram and WhatsApp business storefronts across India.
+        <p class="text-stone-400 text-sm md:text-base max-w-lg leading-relaxed font-light">
+          Discover meticulously crafted 500 GSM towels and elegant waterproof table layers. Designed to bring instant visual harmony and pristine comfort to modern premium Indian households.
         </p>
-        <div class="flex gap-4">
-          <a href="#catalog" class="bg-gradient-to-r from-cyan-400 to-fuchsia-500 text-white px-8 py-3.5 rounded-full font-semibold text-sm tracking-wide glow-btn">
-            Explore Active Inventory
+        <div class="pt-6 flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+          <a href="#storefront" class="action-btn text-black px-10 py-4 rounded-full font-semibold text-xs uppercase tracking-[0.15em] text-center shadow-lg">
+            Shop Collection
+          </a>
+          <a href="#brand-story" class="bg-white/5 hover:bg-white/10 text-stone-200 border border-white/10 px-8 py-4 rounded-full font-semibold text-xs uppercase tracking-[0.15em] text-center transition-colors">
+            Our Materials
           </a>
         </div>
       </div>
-      <div class="relative hidden md:block">
-        <div class="glass rounded-3xl p-4 border border-white/10">
+
+      <div class="relative">
+        <div class="card-matte rounded-[2rem] p-4 relative shadow-2xl">
           <img src="Hand towel Combo 2 pack.png" 
-               alt="CarryMe Premium Master Showcase" class="rounded-2xl w-full object-cover h-[400px]" />
+               alt="CarryMe Collection Hero Look" class="rounded-[1.7rem] w-full object-cover h-[450px]" />
+          <div class="absolute top-8 left-8 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
+            <p class="text-[10px] uppercase tracking-widest text-amber-300 font-medium">Trending Now</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PRODUCT SPECIFICATION PIPELINE -->
-  <main id="catalog" class="py-20 px-6 max-w-7xl mx-auto space-y-24">
+  <!-- STOREFRONT GRID ARCHITECTURE -->
+  <main id="storefront" class="py-24 px-6 max-w-7xl mx-auto space-y-32">
     
-    <!-- CATEGORY 1: HIGH-ABSORPTION PREMIUM TOWELS -->
-    <section id="premium-towels" class="space-y-8">
-      <div class="border-l-4 border-cyan-400 pl-4">
-        <h2 class="text-3xl font-bold tracking-tight">500 GSM Ultra-Premium Hand Towels</h2>
-        <p class="text-gray-400 text-sm mt-1">Skin-friendly, high-density weave engineered for superior durability</p>
+    <!-- D2C DIRECT SEGMENT 1: PLUSH LUXURY TOWELS -->
+    <section id="bath-collection" class="space-y-12">
+      <div class="text-center space-y-3">
+        <p class="text-xs font-semibold text-amber-400 uppercase tracking-[0.2em]">The Bath Boutique</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-wide serif-brand">500 GSM Cloud-Soft Towels</h2>
+        <div class="w-16 h-0.5 bg-amber-400 mx-auto"></div>
       </div>
+
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        <!-- Towel Card 1 -->
-        <div class="glass rounded-2xl overflow-hidden product-card border border-white/5">
-          <div class="h-72 overflow-hidden bg-gray-900 relative">
-            <img src="Hand towel Combo 2 pack.png" alt="Hand towel Combo 2 pack.png" class="w-full h-full object-cover" />
-            <span class="absolute top-3 right-3 bg-cyan-400 text-black font-bold text-[10px] px-2.5 py-1 rounded-full uppercase">Set of 2</span>
+        <!-- Premium Product Item 1 -->
+        <div class="card-matte rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div class="h-80 overflow-hidden relative group">
+            <img src="Hand towel Combo 2 pack.png" alt="Hand towel Combo 2 pack.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute bottom-4 left-4 bg-amber-500 text-black font-bold text-[9px] tracking-widest px-3 py-1 rounded-full uppercase">Best Seller</div>
           </div>
           <div class="p-6 space-y-4">
-            <h3 class="text-lg font-semibold tracking-wide text-white">Hand Towel Combo Pack</h3>
-            <p class="text-xs text-gray-400 font-light">Premium multi-utility set matching bathrooms, kitchens, and travel kits. 1 Pink + 1 White selection.</p>
-            <div class="flex justify-between items-center pt-2">
-              <div>
-                <p class="text-[9px] uppercase text-gray-500 tracking-wider">Wholesale Unit Price</p>
-                <span class="text-cyan-400 text-xl font-bold">₹349</span>
-              </div>
-              <a href="https://wa.me/919250036334?text=Hi,%20I%20want%20to%20order%20the%20Hand%20towel%20Combo%202%20pack.png" target="_blank" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-4 py-2 rounded-full text-xs font-semibold transition">Book Inventory</a>
+            <div class="flex justify-between items-start">
+              <h3 class="text-lg font-semibold text-white serif-brand">Plush Hand Towel Combo Pack</h3>
+              <p class="text-xs text-stone-500 line-through">₹799</p>
+            </div>
+            <p class="text-xs text-stone-400 leading-relaxed font-light">An elegant set of two ultra-absorbent everyday towels. Pack features 1 Parisian Pink and 1 Pure Jasmine White towel.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+              <span class="text-amber-300 text-xl font-bold">₹499</span>
+              <a href="https://wa.me/919250036334?text=I%20want%20to%20buy%20the%20Hand%20towel%20Combo%202%20pack.png" target="_blank" class="action-btn text-black font-semibold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded-full">Buy Instantly</a>
             </div>
           </div>
         </div>
 
-        <!-- Towel Card 2 -->
-        <div class="glass rounded-2xl overflow-hidden product-card border border-white/5">
-          <div class="h-72 overflow-hidden bg-gray-900">
-            <img src="hand towel.png" alt="hand towel.png" class="w-full h-full object-cover" />
+        <!-- Premium Product Item 2 -->
+        <div class="card-matte rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div class="h-80 overflow-hidden relative group">
+            <img src="hand towel.png" alt="hand towel.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
           <div class="p-6 space-y-4">
-            <h3 class="text-lg font-semibold tracking-wide text-white">Classic Luxury Hand Towel</h3>
-            <p class="text-xs text-gray-400 font-light">High-loop ultra-soft surface structure tailored for daily facial care and premium skincare loops.</p>
-            <div class="flex justify-between items-center pt-2">
-              <div>
-                <p class="text-[9px] uppercase text-gray-500 tracking-wider">Wholesale Unit Price</p>
-                <span class="text-cyan-400 text-xl font-bold">₹180</span>
-              </div>
-              <a href="https://wa.me/919250036334?text=Hi,%20I%20want%20to%20order%20the%20hand%20towel.png" target="_blank" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-4 py-2 rounded-full text-xs font-semibold transition">Book Inventory</a>
+            <div class="flex justify-between items-start">
+              <h3 class="text-lg font-semibold text-white serif-brand">Classic Luxury Hand Towel</h3>
+              <p class="text-xs text-stone-500 line-through">₹449</p>
+            </div>
+            <p class="text-xs text-stone-400 leading-relaxed font-light">Woven with long-staple cotton loop lines for maximum plush hand feel and fast-wicking moisture response.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+              <span class="text-amber-300 text-xl font-bold">₹249</span>
+              <a href="https://wa.me/919250036334?text=I%20want%20to%20buy%20the%20hand%20towel.png" target="_blank" class="action-btn text-black font-semibold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded-full">Buy Instantly</a>
             </div>
           </div>
         </div>
 
-        <!-- Towel Card 3 -->
-        <div class="glass rounded-2xl overflow-hidden product-card border border-white/5">
-          <div class="h-72 overflow-hidden bg-gray-900">
-            <img src="hand towle clos.png" alt="hand towle clos.png" class="w-full h-full object-cover" />
+        <!-- Premium Product Item 3 -->
+        <div class="card-matte rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div class="h-80 overflow-hidden relative group">
+            <img src="hand towle clos.png" alt="hand towle clos.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
           <div class="p-6 space-y-4">
-            <h3 class="text-lg font-semibold tracking-wide text-white">500 GSM Microfiber Close-Up</h3>
-            <p class="text-xs text-gray-400 font-light">Deep fiber close-up validation showcasing heavy water absorption capabilities and edge stitching lines.</p>
-            <div class="flex justify-between items-center pt-2">
-              <div>
-                <p class="text-[9px] uppercase text-gray-500 tracking-wider">Wholesale Unit Price</p>
-                <span class="text-cyan-400 text-xl font-bold">₹199</span>
-              </div>
-              <a href="https://wa.me/919250036334?text=Hi,%20I%20want%20to%20order%20the%20hand%20towle%20clos.png" target="_blank" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-4 py-2 rounded-full text-xs font-semibold transition">Book Inventory</a>
+            <div class="flex justify-between items-start">
+              <h3 class="text-lg font-semibold text-white serif-brand">Premium High Loop Single</h3>
+              <p class="text-xs text-stone-500 line-through">₹499</p>
+            </div>
+            <p class="text-xs text-stone-400 leading-relaxed font-light">Deep-weave luxury texture. Reinforced overlock stitch lines secure pristine structure through hundreds of machine wash cycles.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+              <span class="text-amber-300 text-xl font-bold">₹279</span>
+              <a href="https://wa.me/919250036334?text=I%20want%20to%20buy%20the%20hand%20towle%20clos.png" target="_blank" class="action-btn text-black font-semibold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded-full">Buy Instantly</a>
             </div>
           </div>
         </div>
@@ -182,64 +204,64 @@
       </div>
     </section>
 
-    <!-- CATEGORY 2: PREMIUM WATERPROOF TABLE COVERS -->
-    <section id="table-covers" class="space-y-8">
-      <div class="border-l-4 border-fuchsia-500 pl-4">
-        <h2 class="text-3xl font-bold tracking-tight">Premium Premium PVC Table Covers (54 × 78 Inch)</h2>
-        <p class="text-gray-400 text-sm mt-1">100% Waterproof, stain-resistant, scratch-protective protective furniture layouts</p>
+    <!-- D2C DIRECT SEGMENT 2: ELEGANT TABLE PROTECTION OVERLAYS -->
+    <section id="table-collection" class="space-y-12">
+      <div class="text-center space-y-3">
+        <p class="text-xs font-semibold text-amber-400 uppercase tracking-[0.2em]">The Dining Room Edit</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-wide serif-brand">Waterproof Table Linens (54×78)</h2>
+        <div class="w-16 h-0.5 bg-amber-400 mx-auto"></div>
       </div>
+
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        <!-- Table Cover Card 1 -->
-        <div class="glass rounded-2xl overflow-hidden product-card border border-white/5">
-          <div class="h-72 overflow-hidden bg-gray-900">
-            <img src="PVC table cover.png" alt="PVC table cover.png" class="w-full h-full object-cover" />
+        <!-- Premium Product Item 4 -->
+        <div class="card-matte rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div class="h-80 overflow-hidden relative group">
+            <img src="PVC table cover.png" alt="PVC table cover.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
           <div class="p-6 space-y-4">
-            <h3 class="text-lg font-semibold tracking-wide text-white">Waterproof Texture Close-Up</h3>
-            <p class="text-xs text-gray-400 font-light">Detail verification showing direct bead liquid protection layers. Wipe and reuse material properties.</p>
-            <div class="flex justify-between items-center pt-2">
-              <div>
-                <p class="text-[9px] uppercase text-gray-500 tracking-wider">Wholesale Unit Price</p>
-                <span class="text-cyan-400 text-xl font-bold">₹299</span>
-              </div>
-              <a href="https://wa.me/919250036334?text=Hi,%20I%20want%20to%20order%20the%20PVC%20table%20cover.png" target="_blank" class="bg-white/10 hover:bg-fuchsia-500 hover:text-white px-4 py-2 rounded-full text-xs font-semibold transition">Book Inventory</a>
+            <div class="flex justify-between items-start">
+              <h3 class="text-lg font-semibold text-white serif-brand">Stain Shield Protective Overlay</h3>
+              <p class="text-xs text-stone-500 line-through">₹699</p>
+            </div>
+            <p class="text-xs text-stone-400 leading-relaxed font-light">Premium leak-proof texture preserves underneath table layers. Oil marks, liquid spills, and heat dust simply wipe clear.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+              <span class="text-amber-300 text-xl font-bold">₹399</span>
+              <a href="https://wa.me/919250036334?text=I%20want%20to%20buy%20the%20PVC%20table%20cover.png" target="_blank" class="action-btn text-black font-semibold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded-full">Buy Instantly</a>
             </div>
           </div>
         </div>
 
-        <!-- Table Cover Card 2 -->
-        <div class="glass rounded-2xl overflow-hidden product-card border border-white/5">
-          <div class="h-72 overflow-hidden bg-gray-900">
-            <img src="PVC Table covers.png" alt="PVC Table covers.png" class="w-full h-full object-cover" />
+        <!-- Premium Product Item 5 -->
+        <div class="card-matte rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div class="h-80 overflow-hidden relative group">
+            <img src="PVC Table covers.png" alt="PVC Table covers.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
           <div class="p-6 space-y-4">
-            <h3 class="text-lg font-semibold tracking-wide text-white">Folded Premium PVC Suite</h3>
-            <p class="text-xs text-gray-400 font-light">Showcases exact structural thickness fold and premium retail packaging configuration for storage.</p>
-            <div class="flex justify-between items-center pt-2">
-              <div>
-                <p class="text-[9px] uppercase text-gray-500 tracking-wider">Wholesale Unit Price</p>
-                <span class="text-cyan-400 text-xl font-bold">₹310</span>
-              </div>
-              <a href="https://wa.me/919250036334?text=Hi,%20I%20want%20to%20order%20the%20PVC%20Table%20covers.png" target="_blank" class="bg-white/10 hover:bg-fuchsia-500 hover:text-white px-4 py-2 rounded-full text-xs font-semibold transition">Book Inventory</a>
+            <h3 class="text-lg font-semibold text-white serif-brand">Premium PVC Folded Set</h3>
+            <p class="text-xs text-stone-400 leading-relaxed font-light">Heavyweight drape properties protect fine surfaces from daily standard impact scratches. Foldable, dustproof, non-toxic styling.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+              <span class="text-amber-300 text-xl font-bold">₹449</span>
+              <a href="https://wa.me/919250036334?text=I%20want%20to%20buy%20the%20PVC%20Table%20covers.png" target="_blank" class="action-btn text-black font-semibold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded-full">Buy Instantly</a>
             </div>
           </div>
         </div>
 
-        <!-- Table Cover Card 3 -->
-        <div class="glass rounded-2xl overflow-hidden product-card border border-white/5">
-          <div class="h-72 overflow-hidden bg-gray-900">
-            <img src="pvc tcover.png" alt="pvc tcover.png" class="w-full h-full object-cover" />
+        <!-- Premium Product Item 6 -->
+        <div class="card-matte rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div class="h-80 overflow-hidden relative group">
+            <img src="pvc tcover.png" alt="pvc tcover.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute bottom-4 left-4 bg-orange-600 text-white font-bold text-[9px] tracking-widest px-3 py-1 rounded-full uppercase">Signature Edition</div>
           </div>
           <div class="p-6 space-y-4">
-            <h3 class="text-lg font-semibold tracking-wide text-white">Floral Dining Setup (Live View)</h3>
-            <p class="text-xs text-gray-400 font-light">Complete live dining room layout presentation showing premium drape behavior and dust-proof overlay layers.</p>
-            <div class="flex justify-between items-center pt-2">
-              <div>
-                <p class="text-[9px] uppercase text-gray-500 tracking-wider">Wholesale Unit Price</p>
-                <span class="text-cyan-400 text-xl font-bold">₹450</span>
-              </div>
-              <a href="https://wa.me/919250036334?text=Hi,%20I%20want%20to%20order%20the%20pvc%20tcover.png" target="_blank" class="bg-white/10 hover:bg-fuchsia-500 hover:text-white px-4 py-2 rounded-full text-xs font-semibold transition">Book Inventory</a>
+            <div class="flex justify-between items-start">
+              <h3 class="text-lg font-semibold text-white serif-brand">Premium Floral Dining Canvas</h3>
+              <p class="text-xs text-stone-500 line-through">₹999</p>
+            </div>
+            <p class="text-xs text-stone-400 leading-relaxed font-light">Classic floral visual textures designed to enhance family spaces. Drapes flawlessly over 4 to 6 seater dining setups.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+              <span class="text-amber-300 text-xl font-bold">₹549</span>
+              <a href="https://wa.me/919250036334?text=I%20want%20to%20buy%20the%20pvc%20tcover.png" target="_blank" class="action-btn text-black font-semibold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded-full">Buy Instantly</a>
             </div>
           </div>
         </div>
@@ -247,35 +269,34 @@
       </div>
     </section>
 
-    <!-- SECTION 3: TRUST & PAYMENT GATEWAYS -->
-    <section class="space-y-6 pt-10">
-      <div class="text-center space-y-2">
-        <h3 class="text-sm font-semibold tracking-widest text-cyan-400 uppercase">Secure B2B Settlements</h3>
-        <p class="text-xs text-gray-400">Instant validation via verified Indian corporate payment pipelines</p>
+    <!-- TRUST ARCHITECTURE SECTION -->
+    <section class="max-w-4xl mx-auto text-center py-8 space-y-6">
+      <div class="space-y-1">
+        <p class="text-xs font-semibold text-amber-400 uppercase tracking-widest">Guaranteed Secure Checkout</p>
+        <p class="text-xs text-stone-500 font-light">Encrypted dynamic checkout loops protecting all premium transactions</p>
       </div>
-      <div class="glass rounded-2xl p-6 max-w-2xl mx-auto flex flex-wrap justify-center items-center gap-8 opacity-75">
-        <!-- UPI Badge / Original Payment Vector Marks -->
-        <div class="flex items-center space-x-2 text-white/80 font-bold tracking-wider text-sm">
-          <span class="px-2 py-1 bg-white/10 rounded text-xs text-cyan-400">BHIM</span>
-          <span>UPI</span>
+      <div class="card-matte rounded-2xl p-6 flex flex-wrap justify-center items-center gap-10 text-stone-400 text-xs font-semibold uppercase tracking-wider">
+        <div class="flex items-center gap-2 text-white"><span class="bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded text-[10px]">UPI</span> GPay / PhonePe</div>
+        <div>All Debit & Credit Cards</div>
+        <div>NetBanking Secure</div>
+        <div class="text-emerald-400 flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944a11.954 11.954 0 007.834 3.056 11.99 11.99 0 01-1.189 7.623c-.379.722-.84 1.388-1.37 1.99a11.97 11.97 0 01-4.329 3.177C10.622 17.915 10.314 18 10 18s-.622-.085-.945-.214a11.97 11.97 0 01-4.33-3.177 11.99 11.99 0 01-2.558-9.61zM10 4.875a1.125 1.125 0 100 2.25 1.125 1.125 0 000-2.25zM10 9a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 9z" clip-rule="evenodd"></path></svg>
+          100% Purchase Protection
         </div>
-        <div class="text-white/80 font-bold tracking-wider text-sm">NetBanking</div>
-        <div class="text-white/80 font-bold tracking-wider text-sm">NEFT / RTGS</div>
-        <div class="text-white/80 font-bold tracking-wider text-sm">Razorpay Secured</div>
       </div>
     </section>
 
-    <!-- SECTION 4: FOUNDER PROFILE -->
-    <section id="founder-profile" class="pt-12 max-w-4xl mx-auto">
-      <div class="glass rounded-3xl p-8 grid md:grid-cols-3 gap-8 items-center border border-white/10">
-        <div class="h-48 w-48 rounded-2xl overflow-hidden bg-gray-900 border-2 border-cyan-400/30 mx-auto">
-          <img src="image0.png" alt="CarryMe Executive Founder" class="w-full h-full object-cover" />
+    <!-- FOUNDER STATEMENT & BRAND ETHOS -->
+    <section id="brand-story" class="max-w-4xl mx-auto">
+      <div class="card-matte rounded-[2.5rem] p-8 md:p-12 grid md:grid-cols-3 gap-10 items-center relative overflow-hidden">
+        <div class="h-44 w-44 rounded-2xl overflow-hidden bg-stone-900 border border-amber-500/10 mx-auto shadow-2xl">
+          <img src="image0.png" alt="Devesh | CarryMe Founder Profile" class="w-full h-full object-cover" />
         </div>
         <div class="md:col-span-2 space-y-4 text-center md:text-left">
-          <span class="text-[10px] uppercase tracking-widest bg-cyan-400/10 text-cyan-400 px-3 py-1 rounded-full font-bold">Platform Visionary</span>
-          <h3 class="text-2xl font-bold tracking-tight text-white">Priya</h3>
-          <p class="text-sm text-gray-400 leading-relaxed font-light">
-            Architecting high-performance digital connections linking direct-from-factory production systems directly with local Indian digital creators, WhatsApp business networks, and independent retail founders.
+          <span class="text-[9px] uppercase tracking-widest bg-amber-500/10 text-amber-300 font-bold px-3 py-1 rounded-full border border-amber-500/20">The Designer's House</span>
+          <h3 class="text-2xl font-bold text-white tracking-tight serif-brand">A Note From Devesh</h3>
+          <p class="text-xs md:text-sm text-stone-400 leading-relaxed font-light">
+            “At CarryMe, we hold a simple philosophy: everyday elements should carry impeccable grace. By designing directly for consumer lifecycles, we eliminate standard trading layers to craft beautiful textiles and protections that elevate the spaces you live in every single day.”
           </p>
         </div>
       </div>
@@ -283,26 +304,26 @@
 
   </main>
 
-  <!-- AUTOMATED WHATSAPP FLOATING HUB -->
-  <a href="https://wa.me/919250036334?text=Hi%20CarryMe,%20I%20am%20sourcing%20from%20Instagram.%20Please%20provide%20the%20latest%20bulk%20pricing%20spreadsheets." 
+  <!-- CONSTANT FLOATING CONSUMER ASSISTANCE FUNNEL -->
+  <a href="https://wa.me/919250036334?text=Hi%20CarryMe,%20I'm%20browsing%20the%20storefront.%20I%20need%20assistance%20with%20an%20order." 
      target="_blank" 
      class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110 sticky-whatsapp"
-     aria-label="Contact Channel">
+     aria-label="Direct Customer Support">
     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.405 0 11.985 0c3.19 0 6.19 1.242 8.448 3.499 2.259 2.257 3.501 5.253 3.501 8.445 0 6.58-5.343 11.931-11.92 11.931-2.006-.001-3.97-.507-5.73-1.472L0 24zm6.59-4.846c1.6.95 3.182 1.449 4.725 1.451 5.437 0 9.862-4.386 9.864-9.777.001-2.611-1.013-5.067-2.859-6.915C16.48 2.067 14.032 1.05 11.988 1.05c-5.441 0-9.865 4.386-9.868 9.779-.001 1.644.49 3.245 1.419 4.671l-.147.537-1.016 3.714 3.81-.994.524.318z"/>
     </svg>
   </a>
 
-  <!-- FOOTER -->
-  <footer class="border-t border-white/5 py-12 px-6 bg-[#03050f]">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-      <div>
-        <h3 class="text-xl font-bold neon-text">CarryMe Store</h3>
-        <p class="text-xs text-gray-500 mt-1">© 2026 Direct Manufacturing Edge Network. All rights reserved.</p>
+  <!-- PREMIUM LUXURY FOOTER -->
+  <footer class="border-t border-white/5 py-16 px-6 bg-[#060302]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+      <div class="text-center md:text-left space-y-1">
+        <h4 class="text-lg font-bold text-amber-300 tracking-wider serif-brand">CARRYME</h4>
+        <p class="text-[11px] text-stone-600 font-light">© 2026 CarryMe Premium Storefront. Built for direct consumer excellence across India.</p>
       </div>
-      <div class="flex gap-6 text-xs text-gray-400">
-        <a href="https://www.instagram.com/carryme_stores?igsh=bnhnaGNranllbjJk" target="_blank" class="hover:text-white transition">Instagram Portal</a>
-        <a href="#catalog" class="hover:text-white transition">ecommerce store</a>
+      <div class="flex gap-8 text-xs font-semibold uppercase tracking-widest text-stone-500">
+        <a href="https://www.instagram.com/carryme_stores?igsh=bnhnaGNranllbjJk" target="_blank" class="hover:text-amber-400 transition-colors">Instagram Profile</a>
+        <a href="#storefront" class="hover:text-amber-400 transition-colors">Direct Catalog</a>
       </div>
     </div>
   </footer>
