@@ -1,177 +1,416 @@
 <!DOCTYPE html>
 <html lang="en-IN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CarryMe Store | Premium B2B Wholesale Marketplace</title>
-  <meta name="description" content="CarryMe Store - Mobile-first B2B ecommerce ecosystem for Home & Kitchen, Women's Fashion, and Kid's Fashion. Direct factory to reseller pipeline.">
-  <meta name="theme-color" content="#050816">
-  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CarryMe | Premium Home Comfort & Lifestyle Essentials</title>
+  <meta name="description" content="Shop luxury home textiles, premium ultra-soft towels, and elegant dining table protections directly from CarryMe." />
+  <meta name="theme-color" content="#0a0504" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Elegant Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
-    body { background: #050816; color: white; overflow-x: hidden; }
-    .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.1); }
-    .hero-gradient { background: radial-gradient(circle at top left,#00f0ff22,transparent 40%), radial-gradient(circle at bottom right,#ff00ff22,transparent 40%), #050816; }
-    .neon-text { background: linear-gradient(90deg,#00F5FF,#FF00FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .glow-btn { box-shadow: 0 0 20px rgba(0,255,255,0.4); transition: all 0.3s ease; }
-    .glow-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0,255,255,0.6); }
-    .product-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,245,255,0.15); }
-    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Montserrat", sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      background: #0a0504; 
+      color: #f7ede2; 
+      overflow-x: hidden;
+    }
+    .serif-brand {
+      font-family: 'Cinzel', serif;
+    }
+    .premium-blur {
+      background: rgba(25, 15, 12, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(212, 163, 115, 0.1);
+    }
+    .card-matte {
+      background: rgba(30, 20, 18, 0.4);
+      border: 1px solid rgba(212, 163, 115, 0.08);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card-matte:hover {
+      transform: translateY(-6px);
+      border-color: rgba(212, 163, 115, 0.3);
+      box-shadow: 0 20px 40px -15px rgba(212, 163, 115, 0.15);
+    }
+    .luxe-gradient {
+      background: linear-gradient(135deg, #d4a373, #faedcd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .action-btn {
+      background: linear-gradient(90deg, #e6b89c, #d4a373);
+      transition: all 0.3s ease;
+    }
+    .action-btn:hover {
+      box-shadow: 0 0 25px rgba(212, 163, 115, 0.4);
+      transform: translateY(-1px);
+    }
+    .sticky-whatsapp {
+      animation: heart-pulse 2.5s infinite;
+    }
+    @keyframes heart-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
   </style>
 </head>
 <body>
 
-  <!-- FIXED NAVIGATION -->
-  <nav class="fixed top-0 w-full z-50 glass px-4 py-3 flex items-center justify-between">
-    <h1 class="text-xl font-bold neon-text tracking-wide">CarryMe</h1>
-    <div class="flex gap-4 items-center text-xs md:text-sm font-medium">
-      <a href="#home-kitchen" class="text-gray-300 hover:text-cyan-400">Home</a>
-      <a href="#womens-fashion" class="text-gray-300 hover:text-cyan-400">Women</a>
-      <a href="#kids-fashion" class="text-gray-300 hover:text-cyan-400">Kids</a>
-      <a href="https://wa.me/919250036334" target="_blank" class="bg-cyan-400 text-black px-3 py-1.5 rounded-full font-bold glow-btn">Bulk Order</a>
+  <!-- PROMOTION LINE -->
+  <div class="w-full bg-gradient-to-r from-amber-900 via-stone-800 to-amber-900 text-amber-200 py-2.5 px-6 text-center text-[10px] md:text-xs font-medium tracking-[0.2em] uppercase z-50 relative">
+    ✨ Free Express Delivery Across India on Orders Above ₹999 ✨
+  </div>
+
+  <!-- FIXED PRESTIGE NAVIGATION -->
+  <nav class="fixed top-10 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl z-50 premium-blur px-6 md:px-10 py-4 rounded-full flex items-center justify-between shadow-2xl">
+    <a href="#" class="text-xl md:text-2xl font-bold tracking-[0.15em] text-white serif-brand">CARRYME</a>
+    
+    <div class="hidden md:flex gap-10 text-xs uppercase tracking-[0.2em] font-medium text-stone-300">
+      <a href="#bath-collection" class="hover:text-amber-300 transition-colors">Plush Bath</a>
+      <a href="#table-collection" class="hover:text-amber-300 transition-colors">Dining Luxe</a>
+      <a href="#brand-story" class="hover:text-amber-300 transition-colors">Our House</a>
+    </div>
+
+    <!-- Interactive Shopping Bag Icon -->
+    <div onclick="toggleCartModal()" class="relative cursor-pointer bg-white/5 p-2.5 rounded-full border border-white/10 hover:bg-white/10 transition-all">
+      <svg class="w-4 h-4 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+      </svg>
+      <span id="bag-count" class="absolute -top-1 -right-1 bg-amber-500 text-black text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center transition-all scale-100">0</span>
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
-  <section class="hero-gradient min-h-screen flex items-center justify-center px-4 pt-16">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-center w-full">
-      <div class="space-y-6">
-        <span class="text-xs text-cyan-400 tracking-widest uppercase font-semibold block">Direct Factory-to-Reseller Engine</span>
-        <h2 class="text-4xl md:text-6xl font-bold leading-tight">Smart. Stylish.<br><span class="neon-text">Always With You.</span></h2>
-        <p class="text-gray-400 text-sm md:text-base max-w-md">India's premium wholesale destination supplying high-margin collections to Instagram and WhatsApp resellers.</p>
-        <div class="flex gap-4">
-          <a href="#womens-fashion" class="bg-cyan-400 text-black px-5 py-2.5 rounded-full text-sm font-bold glow-btn">Explore Catalog</a>
-          <a href="https://wa.me/919250036334?text=Hi,%20I%20want%20to%20start%20reselling" target="_blank" class="glass px-5 py-2.5 rounded-full text-sm font-medium border border-gray-600 inline-flex items-center gap-2">Connect WhatsApp</a>
+  <!-- LUXURY CONSUMER HERO -->
+  <section class="min-h-screen flex items-center justify-center px-6 pt-32 pb-12 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,163,115,0.08),transparent_50%)]"></div>
+    
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center w-full relative z-10">
+      <div class="space-y-6 text-center md:text-left">
+        <span class="text-amber-300 text-xs font-semibold uppercase tracking-[0.25em] block">Fine Living Essentials</span>
+        <h1 class="text-4xl sm:text-6xl font-bold leading-[1.15] text-white serif-brand tracking-wide">
+          Wrap Your Home In <br />
+          <span class="luxe-gradient">Pure Luxury.</span>
+        </h1>
+        <p class="text-stone-400 text-sm md:text-base max-w-lg leading-relaxed font-light">
+          Discover meticulously crafted 500 GSM towels and elegant waterproof table layers. Designed to bring instant visual harmony and pristine comfort to modern premium Indian households.
+        </p>
+        <div class="pt-6 flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+          <a href="#storefront" class="action-btn text-black px-10 py-4 rounded-full font-semibold text-xs uppercase tracking-[0.15em] text-center shadow-lg block">
+            Shop Collection
+          </a>
         </div>
       </div>
-      <div class="relative hidden md:block">
-        <div class="glass rounded-3xl p-4 border border-cyan-500/20">
-          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600&auto=format&fit=crop" class="rounded-2xl w-full h-80 object-cover" alt="CarryMe Master Banner">
+
+      <div class="relative">
+        <div class="card-matte rounded-[2rem] p-4 relative shadow-2xl">
+          <img src="Hand towel Combo 2 pack.png" alt="CarryMe Collection Hero Look" class="rounded-[1.7rem] w-full object-cover h-[450px]" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CATEGORY: HOME & KITCHEN -->
-  <section id="home-kitchen" class="py-16 px-4 max-w-7xl mx-auto">
-    <div class="border-b border-cyan-500/20 pb-4 mb-8 flex justify-between items-end">
-      <div>
-        <h3 class="text-2xl font-bold text-white tracking-wide">Home & Kitchen Essentials</h3>
-        <p class="text-xs text-gray-400 mt-1">Premium Textiles & Luxury Utility</p>
+  <!-- STOREFRONT D2C ENGINE -->
+  <main id="storefront" class="py-24 px-6 max-w-7xl mx-auto space-y-32">
+    
+    <!-- BATH SECTION -->
+    <section id="bath-collection" class="space-y-12">
+      <div class="text-center space-y-3">
+        <p class="text-xs font-semibold text-amber-400 uppercase tracking-[0.2em]">The Bath Boutique</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-wide serif-brand">500 GSM Cloud-Soft Towels</h2>
+        <div class="w-16 h-0.5 bg-amber-400 mx-auto"></div>
       </div>
-      <span class="text-xs text-cyan-400 font-medium">Wholesale Pricing</span>
-    </div>
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="glass rounded-2xl overflow-hidden product-card p-3">
-        <div class="h-40 md:h-48 rounded-xl overflow-hidden bg-gray-900"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Luxury home decor"></div>
-        <h4 class="font-semibold text-sm mt-3 truncate">Premium Home Decor Pack</h4>
-        <p class="text-xs text-gray-400 mt-1">Artisan Table Setting</p>
-        <div class="flex justify-between items-center mt-3"><span class="text-cyan-400 font-bold text-sm">₹499</span><a href="https://wa.me/919250036334?text=Inquiry:%20Home%20Decor%20Pack" target="_blank" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition">Buy</a></div>
-      </div>
-      <div class="glass rounded-2xl overflow-hidden product-card p-3">
-        <div class="h-40 md:h-48 rounded-xl overflow-hidden bg-gray-900"><img src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Luxury towels"></div>
-        <h4 class="font-semibold text-sm mt-3 truncate">Luxury Collection Towels</h4>
-        <p class="text-xs text-gray-400 mt-1">High-Absorption Cotton</p>
-        <div class="flex justify-between items-center mt-3"><span class="text-cyan-400 font-bold text-sm">₹299</span><a href="https://wa.me/919250036334?text=Inquiry:%20Luxury%20Towels" target="_blank" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition">Buy</a></div>
-      </div>
-      <div class="glass rounded-2xl overflow-hidden product-card p-3">
-        <div class="h-40 md:h-48 rounded-xl overflow-hidden bg-gray-900"><img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Sofa cover"></div>
-        <h4 class="font-semibold text-sm mt-3 truncate">Premium Sofa Cover Set</h4>
-        <p class="text-xs text-gray-400 mt-1">Elastic Protection Knit</p>
-        <div class="flex justify-between items-center mt-3"><span class="text-cyan-400 font-bold text-sm">₹899</span><a href="https://wa.me/919250036334?text=Inquiry:%20Sofa%20Cover%20Set" target="_blank" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition">Buy</a></div>
-      </div>
-      <div class="glass rounded-2xl overflow-hidden product-card p-3">
-        <div class="h-40 md:h-48 rounded-xl overflow-hidden bg-gray-900"><img src="https://images.unsplash.com/photo-1617806118233-18e1db207f62?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Kitchen tools"></div>
-        <h4 class="font-semibold text-sm mt-3 truncate">Smart Chopper & Tool Kit</h4>
-        <p class="text-xs text-gray-400 mt-1">Ergonomic Kitchenware</p>
-        <div class="flex justify-between items-center mt-3"><span class="text-cyan-400 font-bold text-sm">₹199</span><a href="https://wa.me/919250036334?text=Inquiry:%20Smart%20Chopper" target="_blank" class="bg-white/10 hover:bg-cyan-400 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition">Buy</a></div>
-      </div>
-    </div>
-  </section>
 
-  <!-- CATEGORY: WOMEN'S FASHION -->
-  <section id="womens-fashion" class="py-16 px-4 max-w-7xl mx-auto">
-    <div class="border-b border-purple-500/20 pb-4 mb-8 flex justify-between items-end">
-      <div>
-        <h3 class="text-2xl font-bold text-white tracking-wide">Women's Fashion & Jewelry</h3>
-        <p class="text-xs text-gray-400 mt-1">Trending Ethnicwear & Elite Accessories</p>
-      </div>
-      <span class="text-xs text-purple-400 font-medium">Reseller Hot-Picks</span>
-    </div>
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="glass rounded-2xl overflow-hidden product-card p-3">
-        <div class="h-40 md:h-48 rounded-xl overflow-hidden bg-gray-900"><img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Terracotta necklace"></div>
-        <h4 class="font-semibold text-sm mt-3 truncate">Classic Terracotta Necklace</h4>
-        <p class="text-xs text-gray-400 mt-1">Artisan Hand-Baked Clay</p>
-        <div class="flex justify-between items-center mt-3"><span class="text-purple-400 font-bold text-sm">₹349</span><a href="https://wa.me/919250036334?text=Inquiry:%20Terracotta%20Necklace" target="_blank" class="bg-white/10 hover:bg-purple-500 hover:text-white px-3 py-1 rounded-full text-xs font-semibold transition">Buy</a></div>
-      </div>
-      <div class="glass rounded-2xl overflow-hidden product-card p-3">
-        <div class="h-40 md:h-48 rounded-xl overflow-hidden bg-gray-900"><img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Golden earrings"></div>
-        <h4 class="font-semibold text-sm mt-3 truncate">Golden Jhumka Earrings Set</h4>
-        <p class="text-xs text-gray-400 mt-1">Micro-Gold Plated Polish</p>
-        <div class="flex justify-between items-center mt-3"><span class="text-purple-400 font-bold text-sm">₹149</span><a href="https://wa.me/919250036334?text=Inquiry:%20Golden%20Jhumka" target="_blank" class="bg-white/10 hover:bg-purple-500 hover:text-white px-3 py-1 rounded-full text-xs font-semibold transition">Buy</a></div>
-      </div>
-      <div class="glass rounded-2xl overflow-hidden product-card p-3">
-        <div class="h-40 md:h-48 rounded-xl overflow-hidden bg-gray-900"><img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Designer Kurti"></div>
-        <h4 class="font-semibold text-sm mt-3 truncate">Georgette Designer Kurti Set</h4>
-        <p class="text-xs text-gray-400 mt-1">Intricate Embroidery Thread</p>
-        <div class="flex justify-between items-center mt-3"><span class="text-purple-400 font-bold text-sm">₹699</span><a href="https://wa.me/919250036334?text=Inquiry:%20Designer%20Kurti%20Set" target="_blank" class="bg-white/10 hover:bg-purple-500 hover:text-white px-3 py-1 rounded-full text-xs font-semibold transition">Buy</a></div>
-      </div>
-      <div class="glass rounded-2xl overflow-hidden product-card p-3">
-        <div class="h-40 md:h-48 rounded-xl overflow-hidden bg-gray-900"><img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Luxury Handbag"></div>
-        <h4 class="font-semibold text-sm mt-3 truncate">Elite Vegan Leather Handbag</h4>
-        <p class="text-xs text-gray-400 mt-1">Dual Strap Executive Finish</p>
-        <div class="flex justify-between items-center mt-3"><span class="text-purple-400 font-bold text-sm">₹450</span><a href="https://wa.me/919250036334?text=Inquiry:%20Vegan%20Leather%20Handbag" target="_blank" class="bg-white/10 hover:bg-purple-500 hover:text-white px-3 py-1 rounded-full text-xs font-semibold transition">Buy</a></div>
-      </div>
-    </div>
-  </section>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Item 1 -->
+        <div class="card-matte rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div class="h-80 overflow-hidden relative group">
+            <img src="Hand towel Combo 2 pack.png" alt="Hand towel Combo 2 pack" class="w-full h-full object-cover" />
+            <div class="absolute bottom-4 left-4 bg-amber-500 text-black font-bold text-[9px] tracking-widest px-3 py-1 rounded-full uppercase">Best Seller</div>
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-lg font-semibold text-white serif-brand">Plush Hand Towel Combo Pack</h3>
+            <p class="text-xs text-stone-400 font-light">Elegant set of two towels. features 1 Parisian Pink and 1 Jasmine White towel.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+              <span class="text-amber-300 text-xl font-bold">₹499</span>
+              <button onclick="addToCart('Plush Hand Towel Combo Pack', 499)" class="action-btn text-black font-semibold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded-full">Add To Bag</button>
+            </div>
+          </div>
+        </div>
 
-  <!-- CATEGORY: KID'S FASHION -->
-  <section id="kids-fashion" class="py-16 px-4 max-w-7xl mx-auto">
-    <div class="border-b border-orange-500/20 pb-4 mb-8 flex justify-between items-end">
-      <div>
-        <h3 class="text-2xl font-bold text-white tracking-wide">Kid's Fashion & Comfortwear</h3>
-        <p class="text-xs text-gray-400 mt-1">Pure Organic Cotton Fabrics</p>
-      </div>
-      <span class="text-xs text-orange-400 font-medium">Bulk Inventory</span>
-    </div>
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="glass rounded-2xl overflow-hidden product-card p-3">
-        <div class="h-40 md:h-48 rounded-xl overflow-hidden bg-gray-900"><img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Kids playwear"></div>
-        <h4 class="font-semibold text-sm mt-3 truncate">Unisex Cotton Playwear Combo</h4>
-        <p class="text-xs text-gray-400 mt-1">Pack of 3 Breathable Tees</p>
-        <div class="flex justify-between items-center mt-3"><span class="text-orange-400 font-bold text-sm">₹399</span><a href="https://wa.me/919250036334?text=Inquiry:%20Kids%20Playwear%20Combo" target="_blank" class="bg-white/10 hover:bg-orange-500 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition">Buy</a></div>
-      </div>
-      <div class="glass rounded-2xl overflow-hidden product-card p-3">
-        <div class="h-40 md:h-48 rounded-xl overflow-hidden bg-gray-900"><img src="https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Kids festivewear"></div>
-        <h4 class="font-semibold text-sm mt-3 truncate">Kids Traditional Ethnic Set</h4>
-        <p class="text-xs text-gray-400 mt-1">Soft Lining Cotton Blend</p>
-        <div class="flex justify-between items-center mt-3"><span class="text-orange-400 font-bold text-sm">₹549</span><a href="https://wa.me/919250036334?text=Inquiry:%20Kids%20Ethnic%20Set" target="_blank" class="bg-white/10 hover:bg-orange-500 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition">Buy</a></div>
-      </div>
-      <div class="glass rounded-2xl overflow-hidden product-card p-3">
-        <div class="h-40 md:h-48 rounded-xl overflow-hidden bg-gray-900"><img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Kids denim"></div>
-        <h4 class="font-semibold text-sm mt-3 truncate">Stetchable Comfort Denim Shorts</h4>
-        <p class="text-xs text-gray-400 mt-1">Adjustable Waist Comfort Fit</p>
-        <div class="flex justify-between items-center mt-3"><span class="text-orange-400 font-bold text-sm">₹249</span><a href="https://wa.me/919250036334?text=Inquiry:%20Kids%20Denim%20Shorts" target="_blank" class="bg-white/10 hover:bg-orange-500 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition">Buy</a></div>
-      </div>
-      <div class="glass rounded-2xl overflow-hidden product-card p-3">
-        <div class="h-40 md:h-48 rounded-xl overflow-hidden bg-gray-900"><img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Infant Romper"></div>
-        <h4 class="font-semibold text-sm mt-3 truncate">Organic Cotton Infant Rompers</h4>
-        <p class="text-xs text-gray-400 mt-1">Pack of 2 Eco-Certified Snap Suits</p>
-        <div class="flex justify-between items-center mt-3"><span class="text-orange-400 font-bold text-sm">₹299</span><a href="https://wa.me/919250036334?text=Inquiry:%20Infant%20Rompers" target="_blank" class="bg-white/10 hover:bg-orange-500 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition">Buy</a></div>
-      </div>
-    </div>
-  </section>
+        <!-- Item 2 -->
+        <div class="card-matte rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div class="h-80 overflow-hidden relative group">
+            <img src="hand towel.png" alt="Classic Luxury Hand Towel" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-lg font-semibold text-white serif-brand">Classic Luxury Hand Towel</h3>
+            <p class="text-xs text-stone-400 font-light">Woven with long-staple cotton loop lines for maximum plush hand feel and response.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+              <span class="text-amber-300 text-xl font-bold">₹249</span>
+              <button onclick="addToCart('Classic Luxury Hand Towel', 249)" class="action-btn text-black font-semibold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded-full">Add To Bag</button>
+            </div>
+          </div>
+        </div>
 
-  <!-- PERSISTENT CONVERSION FOOTER -->
-  <footer class="border-t border-white/10 py-8 text-center text-xs text-gray-500">
-    <p>&copy; 2026 CarryMe Store. Built for High-Performance Wholesale Commerce.</p>
+        <!-- Item 3 -->
+        <div class="card-matte rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div class="h-80 overflow-hidden relative group">
+            <img src="hand towle clos.png" alt="Premium High Loop Single" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-lg font-semibold text-white serif-brand">Premium High Loop Single</h3>
+            <p class="text-xs text-stone-400 font-light">Deep-weave luxury texture. Reinforced overlock stitch lines secure pristine structure.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+              <span class="text-amber-300 text-xl font-bold">₹279</span>
+              <button onclick="addToCart('Premium High Loop Single', 279)" class="action-btn text-black font-semibold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded-full">Add To Bag</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DINING SECTION -->
+    <section id="table-collection" class="space-y-12">
+      <div class="text-center space-y-3">
+        <p class="text-xs font-semibold text-amber-400 uppercase tracking-[0.2em]">The Dining Room Edit</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-wide serif-brand">Waterproof Table Linens (54×78)</h2>
+        <div class="w-16 h-0.5 bg-amber-400 mx-auto"></div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Item 4 -->
+        <div class="card-matte rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div class="h-80 overflow-hidden relative group">
+            <img src="PVC table cover.png" alt="Stain Shield Protective Overlay" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-lg font-semibold text-white serif-brand">Stain Shield Protective Overlay</h3>
+            <p class="text-xs text-stone-400 font-light">Premium leak-proof texture preserves table layers. Oil marks simply wipe clear.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+              <span class="text-amber-300 text-xl font-bold">₹399</span>
+              <button onclick="addToCart('Stain Shield Protective Overlay', 399)" class="action-btn text-black font-semibold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded-full">Add To Bag</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="card-matte rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div class="h-80 overflow-hidden relative group">
+            <img src="PVC Table covers.png" alt="Premium PVC Folded Set" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-lg font-semibold text-white serif-brand">Premium PVC Folded Set</h3>
+            <p class="text-xs text-stone-400 font-light">Heavyweight drape properties protect fine surfaces. Foldable, non-toxic styling.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+              <span class="text-amber-300 text-xl font-bold">₹449</span>
+              <button onclick="addToCart('Premium PVC Folded Set', 449)" class="action-btn text-black font-semibold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded-full">Add To Bag</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="card-matte rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div class="h-80 overflow-hidden relative group">
+            <img src="pvc tcover.png" alt="Premium Floral Dining Canvas" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-lg font-semibold text-white serif-brand">Premium Floral Dining Canvas</h3>
+            <p class="text-xs text-stone-400 font-light">Classic floral visual textures designed to enhance family dining spaces flawlessly.</p>
+            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+              <span class="text-amber-300 text-xl font-bold">₹549</span>
+              <button onclick="addToCart('Premium Floral Dining Canvas', 549)" class="action-btn text-black font-semibold text-[11px] uppercase tracking-wider px-5 py-2.5 rounded-full">Add To Bag</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VERIFIED MERCHANDISE PAYMENTS BLOCK -->
+    <section class="max-w-4xl mx-auto text-center py-8 space-y-6">
+      <div class="space-y-1">
+        <p class="text-xs font-semibold text-amber-400 uppercase tracking-widest">Guaranteed Secure Checkout</p>
+        <p class="text-xs text-stone-500 font-light">Dynamic verified endpoints processing secure domestic consumer loops</p>
+      </div>
+      <div class="card-matte rounded-2xl p-6 flex flex-col items-center justify-center gap-4 text-stone-400 text-xs font-semibold uppercase tracking-wider">
+        <div class="flex flex-wrap justify-center items-center gap-8">
+          <div class="flex items-center gap-2 text-white"><span class="bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded text-[10px]">Merchant UPI ID</span> priyasrivastav7505-2@okicici</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDER ARCHITECTURE -->
+    <section id="brand-story" class="max-w-4xl mx-auto">
+      <div class="card-matte rounded-[2.5rem] p-8 md:p-12 grid md:grid-cols-3 gap-10 items-center relative overflow-hidden">
+        <div class="h-44 w-44 rounded-2xl overflow-hidden bg-stone-900 border border-amber-500/10 mx-auto shadow-2xl">
+          <img src="image0.png" alt="Devesh | CarryMe Founder Profile" class="w-full h-full object-cover" />
+        </div>
+        <div class="md:col-span-2 space-y-4 text-center md:text-left">
+          <span class="text-[9px] uppercase tracking-widest bg-amber-500/10 text-amber-300 font-bold px-3 py-1 rounded-full border border-amber-500/20">The Designer's House</span>
+          <h3 class="text-2xl font-bold text-white tracking-tight serif-brand">A Note From Devesh</h3>
+          <p class="text-xs md:text-sm text-stone-400 leading-relaxed font-light">
+            “At CarryMe, we hold a simple philosophy: everyday elements should carry impeccable grace. By designing directly for consumer lifecycles, we eliminate standard trading layers to craft beautiful textiles and protections that elevate the spaces you live in every single day.”
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- INTERACTIVE CART MODAL SYSTEM -->
+  <div id="cart-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden justify-center items-center p-4">
+    <div class="bg-[#140e0c] border border-amber-500/20 w-full max-w-md rounded-3xl p-6 relative max-h-[85vh] flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-center pb-4 border-b border-white/10">
+          <h3 class="text-xl font-bold serif-brand text-amber-300">Your Shopping Bag</h3>
+          <button onclick="toggleCartModal()" class="text-stone-400 hover:text-white text-sm uppercase font-bold tracking-widest">Close</button>
+        </div>
+        <div id="cart-items-container" class="py-4 space-y-4 overflow-y-auto max-h-[40vh] text-sm">
+          <!-- Items injected here by JavaScript -->
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-4 space-y-4">
+        <div class="flex justify-between text-base font-bold">
+          <span>Cart Aggregate total:</span>
+          <span id="cart-total-display" class="text-amber-400">₹0</span>
+        </div>
+        
+        <!-- Native Secure UPI Deep-Link Application Button -->
+        <button onclick="executeUPIPayment()" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold py-3.5 rounded-full text-xs uppercase tracking-widest shadow-lg hover:brightness-110 transition-all">
+          Pay Securely via UPI
+        </button>
+        <p class="text-[9px] text-stone-500 text-center">Bypassing gateways. Link routes straight onto Bhim/GPay/PhonePe intents.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSISTENT FLOATING ASSISTANCE FUNNEL -->
+  <a href="https://wa.me/919250036334?text=Hi%20CarryMe,%20I'm%20browsing%20the%20storefront.%20I%20need%20assistance%20with%20an%20order." 
+     target="_blank" 
+     class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110 sticky-whatsapp"
+     aria-label="Direct Customer Support">
+    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.405 0 11.985 0c3.19 0 6.19 1.242 8.448 3.499 2.259 2.257 3.501 5.253 3.501 8.445 0 6.58-5.343 11.931-11.92 11.931-2.006-.001-3.97-.507-5.73-1.472L0 24zm6.59-4.846c1.6.95 3.182 1.449 4.725 1.451 5.437 0 9.862-4.386 9.864-9.777.001-2.611-1.013-5.067-2.859-6.915C16.48 2.067 14.032 1.05 11.988 1.05c-5.441 0-9.865 4.386-9.868 9.779-.001 1.644.49 3.245 1.419 4.671l-.147.537-1.016 3.714 3.81-.994.524.318z"/>
+    </svg>
+  </a>
+
+  <!-- RE-ENGINEERED CLIENT CORE JS LOGIC MODULE -->
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      const existingItem = cart.find(item => item.name === name);
+      if (existingItem) {
+        existingItem.qty += 1;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      updateUI();
+      // Visual notification on bag badge anchor
+      const badge = document.getElementById('bag-count');
+      badge.classList.remove('scale-100');
+      badge.classList.add('scale-125', 'bg-white', 'text-amber-900');
+      setTimeout(() => {
+        badge.classList.remove('scale-125', 'bg-white', 'text-amber-900');
+        badge.classList.add('scale-100');
+      }, 200);
+    }
+
+    function removeOne(name) {
+      const item = cart.find(i => i.name === name);
+      if(item) {
+        item.qty -= 1;
+        if(item.qty <= 0) {
+          cart = cart.filter(i => i.name !== name);
+        }
+      }
+      updateUI();
+    }
+
+    function updateUI() {
+      const count = cart.reduce((acc, obj) => acc + obj.qty, 0);
+      const total = cart.reduce((acc, obj) => acc + (obj.price * obj.qty), 0);
+      
+      document.getElementById('bag-count').innerText = count;
+      document.getElementById('cart-total-display').innerText = `₹${total}`;
+      
+      const container = document.getElementById('cart-items-container');
+      if (cart.length === 0) {
+        container.innerHTML = `<p class="text-stone-500 text-center py-6">Your shopping bag is completely empty.</p>`;
+        return;
+      }
+      
+      container.innerHTML = cart.map(item => `
+        <div class="flex justify-between items-center bg-white/5 p-3 rounded-xl border border-white/5">
+          <div>
+            <p class="font-medium text-white text-xs">${item.name}</p>
+            <p class="text-stone-400 text-[11px] mt-0.5">₹${item.price} × ${item.qty}</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="removeOne('${item.name}')" class="w-6 h-6 rounded-md bg-white/10 flex items-center justify-center font-bold text-xs text-stone-300 hover:bg-white/20">-</button>
+            <span class="text-xs font-semibold w-4 text-center">${item.qty}</span>
+            <button onclick="addToCart('${item.name}', ${item.price})" class="w-6 h-6 rounded-md bg-white/10 flex items-center justify-center font-bold text-xs text-stone-300 hover:bg-white/20">+</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleCartModal() {
+      const modal = document.getElementById('cart-modal');
+      if (modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      } else {
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+      }
+    }
+
+    function executeUPIPayment() {
+      const total = cart.reduce((acc, obj) => acc + (obj.price * obj.qty), 0);
+      if (total <= 0) {
+        alert("Your shopping bag is empty. Please append products before processing payments.");
+        return;
+      }
+      
+      const merchantUPI = "priyasrivastav7505-2@okicici";
+      const merchantName = "CarryMe Store";
+      const transactionNote = encodeURIComponent(`CarryMe Order Checkout Total: Rs.${total}`);
+      
+      // Native Mobile Deep-Link Protocol Construction matching NPCI standards
+      const upiUrl = `upi://pay?pa=${merchantUPI}&pn=${encodeURIComponent(merchantName)}&am=${total}&cu=INR&tn=${transactionNote}`;
+      
+      // Intent Trigger Sequence
+      window.location.href = upiUrl;
+    }
+  </script>
+
+  <!-- PREMIUM LUXURY FOOTER -->
+  <footer class="border-t border-white/5 py-16 px-6 bg-[#060302]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+      <div class="text-center md:text-left space-y-1">
+        <h4 class="text-lg font-bold text-amber-300 tracking-wider serif-brand">CARRYME</h4>
+        <p class="text-[11px] text-stone-600 font-light">© 2026 CarryMe Premium Storefront. Built for direct consumer excellence across India.</p>
+      </div>
+      <div class="flex gap-6 text-xs font-semibold uppercase tracking-widest text-stone-500">
+        <a href="https://www.instagram.com/carryme_stores?igsh=bnhnaGNranllbjJk" target="_blank" class="hover:text-amber-400 transition-colors">Instagram Profile</a>
+        <a href="#storefront" class="hover:text-amber-400 transition-colors">Direct Catalog</a>
+      </div>
+    </div>
   </footer>
 
 </body>
 </html>
-
