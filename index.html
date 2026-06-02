@@ -1,6 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        /* Immersive Background */
+        body { margin: 0; font-family: sans-serif; background: #000; }
+        .bg-video { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            object-fit: cover; z-index: -1; opacity: 0.6; 
+        }
+
+        /* Overlay Content Hub */
+        .glass-container { 
+            background: rgba(255, 255, 255, 0.9); padding: 40px; 
+            margin: 50px auto; max-width: 1000px; border-radius: 20px; 
+            backdrop-filter: blur(10px);
+        }
+
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .product-card { background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+
+    <video autoplay muted loop class="bg-video">
+        <source src="your-cinematic-reel.mp4" type="video/mp4">
+    </video>
+
+    <div class="glass-container">
+        <h1>CarryMe Store</h1>
+        
+        <!-- Category Navigation -->
+        <nav>
+            <button onclick="filter('Home Decor')">Home Decor</button>
+            <button onclick="filter('Appliances & Kitchen')">Appliances & Kitchen</button>
+            <button onclick="filter('Terracotta Jewelry')">Terracotta Jewelry</button>
+            <button onclick="filter('Kid Fashion')">Kid Fashion</button>
+        </nav>
+
+        <div id="product-display" class="category-grid">
+            <!-- Products injected by JavaScript -->
+        </div>
+    </div>
+</body>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CarryMe Store | Premium Collection</title>
