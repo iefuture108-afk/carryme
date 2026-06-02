@@ -1,177 +1,75 @@
 <!DOCTYPE html>
-<html lang="en-IN">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CarryMe Store | Premium B2B Wholesale Marketplace</title>
-  <meta name="description" content="CarryMe Store - Mobile-first B2B ecommerce ecosystem for Home & Kitchen, Women's Fashion, and Kid's Fashion. Direct factory to reseller pipeline.">
-  <meta name="theme-color" content="#050816">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
-    body { background: #050816; color: white; overflow-x: hidden; }
-    .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); }
-    .neon-gradient { background: linear-gradient(90deg, #00F5FF, #FF00FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .glow-btn { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); transition: all 0.3s ease; }
-    .glow-btn:hover { transform: scale(1.03); box-shadow: 0 0 30px rgba(168, 85, 247, 0.6); }
-    .product-card { transition: all 0.3s ease; }
-    .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0, 245, 255, 0.12); }
-  </style>
-</head>
-<body class="bg-[#050816]">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarryMe Store | Premium Collection</title>
+    <style>
+        /* Aesthetic Color Palette */
+        :root {
+            --bg-color: #f5efe7;
+            --card-bg: #ffffff;
+            --text-color: #2c2c2c;
+            --accent: #000000;
+        }
 
-  <nav class="fixed top-0 w-full z-50 glass px-4 py-3.5 flex items-center justify-between">
-    <h1 class="text-xl font-bold neon-gradient tracking-wider">CarryMe</h1>
-    <div class="flex gap-5 items-center text-xs md:text-sm font-medium tracking-wide">
-      <a href="#home-kitchen" class="text-gray-300 hover:text-cyan-400 transition">Home & Kitchen</a>
-      <a href="#womens-fashion" class="text-gray-300 hover:text-purple-400 transition">Women's</a>
-      <a href="#kids-fashion" class="text-gray-300 hover:text-orange-400 transition">Kid's</a>
-    </div>
-  </nav>
-
-  <section class="min-h-[45vh] flex items-center justify-center px-4 pt-24 bg-[radial-gradient(circle_at_top_left,rgba(0,245,255,0.08),transparent_40%)]">
-    <div class="max-w-7xl mx-auto text-center space-y-4">
-      <span class="text-xs text-cyan-400 tracking-widest uppercase font-semibold">100% Secure Shopping Funnel</span>
-      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Premium Wholesale Collections<br><span class="neon-gradient">Verified WhatsApp Checkouts</span></h2>
-      <p class="text-gray-400 text-xs md:text-sm max-w-md mx-auto">Add items seamlessly into your basket and instantly check out straight into our secure booking desk channel.</p>
-    </div>
-  </section>
-
-  <main class="max-w-7xl mx-auto px-4 pb-32 space-y-16">
-    
-    <section id="home-kitchen" class="space-y-6">
-      <div class="border-b border-cyan-500/10 pb-3 flex justify-between items-end">
-        <h3 class="text-lg font-semibold tracking-wide text-white">Home & Kitchen Luxury Textiles</h3>
-        <span class="text-xs text-cyan-400 font-medium tracking-wider">Wholesale Vault Stock</span>
-      </div>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 40px 20px; }
         
-        <div class="glass rounded-2xl overflow-hidden product-card p-3 flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="h-36 md:h-44 rounded-xl overflow-hidden bg-zinc-900">
-              <img src="./assets/Hand towel Combo 2 pack.png" class="w-full h-full object-cover" alt="Hand towel Combo 2 pack">
-            </div>
-            <h4 class="font-medium text-xs md:text-sm text-gray-200 truncate">Premium Hand Towel Combo (2 Pack)</h4>
-          </div>
-          <div class="flex justify-between items-center mt-4">
-            <span class="text-cyan-400 font-bold text-sm">₹299</span>
-            <button onclick="addToCart('Premium Hand Towel Combo (2 Pack)', 299)" class="bg-white/5 hover:bg-cyan-400 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition tracking-wide">Add</button>
-          </div>
-        </div>
+        header { text-align: center; margin-bottom: 50px; }
+        h1 { font-weight: 300; letter-spacing: 2px; text-transform: uppercase; }
 
-        <div class="glass rounded-2xl overflow-hidden product-card p-3 flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="h-36 md:h-44 rounded-xl overflow-hidden bg-zinc-900">
-              <img src="./assets/hand towel.png" class="w-full h-full object-cover" alt="Luxury Hand Towel">
-            </div>
-            <h4 class="font-medium text-xs md:text-sm text-gray-200 truncate">Classic Luxury Face & Hand Towel</h4>
-          </div>
-          <div class="flex justify-between items-center mt-4">
-            <span class="text-cyan-400 font-bold text-sm">₹149</span>
-            <button onclick="addToCart('Classic Luxury Face & Hand Towel', 149)" class="bg-white/5 hover:bg-cyan-400 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition tracking-wide">Add</button>
-          </div>
-        </div>
+        .catalog-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 40px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
 
-        <div class="glass rounded-2xl overflow-hidden product-card p-3 flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="h-36 md:h-44 rounded-xl overflow-hidden bg-zinc-900">
-              <img src="./assets/PVC table cover.png" class="w-full h-full object-cover" alt="PVC table cover">
-            </div>
-            <h4 class="font-medium text-xs md:text-sm text-gray-200 truncate">Premium Designer PVC Table Cover</h4>
-          </div>
-          <div class="flex justify-between items-center mt-4">
-            <span class="text-cyan-400 font-bold text-sm">₹499</span>
-            <button onclick="addToCart('Premium Designer PVC Table Cover', 499)" class="bg-white/5 hover:bg-cyan-400 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition tracking-wide">Add</button>
-          </div>
-        </div>
+        .product-card { 
+            background: var(--card-bg); 
+            padding: 20px; 
+            border-radius: 4px; 
+            transition: opacity 0.3s;
+            text-align: left;
+        }
 
-        <div class="glass rounded-2xl overflow-hidden product-card p-3 flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="h-36 md:h-44 rounded-xl overflow-hidden bg-zinc-900">
-              <img src="./assets/PVC Table covers.png" class="w-full h-full object-cover" alt="PVC Table covers Multi">
-            </div>
-            <h4 class="font-medium text-xs md:text-sm text-gray-200 truncate">Waterproof PVC Luxury Table Covers</h4>
-          </div>
-          <div class="flex justify-between items-center mt-4">
-            <span class="text-cyan-400 font-bold text-sm">₹549</span>
-            <button onclick="addToCart('Waterproof PVC Luxury Table Covers', 549)" class="bg-white/5 hover:bg-cyan-400 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition tracking-wide">Add</button>
-          </div>
-        </div>
+        .product-card img { width: 100%; height: 350px; object-fit: cover; border-radius: 2px; margin-bottom: 15px; }
+        .product-card h3 { font-weight: 500; margin: 10px 0; font-size: 1.1rem; }
+        .product-card p { font-weight: bold; margin-bottom: 20px; }
 
-      </div>
-    </section>
+        .btn-whatsapp { 
+            display: block; width: 100%; padding: 14px; background: var(--accent); 
+            color: #fff; text-align: center; text-decoration: none; 
+            text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px;
+        }
+    </style>
+</head>
+<body>
 
-    <section id="womens-fashion" class="space-y-6">
-      <div class="border-b border-purple-500/10 pb-3 flex justify-between items-end">
-        <h3 class="text-lg font-semibold tracking-wide text-white">Women's Fashion & Elite Jewelry</h3>
-        <span class="text-xs text-purple-400 font-medium tracking-wider">Instagram Reseller Hot-Picks</span>
-      </div>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="glass rounded-2xl overflow-hidden product-card p-3 flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="h-36 md:h-44 rounded-xl overflow-hidden bg-zinc-900">
-              <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Terracotta Jewelry">
-            </div>
-            <h4 class="font-medium text-xs md:text-sm text-gray-200 truncate">Handcrafted Terracotta Necklace</h4>
-          </div>
-          <div class="flex justify-between items-center mt-4">
-            <span class="text-purple-400 font-bold text-sm">₹349</span>
-            <button onclick="addToCart('Handcrafted Terracotta Necklace', 349)" class="bg-white/5 hover:bg-purple-500 hover:text-white px-3 py-1 rounded-full text-xs font-semibold transition tracking-wide">Add</button>
-          </div>
-        </div>
-      </div>
-    </section>
+    <header>
+        <h1>Our Collection</h1>
+    </header>
 
-    <section id="kids-fashion" class="space-y-6">
-      <div class="border-b border-orange-500/10 pb-3 flex justify-between items-end">
-        <h3 class="text-lg font-semibold tracking-wide text-white">Kid's Premium Organic Comfortwear</h3>
-        <span class="text-xs text-orange-400 font-medium tracking-wider">Super Soft Organic Fabrics</span>
-      </div>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="glass rounded-2xl overflow-hidden product-card p-3 flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="h-36 md:h-44 rounded-xl overflow-hidden bg-zinc-900">
-              <img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover" alt="Kids Playwear">
-            </div>
-            <h4 class="font-medium text-xs md:text-sm text-gray-200 truncate">Unisex Premium Cotton Playwear Set</h4>
-          </div>
-          <div class="flex justify-between items-center mt-4">
-            <span class="text-orange-400 font-bold text-sm">₹399</span>
-            <button onclick="addToCart('Unisex Premium Cotton Playwear Set', 399)" class="bg-white/5 hover:bg-orange-500 hover:text-black px-3 py-1 rounded-full text-xs font-semibold transition tracking-wide">Add</button>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+    <main id="catalog" class="catalog-grid"></main>
 
-  <aside id="cart-panel" class="fixed top-0 right-0 h-full w-full max-w-md glass z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-between overflow-hidden" style="background: rgba(5,8,22,0.98);">
-    <div class="p-5 border-b border-white/10 flex justify-between items-center bg-white/5">
-      <h3 class="font-bold tracking-wide text-base">🛍️ Your Shopping Cart</h3>
-      <button onclick="toggleCart()" class="text-gray-400 hover:text-white text-2xl p-1">&times;</button>
-    </div>
-    
-    <div id="cart-list" class="flex-1 overflow-y-auto p-5 space-y-3">
-      <p class="text-gray-400 text-xs text-center py-12 tracking-wide">Your cart is completely empty.</p>
-    </div>
-    
-    <div class="p-5 border-t border-white/10 space-y-3 bg-[#050816]">
-      <div class="flex justify-between items-center font-semibold text-sm tracking-wide">
-        <span class="text-gray-400">Total Aggregate:</span>
-        <span id="cart-aggregate-total" class="text-purple-400 text-lg font-bold">₹0</span>
-      </div>
-      <button onclick="triggerSecureWhatsAppChannel()" class="w-full bg-purple-600 text-white font-bold py-4 rounded-full text-xs tracking-widest uppercase glow-btn">Place Order via WhatsApp</button>
-      <p class="text-[10px] text-gray-500 text-center tracking-wide mt-1">🔒 Safe Checkout: Payments are calculated cleanly and handled manually on chat window.</p>
-    </div>
-  </aside>
+    <script>
+        const products = [
+            { name: "Sofa Cover", price: "₹499", img: "sofa-cover.png" },
+            { name: "Face Towel", price: "₹199", img: "face-towel.png" }
+        ];
 
-  <button onclick="toggleCart()" class="fixed bottom-6 right-6 z-40 bg-purple-600 text-white px-5 py-3.5 rounded-full shadow-2xl flex items-center gap-2 font-bold tracking-wide text-xs glow-btn">
-    🛒 Bag Items (<span id="cart-count">0</span>)
-  </button>
-
-  <script>
-    let cart = [];
-
-    function toggleCart() {
-      document.getElementById('cart-panel').classList.toggle('translate-x-
+        const catalog = document.getElementById('catalog');
+        products.forEach(product => {
+            catalog.innerHTML += `
+                <div class="product-card">
+                    <img src="${product.img}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.price}</p>
+                    <a href="https://wa.me/919250036334?text=I%20want%20to%20order%20the%20${product.name}" class="btn-whatsapp">Add to Cart</a>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
