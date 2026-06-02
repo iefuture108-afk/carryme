@@ -89,5 +89,31 @@
     .hero-content h1 { font-size: 2.5rem; margin-bottom: 5px; }
     .bio { font-style: italic; color: #555; max-width: 600px; margin: 15px auto; }
 </style>
+    <section class="testimonial-section">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonial-grid">
+        <div class="testimonial-card">
+            <p>"The sofa cover quality is excellent and fits perfectly! Priya helped me choose the right size."</p>
+            <p><strong>- Anjali S.</strong></p>
+        </div>
+        <div class="testimonial-card">
+            <p>"Fast delivery and premium packaging. Truly elevated my home decor experience!"</p>
+            <p><strong>- Rohan M.</strong></p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .testimonial-section { padding: 60px 20px; background-color: #fcfcfc; text-align: center; }
+    .testimonial-grid { 
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+        gap: 20px; max-width: 900px; margin: 30px auto 0; 
+    }
+    .testimonial-card { 
+        padding: 30px; background: #fff; border-radius: 8px; 
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+    }
+    .testimonial-card p { font-style: italic; color: #555; }
+</style>
 </body>
 </html>
