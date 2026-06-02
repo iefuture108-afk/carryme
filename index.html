@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CarryMe - India's trusted online shopping destination for home appliances, terracotta jewelry, kid fashion & home decor. Shop authentic products with best prices.">
-    <meta name="keywords" content="online shopping India, home appliances, terracotta jewelry, kids fashion, home decor, Indian shopping website, women's products">
+    <meta name="description" content="CarryMe - India's trusted online shopping destination for home appliances, terracotta jewelry, kid fashion & home decor. Shop authentic products with best prices. Available on Meesho & WhatsApp.">
+    <meta name="keywords" content="online shopping India, home appliances, terracotta jewelry, kids fashion, home decor, Indian shopping website, women's products, Meesho">
     <meta name="author" content="CarryMe">
     <meta property="og:title" content="CarryMe - Shop Home Appliances, Jewelry & Fashion">
-    <meta property="og:description" content="Discover authentic terracotta jewelry, kids fashion, home decor & appliances. India's best e-commerce platform for Indian women.">
+    <meta property="og:description" content="Discover authentic terracotta jewelry, kids fashion, home decor & appliances. India's best e-commerce platform for Indian women. WhatsApp: 9250036334">
     <meta property="og:type" content="website">
     <title>CarryMe - Home Appliances, Jewelry & Fashion Shopping Online in India</title>
     <link rel="canonical" href="https://carryme.com">
@@ -22,6 +22,27 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
             line-height: 1.6;
+        }
+
+        /* Contact Bar */
+        .contact-bar {
+            background: #fff;
+            color: #333;
+            padding: 0.8rem 0;
+            text-align: center;
+            border-bottom: 2px solid #e74c3c;
+            font-weight: 500;
+        }
+
+        .contact-bar a {
+            color: #e74c3c;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .contact-bar a:hover {
+            color: #c0392b;
         }
 
         /* Header & Navigation */
@@ -42,6 +63,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .logo {
@@ -94,6 +117,14 @@
             max-width: 600px;
         }
 
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
         .cta-button {
             background: #e74c3c;
             color: white;
@@ -109,6 +140,22 @@
 
         .cta-button:hover {
             background: #c0392b;
+        }
+
+        .cta-button.whatsapp {
+            background: #25d366;
+        }
+
+        .cta-button.whatsapp:hover {
+            background: #1da851;
+        }
+
+        .cta-button.meesho {
+            background: #f50356;
+        }
+
+        .cta-button.meesho:hover {
+            background: #d10242;
         }
 
         /* Categories Section */
@@ -185,9 +232,95 @@
             background: #2980b9;
         }
 
+        /* Social & Platforms Section */
+        .social-section {
+            background: #ecf0f1;
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .social-section h2 {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .social-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .social-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-card h3 {
+            color: #e74c3c;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .social-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .social-card a {
+            background: #3498db;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .social-card a:hover {
+            background: #2980b9;
+        }
+
+        .whatsapp-link {
+            background: #25d366 !important;
+        }
+
+        .whatsapp-link:hover {
+            background: #1da851 !important;
+        }
+
+        .meesho-link {
+            background: #f50356 !important;
+        }
+
+        .meesho-link:hover {
+            background: #d10242 !important;
+        }
+
+        .instagram-link {
+            background: #E4405F !important;
+        }
+
+        .instagram-link:hover {
+            background: #c13584 !important;
+        }
+
         /* Features Section */
         .features {
-            background: #ecf0f1;
+            background: #fff;
             padding: 4rem 2rem;
             margin: 4rem 0;
         }
@@ -268,10 +401,36 @@
             .category-grid {
                 grid-template-columns: 1fr;
             }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .contact-bar {
+                font-size: 0.9rem;
+            }
+
+            .contact-bar a {
+                display: block;
+                margin: 0.5rem 0;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+        📱 WhatsApp: <a href="https://wa.me/919250036334?text=Hello%20CarryMe!%20I%20want%20to%20shop">+91 9250036334</a>
+        📸 Follow: <a href="https://instagram.com/carryme_stores" target="_blank">@carryme_stores</a>
+        🛒 Shop on: <a href="https://meesho.com/carryme" target="_blank">Meesho</a>
+    </div>
+
     <!-- Header -->
     <header>
         <nav>
@@ -290,7 +449,11 @@
     <section class="hero" id="home">
         <h1>Welcome to CarryMe</h1>
         <p>India's Most Trusted Online Shopping Platform for Home Appliances, Jewelry & Fashion</p>
-        <button class="cta-button">Start Shopping Now</button>
+        <div class="cta-buttons">
+            <button class="cta-button">Start Shopping Now</button>
+            <a href="https://wa.me/919250036334?text=Hello%20CarryMe!%20Tell%20me%20about%20your%20products" class="cta-button whatsapp">📱 Chat on WhatsApp</a>
+            <a href="https://meesho.com/carryme" target="_blank" class="cta-button meesho">🛒 Shop on Meesho</a>
+        </div>
     </section>
 
     <!-- Categories Section -->
@@ -340,6 +503,36 @@
         </div>
     </section>
 
+    <!-- Social & Platforms Section -->
+    <section class="social-section" id="contact">
+        <h2>Connect & Shop with Us</h2>
+        <div class="social-grid">
+            <!-- WhatsApp -->
+            <div class="social-card">
+                <h3>📱 WhatsApp</h3>
+                <p>+91 9250036334</p>
+                <p style="font-size: 0.9rem; color: #999;">Get instant product updates, offers & personal shopping assistance</p>
+                <a href="https://wa.me/919250036334?text=Hello%20CarryMe!%20I%20want%20to%20shop" class="whatsapp-link">Chat Now</a>
+            </div>
+
+            <!-- Instagram -->
+            <div class="social-card">
+                <h3>📸 Instagram</h3>
+                <p>@carryme_stores</p>
+                <p style="font-size: 0.9rem; color: #999;">Follow for latest collections, tips & exclusive deals</p>
+                <a href="https://instagram.com/carryme_stores" target="_blank" class="instagram-link">Follow Us</a>
+            </div>
+
+            <!-- Meesho -->
+            <div class="social-card">
+                <h3>🛒 Meesho Shop</h3>
+                <p>Official CarryMe Store</p>
+                <p style="font-size: 0.9rem; color: #999;">Browse full catalog on India's biggest marketplace</p>
+                <a href="https://meesho.com/carryme" target="_blank" class="meesho-link">Shop on Meesho</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section class="features">
         <h2 class="section-title">Why Choose CarryMe?</h2>
@@ -366,7 +559,7 @@
             </div>
             <div class="feature-item">
                 <h4>✓ Customer Support</h4>
-                <p>24/7 Hindi & English support</p>
+                <p>24/7 WhatsApp & Hindi support</p>
             </div>
         </div>
     </section>
@@ -376,7 +569,7 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h5>About CarryMe</h5>
-                <p>CarryMe is India's leading e-commerce platform for quality home appliances, traditional jewelry, kids fashion, and home decor products.</p>
+                <p>CarryMe is India's leading e-commerce platform for quality home appliances, traditional jewelry, kids fashion, and home decor products. Available on WhatsApp, Instagram, and Meesho.</p>
             </div>
             <div class="footer-section">
                 <h5>Quick Links</h5>
@@ -390,7 +583,7 @@
             <div class="footer-section">
                 <h5>Customer Service</h5>
                 <ul>
-                    <li><a href="#track">Track Order</a></li>
+                    <li><a href="https://wa.me/919250036334">WhatsApp Support</a></li>
                     <li><a href="#returns">Returns & Refunds</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <li><a href="#privacy">Privacy Policy</a></li>
@@ -399,15 +592,16 @@
             <div class="footer-section">
                 <h5>Connect with Us</h5>
                 <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">WhatsApp</a></li>
-                    <li><a href="#">Email Support</a></li>
+                    <li><a href="https://instagram.com/carryme_stores" target="_blank">Instagram</a></li>
+                    <li><a href="https://wa.me/919250036334">WhatsApp</a></li>
+                    <li><a href="https://meesho.com/carryme" target="_blank">Meesho</a></li>
+                    <li><a href="mailto:support@carryme.com">Email Support</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2025 CarryMe - All Rights Reserved | Made for Indian Women Shoppers</p>
+            <p>📱 WhatsApp: +91 9250036334 | 📸 Instagram: @carryme_stores | 🛒 Meesho: CarryMe Store</p>
         </div>
     </footer>
 </body>
