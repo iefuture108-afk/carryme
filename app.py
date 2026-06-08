@@ -1,27 +1,25 @@
 import streamlit as st
-import pandas as pd
 from datetime import datetime
 
 st.set_page_config(
-    page_title="CarryMe Store - Premium Indian Home Decor",
+    page_title="CarryMe Store - Premium Home Decor",
     page_icon="🛍️",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# ==================== CUSTOM CSS ====================
+# Custom CSS
 st.markdown("""
 <style>
-    .main-header {font-size: 3.2rem; color: #FF6B6B; text-align: center; margin: 10px 0;}
-    .product-card {border: 1px solid #eee; border-radius: 15px; padding: 15px; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.08);}
-    .price {font-size: 1.4rem; font-weight: bold; color: #FF6B6B;}
-    .stButton>button {width: 100%; border-radius: 8px;}
-    .cart-total {font-size: 1.5rem; font-weight: bold;}
+    .main-header {font-size: 3.2rem; color: #FF6B6B; text-align: center; margin-bottom: 8px;}
+    .product-card {border: 1px solid #eee; border-radius: 16px; padding: 16px; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.08);}
+    .price {font-size: 1.5rem; font-weight: bold; color: #FF6B6B;}
+    .stButton>button {width: 100%; border-radius: 10px; font-weight: 600;}
     .rating {color: #FFD700;}
 </style>
 """, unsafe_allow_html=True)
 
-# ==================== SESSION STATE ====================
+# Session State
 if 'cart' not in st.session_state:
     st.session_state.cart = []
 if 'wishlist' not in st.session_state:
@@ -29,47 +27,76 @@ if 'wishlist' not in st.session_state:
 if 'orders' not in st.session_state:
     st.session_state.orders = []
 
-# ==================== PRODUCTS (Easy to expand) ====================
+# ====================== YOUR REAL WAREHOUSE PRODUCTS ======================
 products = [
-    {"id": 1, "name": "Terracotta Beaded Necklace", "category": "Jewelry", "price": 599, "rating": 4.8,
-     "description": "Handcrafted ethnic terracotta necklace. Lightweight & perfect for daily wear.",
-     "image": "https://via.placeholder.com/400x400/FF6B6B/FFFFFF?text=Terracotta+Necklace", "stock": 25},
-    {"id": 2, "name": "Terracotta Earrings Set", "category": "Jewelry", "price": 399, "rating": 4.7,
-     "description": "Beautiful traditional terracotta earrings with vibrant colors.", 
-     "image": "https://via.placeholder.com/400x400/FF6B6B/FFFFFF?text=Terracotta+Earrings", "stock": 30},
-    {"id": 3, "name": "PVC Table Cover - Floral Print", "category": "Table Covers", "price": 299, "rating": 4.5,
-     "description": "Waterproof, durable & elegant PVC table cover. Easy to clean.", 
-     "image": "https://via.placeholder.com/400x400/4ECDC4/FFFFFF?text=PVC+Table+Cover", "stock": 40},
-    {"id": 4, "name": "Premium Hand Towel Set (3 pcs)", "category": "Towels", "price": 449, "rating": 4.9,
-     "description": "Ultra-soft cotton hand towels. Highly absorbent & stylish.", 
-     "image": "https://via.placeholder.com/400x400/45B8AC/FFFFFF?text=Hand+Towels", "stock": 22},
-    {"id": 5, "name": "Luxury Face Towel Set (4 pcs)", "category": "Towels", "price": 349, "rating": 4.6,
-     "description": "Premium face towels for everyday use. Gift-ready packaging.", 
-     "image": "https://via.placeholder.com/400x400/45B8AC/FFFFFF?text=Face+Towels", "stock": 35},
+    {
+        "id": 1,
+        "name": "Terracotta Beaded Necklace",
+        "category": "Jewelry",
+        "price": 599,
+        "rating": 4.8,
+        "description": "Handcrafted terracotta beaded necklace with traditional ethnic design. Lightweight & elegant.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/3369732de9ecaae75947f217dbfc3218156c9c65/images/Gemini_Generated_Image_7ylmma7ylmma7ylm.png",
+        "stock": 25
+    },
+    {
+        "id": 2,
+        "name": "Terracotta Earrings Set",
+        "category": "Jewelry",
+        "price": 399,
+        "rating": 4.7,
+        "description": "Lightweight terracotta earrings with vibrant traditional motifs.",
+        "image": "https://via.placeholder.com/400x400/FF6B6B/FFFFFF?text=Terracotta+Earrings",
+        "stock": 30
+    },
+    {
+        "id": 3,
+        "name": "PVC Table Cover - Floral Print",
+        "category": "Table Covers",
+        "price": 299,
+        "rating": 4.5,
+        "description": "Premium waterproof PVC table cover with beautiful floral design.",
+        "image": "https://via.placeholder.com/400x400/4ECDC4/FFFFFF?text=PVC+Table+Cover",
+        "stock": 40
+    },
+    {
+        "id": 4,
+        "name": "Premium Hand Towel Set (3 pcs)",
+        "category": "Towels",
+        "price": 449,
+        "rating": 4.9,
+        "description": "Ultra-soft cotton hand towels. Highly absorbent and stylish.",
+        "image": "https://via.placeholder.com/400x400/45B8AC/FFFFFF?text=Hand+Towels",
+        "stock": 22
+    },
+    {
+        "id": 5,
+        "name": "Luxury Face Towel Set (4 pcs)",
+        "category": "Towels",
+        "price": 349,
+        "rating": 4.6,
+        "description": "Premium quality face towels with soft texture.",
+        "image": "https://via.placeholder.com/400x400/45B8AC/FFFFFF?text=Face+Towels",
+        "stock": 35
+    },
 ]
 
-# ==================== SIDEBAR ====================
+# Sidebar
 st.sidebar.title("🛍️ CarryMe Store")
-st.sidebar.markdown("**Premium Indian Home Decor**")
+st.sidebar.markdown("**Premium Indian Handcrafted Decor**")
 
 page = st.sidebar.selectbox(
     "Menu",
     ["🏠 Home", "🛍️ Shop", "❤️ Wishlist", "🛒 Cart", "📦 My Orders", "🎥 Videos", "📞 Contact"]
 )
 
-# ==================== PAGES ====================
+# ====================== PAGES ======================
 
 if page == "🏠 Home":
     st.markdown('<h1 class="main-header">CarryMe Store</h1>', unsafe_allow_html=True)
-    st.markdown("### 🌱 India’s Most Trusted Handcrafted Home Decor Brand")
+    st.markdown("### 🌿 Authentic Indian Home Decor & Lifestyle Products")
     
-    st.image("https://via.placeholder.com/1200x450/FF6B6B/FFFFFF?text=CarryMe+Store+-+Authentic+Indian+Home+Decor", use_column_width=True)
-    
-    c1, c2, c3, c4 = st.columns(4)
-    with c1: st.metric("Customers", "1,200+")
-    with c2: st.metric("Products Sold", "4,500+")
-    with c3: st.metric("Cities", "28+")
-    with c4: st.metric("Rating", "4.8⭐")
+    st.image("https://via.placeholder.com/1200x450/FF6B6B/FFFFFF?text=CarryMe+Store+-+Handcrafted+with+Love+in+India", use_column_width=True)
     
     st.divider()
     st.subheader("Featured Products")
@@ -77,11 +104,11 @@ if page == "🏠 Home":
     for idx, p in enumerate(products[:3]):
         with cols[idx]:
             st.image(p["image"], use_column_width=True)
-            st.write(f"**{p['name']}**")
-            st.write(f"⭐ {p['rating']} | ₹{p['price']}")
-            if st.button("Add to Cart", key=f"home_{p['id']}"):
+            st.subheader(p["name"])
+            st.write(f"⭐ {p['rating']} | **₹{p['price']}**")
+            if st.button("🛒 Add to Cart", key=f"home_{p['id']}"):
                 st.session_state.cart.append({**p, "qty": 1})
-                st.success("Added!")
+                st.success("Added to cart!")
 
 elif page == "🛍️ Shop":
     st.title("🛍️ Shop All Products")
@@ -92,18 +119,18 @@ elif page == "🛍️ Shop":
     with col2:
         category = st.selectbox("Category", ["All"] + sorted(set(p["category"] for p in products)))
     with col3:
-        sort_by = st.selectbox("Sort by", ["Price: Low to High", "Price: High to Low", "Rating"])
+        sort_by = st.selectbox("Sort by", ["Recommended", "Price: Low to High", "Price: High to Low", "Rating"])
     
     filtered = [p for p in products if 
                 (not search or search.lower() in p["name"].lower()) and
                 (category == "All" or p["category"] == category)]
     
     if sort_by == "Price: Low to High":
-        filtered.sort(key=lambda x: x["price"])
+        filtered = sorted(filtered, key=lambda x: x["price"])
     elif sort_by == "Price: High to Low":
-        filtered.sort(key=lambda x: x["price"], reverse=True)
-    else:
-        filtered.sort(key=lambda x: x["rating"], reverse=True)
+        filtered = sorted(filtered, key=lambda x: x["price"], reverse=True)
+    elif sort_by == "Rating":
+        filtered = sorted(filtered, key=lambda x: x["rating"], reverse=True)
     
     cols = st.columns(3)
     for idx, p in enumerate(filtered):
@@ -111,19 +138,19 @@ elif page == "🛍️ Shop":
             with st.container(border=True):
                 st.image(p["image"], use_column_width=True)
                 st.subheader(p["name"])
-                st.write(p["description"])
-                st.write(f"⭐ {p['rating']} | **₹{p['price']}**")
+                st.caption(p["description"])
+                st.write(f"⭐ {p['rating']} • **₹{p['price']}** • Stock: {p['stock']}")
                 
                 c1, c2, c3 = st.columns(3)
                 with c1:
-                    if st.button("🛒 Add", key=f"add_{p['id']}"):
+                    if st.button("🛒 Add to Cart", key=f"add_{p['id']}"):
                         st.session_state.cart.append({**p, "qty": 1})
-                        st.success("Added to cart!")
+                        st.success("Added!")
                 with c2:
                     if st.button("❤️", key=f"wl_{p['id']}"):
                         if p not in st.session_state.wishlist:
                             st.session_state.wishlist.append(p)
-                            st.success("Added to wishlist!")
+                            st.success("Added to Wishlist!")
                 with c3:
                     wa_msg = f"I%20want%20to%20buy:%20{p['name']}%20(₹{p['price']})"
                     st.markdown(f"[💬 WhatsApp](https://wa.me/919250036334?text={wa_msg})", unsafe_allow_html=True)
@@ -133,8 +160,8 @@ elif page == "❤️ Wishlist":
     if not st.session_state.wishlist:
         st.info("Your wishlist is empty.")
     else:
-        for p in st.session_state.wishlist:
-            col1, col2 = st.columns([4, 1])
+        for p in st.session_state.wishlist[:]:
+            col1, col2 = st.columns([5, 1])
             with col1:
                 st.image(p["image"], width=120)
                 st.write(f"**{p['name']}** - ₹{p['price']}")
@@ -146,10 +173,10 @@ elif page == "❤️ Wishlist":
 elif page == "🛒 Cart":
     st.title("🛒 Your Cart")
     if not st.session_state.cart:
-        st.info("Cart is empty. Start shopping!")
+        st.info("Your cart is empty.")
     else:
         total = 0
-        for idx, item in enumerate(st.session_state.cart):
+        for idx, item in enumerate(st.session_state.cart[:]):
             col1, col2, col3, col4 = st.columns([3, 2, 2, 2])
             with col1:
                 st.write(f"**{item['name']}**")
@@ -165,14 +192,14 @@ elif page == "🛒 Cart":
             total += item['price'] * qty
         
         st.divider()
-        st.subheader(f"Total: ₹{total}")
+        st.subheader(f"**Total: ₹{total}**")
         
         if st.button("📱 Place Order via WhatsApp", type="primary", use_container_width=True):
             items_str = "%0A".join([f"• {item['name']} x{item.get('qty',1)} - ₹{item['price']*item.get('qty',1)}" for item in st.session_state.cart])
-            msg = f"Hello%20CarryMe!%0A%0AI%20want%20to%20order:%0A{items_str}%0A%0ATotal:%20₹{total}%0A%0APlease%20share%20your%20details."
+            msg = f"Hello%20CarryMe!%0A%0AOrder%20Details:%0A{items_str}%0A%0ATotal:%20₹{total}%0A%0APlease%20share%20your%20name,%20address%20and%20phone."
             st.markdown(f"[💬 Open WhatsApp](https://wa.me/919250036334?text={msg})", unsafe_allow_html=True)
-            # Save as order
             st.session_state.orders.append({"date": datetime.now().strftime("%d %b %Y"), "items": st.session_state.cart.copy(), "total": total})
+            st.session_state.cart = []
 
 elif page == "📦 My Orders":
     st.title("📦 My Orders")
@@ -181,25 +208,23 @@ elif page == "📦 My Orders":
     else:
         for order in reversed(st.session_state.orders):
             st.write(f"**{order['date']}** - Total: ₹{order['total']}")
-            for item in order["items"]:
+            for item in order.get("items", []):
                 st.write(f"   • {item['name']} x{item.get('qty',1)}")
 
 elif page == "🎥 Videos":
-    st.title("🎥 Behind the Craft")
-    st.video("https://youtu.be/dQw4w9wgxcq")  # Replace with real videos
-    st.write("Watch how our terracotta jewelry and home products are lovingly handcrafted in India.")
+    st.title("🎥 Craft Videos")
+    st.video("https://youtu.be/dQw4w9wgxcq")  # Replace with real video
 
 elif page == "📞 Contact":
-    st.title("📞 Connect With Us")
-    st.markdown("**WhatsApp Business:** [💬 Chat Now](https://wa.me/919250036334)")
-    st.markdown("**Instagram:** [Follow @carryme_stores](https://www.instagram.com/carryme_stores)")
-    st.write("We reply within minutes during business hours.")
+    st.title("📞 Contact Us")
+    st.markdown("**WhatsApp Business:** [9250036334](https://wa.me/919250036334)")
+    st.markdown("**Instagram:** [carryme_stores](https://www.instagram.com/carryme_stores)")
 
-# ==================== FOOTER ====================
+# Footer
 st.divider()
 st.markdown("""
-<div style="text-align:center; color:#666; padding:20px;">
+<div style="text-align: center; color: #666; padding: 20px;">
     © 2026 CarryMe Store • Authentic Indian Handcrafted Products<br>
-    <b>Made with ❤️ for Every Indian Home</b>
+    <b>Made with ❤️ in India</b>
 </div>
 """, unsafe_allow_html=True)
