@@ -8,12 +8,29 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS
+# Custom CSS for Image Zoom
 st.markdown("""
 <style>
     .main-header {font-size: 3.2rem; color: #FF6B6B; text-align: center; margin-bottom: 10px;}
-    .product-image {border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);}
-    .stButton>button {width: 100%; border-radius: 10px; font-weight: 600;}
+    .zoom-image {
+        transition: transform 0.3s ease;
+        cursor: pointer;
+    }
+    .zoom-image:hover {
+        transform: scale(1.05);
+    }
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.9);
+        display: none;
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -22,55 +39,35 @@ if 'cart' not in st.session_state: st.session_state.cart = []
 if 'wishlist' not in st.session_state: st.session_state.wishlist = []
 if 'orders' not in st.session_state: st.session_state.orders = []
 
-# ====================== UPDATED PRODUCTS WITH NEW IMAGES ======================
+# ====================== PRODUCTS ======================
 products = [
     {
-        "id": 1, 
-        "name": "Handcrafted Terracotta Beaded Necklace for Women",
-        "category": "Jewelry",
-        "price": 599, 
-        "rating": 4.8, 
-        "description": "Premium ethnic terracotta beaded necklace. Perfect for daily wear and festive occasions.",
+        "id": 1, "name": "Handcrafted Terracotta Beaded Necklace for Women", "category": "Jewelry",
+        "price": 599, "rating": 4.8, "description": "Premium ethnic terracotta beaded necklace. Perfect for daily wear and festive occasions.",
         "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/3b5a5dc3cf6ba73e16c43eb91bb8705035316e79/images/IMG-20260608-WA0011.jpg",
         "stock": 25
     },
     {
-        "id": 2, 
-        "name": "Traditional Terracotta Jewelry Set",
-        "category": "Jewelry",
-        "price": 449, 
-        "rating": 4.7, 
-        "description": "Beautiful terracotta earrings & necklace set. Traditional Indian design.",
+        "id": 2, "name": "Traditional Terracotta Jewelry Set", "category": "Jewelry",
+        "price": 449, "rating": 4.7, "description": "Beautiful terracotta earrings & necklace set.",
         "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/734eeecae73fc3c8aa1fb635b1b8aaef983a0ecd/images/IMG-20260608-WA0000.jpg",
         "stock": 20
     },
     {
-        "id": 3, 
-        "name": "Waterproof PVC Table Cover - Floral Print",
-        "category": "Table Covers",
-        "price": 299, 
-        "rating": 4.6, 
-        "description": "Heavy duty waterproof PVC table cover with beautiful floral design.",
+        "id": 3, "name": "Waterproof PVC Table Cover - Floral Print", "category": "Table Covers",
+        "price": 299, "rating": 4.6, "description": "Heavy duty waterproof PVC table cover with beautiful floral design.",
         "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/3b5a5dc3cf6ba73e16c43eb91bb8705035316e79/images/IMG-20260608-WA0012.jpg",
         "stock": 35
     },
     {
-        "id": 4, 
-        "name": "Luxury Quilted Sofa Cover with Lace Border",
-        "category": "Sofa Covers",
-        "price": 1299, 
-        "rating": 4.9, 
-        "description": "Premium quilted sofa cover with elegant lace detailing. Protects and beautifies your sofa.",
+        "id": 4, "name": "Luxury Quilted Sofa Cover with Lace Border", "category": "Sofa Covers",
+        "price": 1299, "rating": 4.9, "description": "Premium quilted sofa cover with elegant lace detailing.",
         "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/ba13288c6a2841298ba356abea281818e3e8ccbc/images/Sofa%20cover.png",
         "stock": 18
     },
     {
-        "id": 5, 
-        "name": "Premium Cotton Hand & Face Towel Set",
-        "category": "Towels",
-        "price": 449, 
-        "rating": 4.9, 
-        "description": "Ultra soft & highly absorbent cotton hand and face towels. Perfect daily use.",
+        "id": 5, "name": "Premium Cotton Hand & Face Towel Set", "category": "Towels",
+        "price": 449, "rating": 4.9, "description": "Ultra soft & highly absorbent cotton towels.",
         "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/3b5a5dc3cf6ba73e16c43eb91bb8705035316e79/images/IMG-20260608-WA0016.jpg",
         "stock": 30
     },
@@ -86,24 +83,11 @@ if st.sidebar.button("📸 Follow on Instagram"):
 
 page = st.sidebar.selectbox("Menu", ["🏠 Home", "🛍️ Shop", "❤️ Wishlist", "🛒 Cart", "📦 My Orders", "📞 Contact"])
 
-# ====================== HOME PAGE WITH LOGO ======================
+# ====================== HOME PAGE ======================
 if page == "🏠 Home":
-    # Logo at top
-    st.image(
-        "https://raw.githubusercontent.com/iefuture108-afk/carryme/3b5a5dc3cf6ba73e16c43eb91bb8705035316e79/images/IMG-20260608-WA0009.jpg", 
-        use_column_width=True
-    )
-    
+    st.image("https://raw.githubusercontent.com/iefuture108-afk/carryme/3b5a5dc3cf6ba73e16c43eb91bb8705035316e79/images/IMG-20260608-WA0009.jpg", use_column_width=True)
     st.markdown('<h1 class="main-header">CarryMe Store</h1>', unsafe_allow_html=True)
     st.markdown("### 🌿 India’s Most Trusted Handcrafted Home Decor Brand")
-    
-    st.divider()
-    st.subheader("👤 Meet Our Founder")
-    col1, col2 = st.columns([1, 3])
-    with col1:
-        st.image("https://raw.githubusercontent.com/iefuture108-afk/carryme/cfd07c238447041c56cb6b796e778d57d4e99bdd/images/IMG-20260608-WA0006.jpg", width=220)
-    with col2:
-        st.write("Passionate about bringing authentic Indian craftsmanship directly to your home.")
     
     st.divider()
     st.subheader("Featured Products")
@@ -117,32 +101,48 @@ if page == "🏠 Home":
                 st.session_state.cart.append({**p, "qty": 1})
                 st.success("Added to cart!")
 
-# Shop Page
+# ====================== SHOP PAGE WITH IMAGE ZOOM ======================
 elif page == "🛍️ Shop":
-    st.title("🛍️ Shop Premium Handcrafted Products")
-    col1, col2, col3 = st.columns([3,2,2])
-    with col1: search = st.text_input("🔍 Search products", "")
-    with col2: category = st.selectbox("Category", ["All"] + sorted({p["category"] for p in products}))
-    with col3: sort_by = st.selectbox("Sort by", ["Recommended", "Price: Low to High", "Price: High to Low"])
+    st.title("🛍️ Shop All Products")
     
-    filtered = [p for p in products if 
-                (not search or search.lower() in p["name"].lower() or search.lower() in p["description"].lower()) and
-                (category == "All" or p["category"] == category)]
+    search = st.text_input("🔍 Search products", "")
+    all_categories = sorted({p["category"] for p in products})
+    selected_categories = st.multiselect("Filter by Category", all_categories, default=all_categories)
+    sort_by = st.selectbox("Sort by", ["Recommended", "Price: Low to High", "Price: High to Low", "Rating: High to Low"])
     
-    if sort_by == "Price: Low to High": filtered = sorted(filtered, key=lambda x: x["price"])
-    elif sort_by == "Price: High to Low": filtered = sorted(filtered, key=lambda x: x["price"], reverse=True)
+    filtered_products = [p for p in products if 
+                         (not search or search.lower() in p["name"].lower() or search.lower() in p["description"].lower()) and
+                         (p["category"] in selected_categories)]
+    
+    if sort_by == "Price: Low to High":
+        filtered_products = sorted(filtered_products, key=lambda x: x["price"])
+    elif sort_by == "Price: High to Low":
+        filtered_products = sorted(filtered_products, key=lambda x: x["price"], reverse=True)
+    elif sort_by == "Rating: High to Low":
+        filtered_products = sorted(filtered_products, key=lambda x: x["rating"], reverse=True)
+    
+    st.write(f"**Showing {len(filtered_products)} products**")
     
     cols = st.columns(3)
-    for idx, p in enumerate(filtered):
+    for idx, p in enumerate(filtered_products):
         with cols[idx % 3]:
             with st.container(border=True):
-                st.image(p["image"], use_column_width=True)
+                # Clickable Zoom Image
+                st.markdown(f"""
+                <div style="cursor: pointer;" onclick="window.open('{p['image']}', '_blank')">
+                    <img src="{p['image']}" style="width:100%; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" title="Click to zoom">
+                </div>
+                """, unsafe_allow_html=True)
+                
                 st.subheader(p["name"])
                 st.caption(p["description"])
-                st.write(f"⭐ {p['rating']} • **₹{p['price']}**")
-                if st.button("🛒 Add to Cart", key=f"add_{p['id']}"):
-                    st.session_state.cart.append({**p, "qty": 1})
-                    st.success("Added!")
+                st.write(f"⭐ {p['rating']} • **₹{p['price']}** • Stock: {p['stock']}")
+                
+                c1, c2 = st.columns(2)
+                with c1:
+                    if st.button("🛒 Add to Cart", key=f"add_{p['id']}"):
+                        st.session_state.cart.append({**p, "qty": 1})
+                        st.success("Added to cart!")
 
 # Cart Page (WhatsApp Checkout)
 elif page == "🛒 Cart":
