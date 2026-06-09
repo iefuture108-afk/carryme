@@ -17,10 +17,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Session State
-if 'cart' not in st.session_state: st.session_state.cart = []
-if 'wishlist' not in st.session_state: st.session_state.wishlist = []
-if 'orders' not in st.session_state: st.session_state.orders = []
-if 'user' not in st.session_state: st.session_state.user = None  
+if 'cart' not in st.session_state:
+    st.session_state.cart = []
+if 'user' not in st.session_state:
+    st.session_state.user = None
 
 # ====================== PRODUCTS ======================
 products = [
@@ -43,13 +43,36 @@ products = [
 
 ig_url = "https://www.instagram.com/carryme_stores"
 
-# Sidebar Login (same as before - fixed version)
+# Sidebar Login
 st.sidebar.title("🛍️ CarryMe Store")
 st.sidebar.markdown("**Premium Handcrafted Home Decor**")
 
-# Login code (keep the fixed login from previous message)
+login_expander = st.sidebar.expander("📱 Login / Register", expanded=not bool(st.session_state.user))
 
-page = st.sidebar.selectbox("Menu", ["🏠 Home", "🛍️ Shop", "❤️ Wishlist", "🛒 Cart", "📦 My Orders", "📞 Contact"])
+with login_expander:
+    mobile = st.text_input("Mobile Number *", value="9", max_chars=10, key="mobile")
+    pin = st.text_input("4-digit PIN (Demo)", type="password", max_chars=4, key="pin")
+    pincode = st.text_input("Delivery Pincode * (6 digits)", max_chars=6, key="pincode")
+    
+    if st.button("Login Now", type="primary"):
+        if len(mobile) < 10:
+            st.error("Mobile number must be at least 10 digits")
+        elif len(pin) != 4:
+            st.error("PIN must be 4 digits")
+        elif not pincode.isdigit() or len(pincode) != 6:
+            st.error("Pincode must be exactly 6 digits")
+        else:
+            st.session_state.user = {"mobile": mobile, "pincode": pincode, "orders_count": 0}
+            st.success(f"✅ Logged in! Pincode: {pincode}")
+            st.rerun()
+
+if st.session_state.user:
+    st.sidebar.success(f"👤 {st.session_state.user['mobile']}")
+    if st.sidebar.button("Logout"):
+        st.session_state.user = None
+        st.rerun()
+
+page = st.sidebar.selectbox("Menu", ["🏠 Home", "🛍️ Shop", "🛒 Cart", "📦 My Orders", "📞 Contact"])
 
 # Home Page
 if page == "🏠 Home":
@@ -57,15 +80,14 @@ if page == "🏠 Home":
     st.markdown('<h1 class="main-header">CarryMe Store</h1>', unsafe_allow_html=True)
     st.markdown("### 🌿 India’s Most Trusted Handcrafted Home Decor Brand")
 
-# ====================== ENHANCED PRODUCT CATALOG ======================
+# Shop Page with Category Tabs
 elif page == "🛍️ Shop":
     st.title("🛍️ Product Catalog")
     
-    # Category Tabs
-    tab_list = ["All"] + sorted({p["category"] for p in products})
+    tab_list = ["All", "Jewelry", "Table Covers", "Sofa Covers", "Towels"]
     tabs = st.tabs(tab_list)
     
-    search = st.text_input("🔍 Search in catalog", "")
+    search = st.text_input("🔍 Search products", "")
     
     for i, tab_name in enumerate(tab_list):
         with tabs[i]:
@@ -74,7 +96,7 @@ elif page == "🛍️ Shop":
                         (not search or search.lower() in p["name"].lower() or search.lower() in p["description"].lower())]
             
             if not filtered:
-                st.info("No products found.")
+                st.info("No products found in this category.")
                 continue
                 
             cols = st.columns(3)
@@ -84,22 +106,22 @@ elif page == "🛍️ Shop":
                         st.image(p["image"], use_column_width=True)
                         st.subheader(p["name"])
                         st.caption(p["description"])
-                        st.write(f"⭐ {p['rating']} | **₹{p['price']}** | Stock: {p['stock']}")
-                        
-                        c1, c2 = st.columns(2)
-                        with c1:
-                            if st.button("🛒 Add to Cart", key=f"add_{p['id']}_{tab_name}"):
-                                st.session_state.cart.append({**p, "qty": 1})
-                                st.success("Added to cart!")
-                        with c2:
-                            if st.button("❤️", key=f"wl_{p['id']}_{tab_name}"):
-                                if p not in st.session_state.wishlist:
-                                    st.session_state.wishlist.append(p)
-                                    st.success("Added to wishlist!")
+                        st.write(f"⭐ {p['rating']} | **₹{p['price']}**")
+                        if st.button("🛒 Add to Cart", key=f"add_{p['id']}_{i}"):
+                            st.session_state.cart.append({**p, "qty": 1})
+                            st.success("Added to cart!")
 
-# Cart Page (same as before with discount and pincode)
+# Cart Page
 elif page == "🛒 Cart":
-    # Paste your full cart code from previous version here
+    st.title("🛒 Your Cart")
+    if not st.session_state.cart:
+        st.info("Your cart is empty.")
+    else:
+        total = sum(item['price'] * item.get("qty", 1) for item in st.session_state.cart)
+        st.subheader(f"Total: ₹{total}")
+        
+        if st.button("📱 Checkout on WhatsApp", type="primary"):
+            st.success("WhatsApp checkout ready (add your full checkout code here)")
 
 # Footer
 st.divider()
