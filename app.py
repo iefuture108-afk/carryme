@@ -39,11 +39,27 @@ products = [
     {"id": 5, "name": "Premium Cotton Hand & Face Towel Set", "category": "Towels", "price": 449, "rating": 4.9,
      "description": "Ultra soft cotton towels.", 
      "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/3b5a5dc3cf6ba73e16c43eb91bb8705035316e79/images/IMG-20260608-WA0016.jpg", "stock": 30},
+    # === NEW TABLE COVER VERSIONS ===
+    {"id": 6, "name": "Waterproof PVC Table Cover - Design 1", "category": "Table Covers", "price": 299, "rating": 4.5,
+     "description": "Durable waterproof PVC table cover with vibrant pattern.", 
+     "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/main/images/IMG-20260605-WA0018.jpg", "stock": 30},
+    {"id": 7, "name": "Waterproof PVC Table Cover - Design 2", "category": "Table Covers", "price": 299, "rating": 4.7,
+     "description": "Elegant waterproof table cover for dining tables.", 
+     "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/main/images/IMG-20260609-WA0002.jpg", "stock": 28},
+    {"id": 8, "name": "Waterproof PVC Table Cover - Design 3", "category": "Table Covers", "price": 299, "rating": 4.6,
+     "description": "Premium quality PVC table cover with modern print.", 
+     "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/main/images/IMG-20260609-WA0003.jpg", "stock": 32},
+    {"id": 9, "name": "Waterproof PVC Table Cover - Design 4", "category": "Table Covers", "price": 299, "rating": 4.8,
+     "description": "Heavy-duty table protector cover.", 
+     "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/main/images/IMG-20260609-WA0004.jpg", "stock": 25},
+    {"id": 10, "name": "Waterproof PVC Table Cover - Design 5", "category": "Table Covers", "price": 299, "rating": 4.5,
+     "description": "Stylish and easy-to-clean PVC table cover.", 
+     "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/main/images/IMG-20260609-WA0005.jpg", "stock": 35},
 ]
 
 ig_url = "https://www.instagram.com/carryme_stores"
 
-# Sidebar Login
+# Sidebar Login (unchanged)
 st.sidebar.title("🛍️ CarryMe Store")
 st.sidebar.markdown("**Premium Handcrafted Home Decor**")
 
@@ -74,13 +90,13 @@ if st.session_state.user:
 
 page = st.sidebar.selectbox("Menu", ["🏠 Home", "🛍️ Shop", "🛒 Cart", "📦 My Orders", "📞 Contact"])
 
-# Home Page
+# Home Page (unchanged)
 if page == "🏠 Home":
     st.image("https://raw.githubusercontent.com/iefuture108-afk/carryme/3b5a5dc3cf6ba73e16c43eb91bb8705035316e79/images/IMG-20260608-WA0009.jpg", use_column_width=True)
     st.markdown('<h1 class="main-header">CarryMe Store</h1>', unsafe_allow_html=True)
     st.markdown("### 🌿 India’s Most Trusted Handcrafted Home Decor Brand")
 
-# Shop Page with Category Tabs
+# Shop Page
 elif page == "🛍️ Shop":
     st.title("🛍️ Product Catalog")
     
@@ -111,7 +127,7 @@ elif page == "🛍️ Shop":
                             st.session_state.cart.append({**p, "qty": 1})
                             st.success("Added to cart!")
 
-# Cart Page
+# Cart Page (unchanged)
 elif page == "🛒 Cart":
     st.title("🛒 Your Cart")
     if not st.session_state.cart:
