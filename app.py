@@ -1,4 +1,5 @@
 import streamlit as st
+import random
 from datetime import datetime
 
 st.set_page_config(
@@ -10,34 +11,33 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-    .main-header {font-size: 3.4rem; color: #FF6B6B; text-align: center; margin: 20px 0; font-weight: bold;}
-    .product-card {border: 1px solid #eee; border-radius: 16px; padding: 15px; background: white; 
-                   box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: transform 0.2s;}
-    .product-card:hover {transform: translateY(-5px);}
-    .stButton>button {width: 100%; border-radius: 10px; font-weight: 600; height: 48px;}
+    .main-header {font-size: 3.4rem; color: #FF6B6B; text-align: center; margin: 20px 0;}
+    .product-card {border-radius: 16px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);}
+    .generated-text {background-color: #f0f2f6; padding: 20px; border-radius: 10px; font-size: 16px; white-space: pre-wrap;}
+    .stButton>button {width: 100%; border-radius: 10px; font-weight: 600;}
 </style>
 """, unsafe_allow_html=True)
 
 # Session State
-if 'cart' not in st.session_state:
-    st.session_state.cart = []
+if 'cart' not in st.session_state: st.session_state.cart = []
+if 'user' not in st.session_state: st.session_state.user = None
 
 # ====================== PRODUCTS ======================
 products = [
     {"id": 1, "name": "Handcrafted Terracotta Beaded Necklace", "category": "Jewelry", "price": 599, "rating": 4.8,
-     "description": "Premium ethnic terracotta beaded necklace for women.", 
+     "description": "Premium ethnic terracotta beaded necklace.", 
      "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/3b5a5dc3cf6ba73e16c43eb91bb8705035316e79/images/IMG-20260608-WA0011.jpg"},
     {"id": 2, "name": "Traditional Terracotta Jewelry Set", "category": "Jewelry", "price": 449, "rating": 4.7,
      "description": "Beautiful terracotta earrings & necklace set.", 
      "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/734eeecae73fc3c8aa1fb635b1b8aaef983a0ecd/images/IMG-20260608-WA0000.jpg"},
     {"id": 3, "name": "Waterproof PVC Table Cover - Floral Print", "category": "Table Covers", "price": 299, "rating": 4.6,
-     "description": "Heavy duty waterproof PVC table cover with beautiful floral design.", 
+     "description": "Heavy duty waterproof PVC table cover.", 
      "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/3b5a5dc3cf6ba73e16c43eb91bb8705035316e79/images/IMG-20260608-WA0012.jpg"},
-    {"id": 4, "name": "Luxury Quilted Sofa Cover with Lace", "category": "Sofa Covers", "price": 1299, "rating": 4.9,
-     "description": "Premium quilted sofa cover with elegant lace border.", 
+    {"id": 4, "name": "Luxury Quilted Sofa Cover with Lace Border", "category": "Sofa Covers", "price": 1299, "rating": 4.9,
+     "description": "Premium quilted sofa cover with elegant lace detailing.", 
      "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/ba13288c6a2841298ba356abea281818e3e8ccbc/images/Sofa%20cover.png"},
     {"id": 5, "name": "Premium Cotton Hand & Face Towel Set", "category": "Towels", "price": 449, "rating": 4.9,
-     "description": "Ultra soft & highly absorbent cotton towels.", 
+     "description": "Ultra soft cotton towels.", 
      "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/3b5a5dc3cf6ba73e16c43eb91bb8705035316e79/images/IMG-20260608-WA0016.jpg"},
 ]
 
@@ -50,27 +50,25 @@ st.sidebar.markdown("**India's Premium Custom Home Decor**")
 st.sidebar.markdown(f"[💬 WhatsApp]({wa_url})", unsafe_allow_html=True)
 st.sidebar.markdown(f"[📸 Instagram]({ig_url})", unsafe_allow_html=True)
 
-page = st.sidebar.selectbox("Menu", ["🏠 Home", "🛍️ Shop", "✨ Custom Order", "🛒 Cart", "📞 Contact"])
+page = st.sidebar.selectbox("Menu", ["🏠 Home", "🛍️ Shop", "✨ AI Description Generator", "🛒 Cart", "📞 Contact"])
 
 # ====================== HOME ======================
 if page == "🏠 Home":
     st.image("https://raw.githubusercontent.com/iefuture108-afk/carryme/3b5a5dc3cf6ba73e16c43eb91bb8705035316e79/images/IMG-20260608-WA0009.jpg", use_column_width=True)
     st.markdown('<h1 class="main-header">CarryMe Store</h1>', unsafe_allow_html=True)
     st.markdown("### 🌿 India’s Premium D2C Custom Home Decor Brand")
-    st.caption("Handcrafted • Customized • Delivered with Love")
 
     st.divider()
     st.subheader("Featured Products")
-    cols = st.columns(4)
-    for idx, p in enumerate(products):
-        with cols[idx % 4]:
-            with st.container(border=True):
-                st.image(p["image"], use_column_width=True)
-                st.subheader(p["name"])
-                st.write(f"⭐ {p['rating']} | **₹{p['price']}**")
-                if st.button("🛒 Add to Cart", key=f"home_{p['id']}"):
-                    st.session_state.cart.append({**p, "qty": 1})
-                    st.success("Added to cart!")
+    cols = st.columns(3)
+    for idx, p in enumerate(products[:3]):
+        with cols[idx]:
+            st.image(p["image"], use_column_width=True)
+            st.subheader(p["name"])
+            st.write(f"⭐ {p['rating']} | **₹{p['price']}**")
+            if st.button("🛒 Add to Cart", key=f"home_{p['id']}"):
+                st.session_state.cart.append({**p, "qty": 1})
+                st.success("Added to cart!")
 
 # ====================== SHOP ======================
 elif page == "🛍️ Shop":
@@ -84,7 +82,6 @@ elif page == "🛍️ Shop":
             filtered = [p for p in products if 
                         (tab_name == "All" or p["category"] == tab_name) and
                         (not search or search.lower() in p["name"].lower())]
-            
             cols = st.columns(3)
             for idx, p in enumerate(filtered):
                 with cols[idx % 3]:
@@ -97,40 +94,38 @@ elif page == "🛍️ Shop":
                             st.session_state.cart.append({**p, "qty": 1})
                             st.success("Added to cart!")
 
-# ====================== CUSTOM ORDER ======================
-elif page == "✨ Custom Order":
-    st.title("✨ Custom Product Request")
-    st.write("Tell us your requirement. We will make it specially for you!")
+# ====================== AI DESCRIPTION GENERATOR ======================
+elif page == "✨ AI Description Generator":
+    st.title("✨ AI Product Description Generator")
+    st.subheader("Create compelling descriptions for CarryMe Store")
+
+    tone = st.selectbox("Select Tone", ["Professional", "Luxury", "Casual", "Eco-friendly", "Storytelling"])
+    features = st.text_area("Enter Product Features", 
+                          placeholder="100% cotton, soft, absorbent, quick dry, machine washable, beautiful floral print...",
+                          height=150)
     
-    with st.form("custom_form"):
-        name = st.text_input("Your Name *")
-        phone = st.text_input("WhatsApp Number *", value="9")
-        product_type = st.selectbox("What do you want?", 
-                                  ["PVC Table Cover", "Sofa Cover", "Terracotta Jewelry", "Towel Set", "Other Custom Item"])
-        requirements = st.text_area("Describe your custom requirement (color, size, design, name, etc.) *")
-        budget = st.selectbox("Approx Budget", ["₹200-500", "₹500-1000", "₹1000-2000", "Above ₹2000"])
-        
-        if st.form_submit_button("📱 Send Request on WhatsApp", type="primary"):
-            if name and phone and requirements:
-                msg = f"""*Custom Order Request - CarryMe Store*
+    if st.button("🚀 Generate Description", type="primary"):
+        if features.strip():
+            with st.spinner("Generating..."):
+                description = generate_description(features, tone)  # Function defined below
+            st.success("✅ Generated Successfully!")
+            st.markdown(f'<div class="generated-text">{description}</div>', unsafe_allow_html=True)
+        else:
+            st.error("Please enter product features")
 
-Name: {name}
-Phone: {phone}
-Product Type: {product_type}
-Budget: {budget}
+# Description Generator Function
+def generate_description(features, tone):
+    # Simple but effective generator
+    templates = {
+        "Professional": f"Premium quality {features}. Designed for durability and elegance. Perfect for modern Indian homes.",
+        "Luxury": f"Experience true luxury with this exquisite piece. {features}. Elevate your living space with timeless elegance.",
+        "Casual": f"Super comfortable and stylish! {features}. Your new favorite home essential.",
+        "Eco-friendly": f"Eco-friendly and beautiful. {features}. Sustainable choice for conscious homes.",
+        "Storytelling": f"Imagine a home filled with warmth and beauty. This product brings exactly that with {features}."
+    }
+    return templates.get(tone, templates["Professional"]) + "\n\nShop now at CarryMe Store!"
 
-Requirements:
-{requirements}
-
-Please help me create this custom product. Thank you!"""
-                
-                final_url = f"https://wa.me/919250036334?text={msg.replace(' ', '%20').replace('\n', '%0A')}"
-                st.markdown(f"[📱 Open WhatsApp to Send Custom Request]({final_url})", unsafe_allow_html=True)
-                st.success("Request ready!")
-            else:
-                st.error("Please fill all required fields")
-
-# ====================== CART ======================
+# Cart Page
 elif page == "🛒 Cart":
     st.title("🛒 Your Cart")
     if not st.session_state.cart:
@@ -149,22 +144,16 @@ elif page == "🛒 Cart":
                 if st.button("Remove", key=f"rem_{idx}"):
                     st.session_state.cart.pop(idx)
                     st.rerun()
-        
         st.divider()
         st.subheader(f"**Total: ₹{total}**")
-        if st.button("📱 Checkout on WhatsApp", type="primary", use_container_width=True):
-            st.markdown(f"[💬 Message CarryMe Store]({wa_url})", unsafe_allow_html=True)
+        if st.button("📱 Checkout on WhatsApp", type="primary"):
+            st.markdown(f"[Open WhatsApp]({wa_url})", unsafe_allow_html=True)
 
-# Contact
-elif page == "📞 Contact":
-    st.title("📞 Get in Touch")
-    st.markdown(f"[💬 Chat on WhatsApp]({wa_url})")
-    st.markdown(f"[📸 Follow on Instagram]({ig_url})")
-
+# Footer
 st.divider()
 st.markdown("""
-<div style="text-align: center; color: #666; padding: 30px;">
-    © 2026 CarryMe Store • India's D2C Custom Home Decor Brand<br>
-    <b>Handcrafted with Love in India</b>
+<div style="text-align: center; color: #666; padding: 20px;">
+    © 2026 CarryMe Store • India's Premium D2C Custom Home Decor<br>
+    Made with ❤️ in India
 </div>
 """, unsafe_allow_html=True)
