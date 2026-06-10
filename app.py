@@ -51,25 +51,13 @@ st.sidebar.markdown(f"[📸 Instagram]({ig_url})", unsafe_allow_html=True)
 
 page = st.sidebar.selectbox("Menu", ["🏠 Home", "🛍️ Shop", "✨ AI Description Generator", "🛒 Cart", "📞 Contact"])
 
-# ====================== HOME ======================
+# Home
 if page == "🏠 Home":
     st.image("https://raw.githubusercontent.com/iefuture108-afk/carryme/3b5a5dc3cf6ba73e16c43eb91bb8705035316e79/images/IMG-20260608-WA0009.jpg", use_column_width=True)
     st.markdown('<h1 class="main-header">CarryMe Store</h1>', unsafe_allow_html=True)
     st.markdown("### 🌿 India’s Premium D2C Custom Home Decor Brand")
 
-    st.divider()
-    st.subheader("Featured Products")
-    cols = st.columns(3)
-    for idx, p in enumerate(products[:3]):
-        with cols[idx]:
-            st.image(p["image"], use_column_width=True)
-            st.subheader(p["name"])
-            st.write(f"⭐ {p['rating']} | **₹{p['price']}**")
-            if st.button("🛒 Add to Cart", key=f"home_{p['id']}"):
-                st.session_state.cart.append({**p, "qty": 1})
-                st.success("Added to cart!")
-
-# ====================== SHOP ======================
+# Shop
 elif page == "🛍️ Shop":
     st.title("🛍️ Product Catalog")
     tab_list = ["All", "Jewelry", "Table Covers", "Sofa Covers", "Towels"]
@@ -93,7 +81,7 @@ elif page == "🛍️ Shop":
                             st.session_state.cart.append({**p, "qty": 1})
                             st.success("Added to cart!")
 
-# ====================== AI DESCRIPTION GENERATOR ======================
+# AI Description Generator
 elif page == "✨ AI Description Generator":
     st.title("✨ AI Product Description Generator")
     st.subheader("Create compelling descriptions for CarryMe Store")
@@ -122,7 +110,7 @@ def generate_description(features, tone):
     }
     return templates.get(tone, templates["Professional"]) + "\n\nShop now at CarryMe Store!"
 
-# ====================== CART ======================
+# Cart
 elif page == "🛒 Cart":
     st.title("🛒 Your Cart")
     if not st.session_state.cart:
@@ -131,4 +119,31 @@ elif page == "🛒 Cart":
         total = 0
         for idx, item in enumerate(st.session_state.cart):
             col1, col2, col3 = st.columns([4, 2, 2])
-            with col1: st.write(f"**{
+            with col1: st.write(f"**{item['name']}**")
+            with col2: 
+                qty = st.number_input("Qty", 1, 20, item.get("qty",1), key=f"qty_{idx}")
+                st.session_state.cart[idx]["qty"] = qty
+            with col3: 
+                st.write(f"₹{item['price']*qty}")
+                total += item['price']*qty
+                if st.button("Remove", key=f"rem_{idx}"):
+                    st.session_state.cart.pop(idx)
+                    st.rerun()
+        st.divider()
+        st.subheader(f"**Total: ₹{total}**")
+        if st.button("📱 Checkout on WhatsApp", type="primary"):
+            st.markdown(f"[💬 Open WhatsApp]({wa_url})", unsafe_allow_html=True)
+
+# Contact
+elif page == "📞 Contact":
+    st.title("📞 Contact Us")
+    st.markdown(f"[💬 WhatsApp]({wa_url})")
+    st.markdown(f"[📸 Instagram]({ig_url})")
+
+st.divider()
+st.markdown("""
+<div style="text-align: center; color: #666; padding: 20px;">
+    © 2026 CarryMe Store • India's Premium Custom Home Decor<br>
+    Made with ❤️ in India
+</div>
+""", unsafe_allow_html=True)
