@@ -20,7 +20,6 @@ st.markdown("""
 
 # Session State
 if 'cart' not in st.session_state: st.session_state.cart = []
-if 'user' not in st.session_state: st.session_state.user = None
 
 # ====================== PRODUCTS ======================
 products = [
@@ -101,31 +100,29 @@ elif page == "✨ AI Description Generator":
 
     tone = st.selectbox("Select Tone", ["Professional", "Luxury", "Casual", "Eco-friendly", "Storytelling"])
     features = st.text_area("Enter Product Features", 
-                          placeholder="100% cotton, soft, absorbent, quick dry, machine washable, beautiful floral print...",
+                          placeholder="100% cotton, soft, absorbent, quick dry, machine washable...",
                           height=150)
     
     if st.button("🚀 Generate Description", type="primary"):
         if features.strip():
             with st.spinner("Generating..."):
-                description = generate_description(features, tone)  # Function defined below
+                description = generate_description(features, tone)
             st.success("✅ Generated Successfully!")
             st.markdown(f'<div class="generated-text">{description}</div>', unsafe_allow_html=True)
         else:
             st.error("Please enter product features")
 
-# Description Generator Function
 def generate_description(features, tone):
-    # Simple but effective generator
     templates = {
-        "Professional": f"Premium quality {features}. Designed for durability and elegance. Perfect for modern Indian homes.",
-        "Luxury": f"Experience true luxury with this exquisite piece. {features}. Elevate your living space with timeless elegance.",
-        "Casual": f"Super comfortable and stylish! {features}. Your new favorite home essential.",
-        "Eco-friendly": f"Eco-friendly and beautiful. {features}. Sustainable choice for conscious homes.",
-        "Storytelling": f"Imagine a home filled with warmth and beauty. This product brings exactly that with {features}."
+        "Professional": f"Premium quality product featuring {features}. Designed for durability and everyday elegance.",
+        "Luxury": f"Experience true luxury with this exquisite piece. {features}.",
+        "Casual": f"Super comfortable and stylish! {features}.",
+        "Eco-friendly": f"Eco-friendly and beautiful. {features}.",
+        "Storytelling": f"Bring warmth and beauty to your home with {features}."
     }
     return templates.get(tone, templates["Professional"]) + "\n\nShop now at CarryMe Store!"
 
-# Cart Page
+# ====================== CART ======================
 elif page == "🛒 Cart":
     st.title("🛒 Your Cart")
     if not st.session_state.cart:
@@ -134,26 +131,4 @@ elif page == "🛒 Cart":
         total = 0
         for idx, item in enumerate(st.session_state.cart):
             col1, col2, col3 = st.columns([4, 2, 2])
-            with col1: st.write(f"**{item['name']}**")
-            with col2: 
-                qty = st.number_input("Qty", 1, 20, item.get("qty",1), key=f"qty_{idx}")
-                st.session_state.cart[idx]["qty"] = qty
-            with col3: 
-                st.write(f"₹{item['price']*qty}")
-                total += item['price']*qty
-                if st.button("Remove", key=f"rem_{idx}"):
-                    st.session_state.cart.pop(idx)
-                    st.rerun()
-        st.divider()
-        st.subheader(f"**Total: ₹{total}**")
-        if st.button("📱 Checkout on WhatsApp", type="primary"):
-            st.markdown(f"[Open WhatsApp]({wa_url})", unsafe_allow_html=True)
-
-# Footer
-st.divider()
-st.markdown("""
-<div style="text-align: center; color: #666; padding: 20px;">
-    © 2026 CarryMe Store • India's Premium D2C Custom Home Decor<br>
-    Made with ❤️ in India
-</div>
-""", unsafe_allow_html=True)
+            with col1: st.write(f"**{
