@@ -15,45 +15,69 @@ if "cart" not in st.session_state:
 
 products = [
     {
-        "id": 1,
-        "name": "PVC Waterproof Floral Table Cover",
-        "category": "Table Covers",
-        "price": 299,
-        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/file_00000000f900720ba80eca2293d8bd22.png",
-        "description": "Waterproof PVC table cover."
-    },
-    {
-        "id": 2,
-        "name": "Luxury Quilted Sofa Cover",
-        "category": "Sofa Covers",
-        "price": 1299,
-        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/Sofa%20cover.png",
-        "description": "Premium sofa cover."
-    },
-    {
-        "id": 3,
-        "name": "Ethnic Terracotta Beaded Necklace",
-        "category": "Terracotta Jewellery",
-        "price": 799,
-        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/IMG-20260608-WA0011.jpg",
-        "description": "Handcrafted terracotta jewellery."
-    },
-    {
-        "id": 4,
-        "name": "Premium Cotton Hand & Face Towel Set",
-        "category": "Towels",
-        "price": 449,
-        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/IMG-20260608-WA0001.jpg",
-        "description": "Soft absorbent cotton towels."
-    },
-    {
-        "id": 5,
-        "name": "Acrylic Mirror Wall Decor",
-        "category": "Wall Decor",
-        "price": 799,
-        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/6c1592ecbddcb5ada6b491169c6c8bc7492ddbcf/images/file_0000000053c071faabfa8ed73bdf9dc5.png",
-        "description": "Modern wall decor."
-    }
+    "id": 1,
+    "name": "PVC Waterproof Floral Table Cover",
+    "category": "Table Covers",
+    "price": 299,
+    "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/file_00000000f900720ba80eca2293d8bd22.png",
+    "description": "Waterproof PVC floral table cover."
+},
+{
+    "id": 2,
+    "name": "Premium Rose Print Table Cover",
+    "category": "Table Covers",
+    "price": 349,
+    "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/file_00000000f3887207953b80b42ae8aa39.png",
+    "description": "Elegant rose print waterproof table cover."
+},
+{
+    "id": 3,
+    "name": "PVC Basket Weave Table Cover",
+    "category": "Table Covers",
+    "price": 399,
+    "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/file_000000009eb0720bbc5b9d608913af84.png",
+    "description": "Premium basket weave table cover."
+},
+{
+    "id": 4,
+    "name": "Luxury Dining Table Cover",
+    "category": "Table Covers",
+    "price": 449,
+    "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/file_0000000015687207b3385629671f534b.png",
+    "description": "Luxury waterproof dining table cover."
+},
+{
+    "id": 5,
+    "name": "Designer Floral Table Cover",
+    "category": "Table Covers",
+    "price": 399,
+    "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/file_000000003c1872088551187258035193.png",
+    "description": "Designer floral PVC table cover."
+},
+{
+    "id": 6,
+    "name": "Premium Waterproof Table Cover",
+    "category": "Table Covers",
+    "price": 349,
+    "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/IMG-20260609-WA0002.jpg",
+    "description": "Premium waterproof dining table cover."
+},
+{
+    "id": 7,
+    "name": "Modern PVC Table Cover",
+    "category": "Table Covers",
+    "price": 329,
+    "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/IMG-20260609-WA0003.jpg",
+    "description": "Modern printed PVC table cover."
+},
+{
+    "id": 8,
+    "name": "Elegant Dining Table Cover",
+    "category": "Table Covers",
+    "price": 449,
+    "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/IMG-20260609-WA0006.jpg",
+    "description": "Elegant dining table cover."
+},
 ]
 
 st.sidebar.title("🛍️ CarryMe Store")
