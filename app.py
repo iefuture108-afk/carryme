@@ -110,7 +110,9 @@ if page == "🏠 Home":
         "Wall Decor"
     ]
 
-    for i, cat in enumerate(categories):
+featured_products = [p for p in products if p["category"] == "Table Covers"][:6]
+
+for i, product in enumerate(featured_products):
         with cols[i]:
             st.info(cat)
 
