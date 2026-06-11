@@ -95,14 +95,20 @@ page = st.sidebar.selectbox(
 )
 
 if page == "🏠 Home":
-    st.title("CarryMe Store")
-    st.subheader("India's Premium Home Decor Store")
 
-    st.markdown("### Shop By Category")
+    st.title("🛍️ CarryMe Store")
+    st.subheader("India's Premium Home Decor & Lifestyle Store")
 
-    cols = st.columns(5)
+    st.image(
+        "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/IMG-20260608-WA0009.jpg",
+        use_container_width=True
+    )
 
-    categories = [
+    st.markdown("### 🏷️ Shop By Category")
+
+    category_cols = st.columns(5)
+
+    category_list = [
         "Table Covers",
         "Sofa Covers",
         "Terracotta Jewellery",
@@ -110,22 +116,19 @@ if page == "🏠 Home":
         "Wall Decor"
     ]
 
-featured_products = [p for p in products if p["category"] == "Table Covers"][:6]
-
-for i, product in enumerate(featured_products):
-        with cols[i]:
+    for i, cat in enumerate(category_list):
+        with category_cols[i]:
             st.info(cat)
 
-    st.markdown("### Featured Products")
+    st.markdown("### ⭐ Featured Products")
 
-    cols = st.columns(3)
+    featured_cols = st.columns(3)
 
-    for i, product in enumerate(products[:3]):
-        with cols[i]:
+    for i, product in enumerate(products[:6]):
+        with featured_cols[i % 3]:
             st.image(product["image"], use_container_width=True)
-            st.write(product["name"])
+            st.write(f"**{product['name']}**")
             st.write(f"₹{product['price']}")
-
 elif page == "🛍️ Shop":
 
     st.title("🛍️ Shop")
