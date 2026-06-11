@@ -1,84 +1,157 @@
 import streamlit as st
-import time
 
-st.set_page_config(page_title="CarryMe Store", page_icon="🛍️", layout="wide")
+st.set_page_config(
+    page_title="CarryMe Store",
+    page_icon="🛍️",
+    layout="wide"
+)
 
 # Session State
-if 'user' not in st.session_state:
-    st.session_state.user = None
-if 'cart' not in st.session_state:
+if "cart" not in st.session_state:
     st.session_state.cart = []
-if 'discount_used' not in st.session_state:
-    st.session_state.discount_used = 0
 
-# Custom CSS
-st.markdown("""
-<style>
-    .main-header { font-size: 2.5rem; color: #FF6B6B; text-align: center; }
-    .product-card { border: 1px solid #ddd; padding: 10px; border-radius: 10px; }
-</style>
-""", unsafe_allow_html=True)
-
-# Sidebar (Always Visible)
-with st.sidebar:
-    st.image("https://raw.githubusercontent.com/iefuture108-afk/carryme/main/images/IMG-20260608-WA0009.jpg", width=200)
-    st.title("CarryMe Store")
-    
-    # Login
-    if not st.session_state.user:
-        with st.expander("🔑 Login / Register", expanded=True):
-            name = st.text_input("Full Name")
-            mobile = st.text_input("Mobile Number", max_chars=10)
-            pincode = st.text_input("Delivery Pincode", max_chars=6)
-            if st.button("Login"):
-                if mobile and len(mobile) >= 10 and pincode:
-                    st.session_state.user = {"name": name or "Customer", "mobile": mobile, "pincode": pincode}
-                    st.success("Login Successful! 🎉")
-                    st.rerun()
-    else:
-        st.success(f"👤 {st.session_state.user['name']}")
-        if st.button("Logout"):
-            st.session_state.user = None
-            st.rerun()
-
-    page = st.selectbox("Menu", ["🏠 Home", "🛍️ Shop", "✨ AI Generator", "🛒 Cart", "📞 Contact"])
-
-# Products Data
+# Products
 products = [
-    {"id":1, "name":"Premium Cotton Hand & Face Towel Set", "category":"Towels", "price":449, "image":"https://raw.githubusercontent.com/iefuture108-afk/carryme/main/images/IMG-20260608-WA0016.jpg", "desc":"Ultra soft cotton towels."},
-    # Add more products here...
+    {
+        "id": 1,
+        "name": "PVC Waterproof Floral Table Cover",
+        "category": "Table Covers",
+        "price": 299,
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/file_00000000f900720ba80eca2293d8bd22.png"
+    },
+    {
+        "id": 2,
+        "name": "Luxury Quilted Sofa Cover",
+        "category": "Sofa Covers",
+        "price": 1299,
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/Sofa%20cover.png"
+    },
+    {
+        "id": 3,
+        "name": "Terracotta Necklace Set",
+        "category": "Terracotta Jewellery",
+        "price": 599,
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/IMG-20260605-WA0013.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Premium Cotton Towel Set",
+        "category": "Towels",
+        "price": 449,
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/cea602302447a05a2acad6b60994b469c2ba444b/images/IMG-20260608-WA0001.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Acrylic Mirror Wall Decor",
+        "category": "Wall Decor",
+        "price": 799,
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/6c1592ecbddcb5ada6b491169c6c8bc7492ddbcf/images/file_0000000053c071faabfa8ed73bdf9dc5.png"
+    }
 ]
 
-# Pages
-if page == "🏠 Home":
-    st.title("Welcome to CarryMe Store")
-    st.subheader("India's Premium D2C Custom Home Decor Brand")
-    # Your existing homepage content here
+# Sidebar
+st.sidebar.title("🛍️ CarryMe Store")
 
+page = st.sidebar.selectbox(
+    "Menu",
+    ["🏠 Home", "🛍️ Shop", "🛒 Cart", "📞 Contact"]
+)
+
+# Home
+if page == "🏠 Home":
+    st.title("CarryMe Store")
+    st.subheader("India's Premium Home Decor Store")
+
+    st.markdown("### Featured Products")
+
+    cols = st.columns(3)
+
+    for i, product in enumerate(products[:3]):
+        with cols[i]:
+            st.image(product["image"])
+            st.write(product["name"])
+            st.write(f"₹{product['price']}")
+
+# Shop
 elif page == "🛍️ Shop":
     st.title("🛍️ Shop")
-    search = st.text_input("Search products...")
-    # Filtering logic here...
 
-elif page == "✨ AI Generator":
-    st.title("✨ AI Product Description & Quick Order")
-    selected_product = st.selectbox("Select Product", [p["name"] for p in products])
-    
-    tone = st.selectbox("Tone", ["Luxury", "Simple", "Promotional"])
-    if st.button("Generate Description & Order Link"):
-        with st.spinner("Generating..."):
-            time.sleep(1)
-            st.success("Description Generated!")
-            st.write("**Quick Order Message:**")
-            st.code(f"Hi, I want to order {selected_product} from CarryMe Store. Please confirm price & delivery to {st.session_state.user['pincode'] if st.session_state.user else 'my pincode'}.")
-    
-    if st.button("📱 Order on WhatsApp Now"):
-        st.markdown(f"[Open WhatsApp](https://wa.me/919250036334?text=Hi%20I%20want%20to%20buy%20{selected_product.replace(' ', '%20')})")
+    search = st.text_input("🔍 Search Products")
 
+    categories = ["All"] + sorted(
+        list(set([p["category"] for p in products]))
+    )
+
+    category = st.selectbox("Category", categories)
+
+    filtered = []
+
+    for product in products:
+        if category != "All" and product["category"] != category:
+            continue
+
+        if search.lower() not in product["name"].lower():
+            continue
+
+        filtered.append(product)
+
+    cols = st.columns(3)
+
+    for i, product in enumerate(filtered):
+        with cols[i % 3]:
+            st.image(product["image"])
+            st.subheader(product["name"])
+            st.write(f"₹{product['price']}")
+
+            if st.button(
+                "Add To Cart",
+                key=f"add_{product['id']}"
+            ):
+                st.session_state.cart.append(product)
+                st.success("Added")
+
+# Cart
 elif page == "🛒 Cart":
-    st.title("Your Cart")
-    # Cart logic...
+    st.title("🛒 Cart")
 
-# Footer
+    if not st.session_state.cart:
+        st.info("Cart is empty")
+    else:
+        total = 0
+
+        for item in st.session_state.cart:
+            st.write(
+                f"{item['name']} - ₹{item['price']}"
+            )
+            total += item["price"]
+
+        st.subheader(f"Total: ₹{total}")
+
+        whatsapp_message = (
+            "Hello CarryMe Store, I want to order:"
+        )
+
+        for item in st.session_state.cart:
+            whatsapp_message += f"\n- {item['name']}"
+
+        st.link_button(
+            "Checkout on WhatsApp",
+            f"https://wa.me/919250036334?text={whatsapp_message}"
+        )
+
+# Contact
+elif page == "📞 Contact":
+    st.title("Contact Us")
+
+    st.link_button(
+        "WhatsApp",
+        "https://wa.me/919250036334"
+    )
+
+    st.link_button(
+        "Instagram",
+        "https://www.instagram.com/carryme_stores"
+    )
+
 st.divider()
-st.markdown("© 2026 CarryMe Store | [WhatsApp](https://wa.me/919250036334) | [Instagram](https://www.instagram.com/carryme_stores)")
+st.markdown("© 2026 CarryMe Store")
