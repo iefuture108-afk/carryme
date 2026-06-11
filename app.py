@@ -86,14 +86,14 @@ def init_file(path, default):
         save_json(path, default)
 
 
-for k, default in [
+for key, default in [
     ("products", DEFAULT_PRODUCTS),
     ("reviews", []),
     ("promos", DEFAULT_PROMOS),
     ("users", []),
     ("orders", []),
 ]:
-    init_file(FILES[k], default)
+    init_file(FILES[key], default)
 
 products = load_json(FILES["products"], DEFAULT_PRODUCTS)
 reviews = load_json(FILES["reviews"], [])
@@ -139,12 +139,12 @@ def apply_discount(total, promo_code, order_count):
 st.sidebar.title("🛍️ CarryMe Store")
 page = st.sidebar.selectbox(
     "Menu",
-    ["🏠 Home", "🛍️ Shop", "🛒 Cart", "⭐ Reviews", "👤 Login/Register", "📞 Contact", "🔐 Admin"],
+    ["🏠 Home", "🛍️ Shop", "🛒 Cart", "⭐ Reviews", "👤 Login/Register", "📞 Contact", "🔐 Admin"]
 )
 
 if st.session_state.user:
     st.sidebar.success(f"Logged in as {st.session_state.user}")
-    if st.sidebar.button("Logout"):
+    if st.sidebar.button("Logout", key="logout_btn"):
         st.session_state.user = None
         st.rerun()
 
@@ -161,9 +161,9 @@ if page == "🏠 Home":
 
 elif page == "🛍️ Shop":
     st.title("🛍️ Shop")
-    search = st.text_input("🔍 Search Products")
+    search = st.text_input("🔍 Search Products", key="shop_search")
     categories = ["All"] + sorted({p["category"] for p in products})
-    category = st.selectbox("Category", categories)
+    category = st.selectbox("Category", categories, key="shop_category")
     filtered = []
     for p in products:
         if category != "All" and p["category"] != category:
@@ -171,19 +171,23 @@ elif page == "🛍️ Shop":
         if search.lower() not in p["name"].lower():
             continue
         filtered.append(p)
-    cols = st.columns(3)
-    for i, p in enumerate(filtered):
-        with cols[i % 3]:
-            st.image(p["image"])
-            st.subheader(p["name"])
-            st.write(f"₹{p['price']}")
-            st.caption(p.get("description", ""))
-            st.write(f"⭐ {avg_rating(p['id'])} / 5")
-            if st.button("Add To Cart", key=f"add_{p['id']}"):
-                st.session_state.cart.append(p)
-                st.success("Added")
-            with st.expander("AI Description"):
-                st.write(ai_description(p["name"], p["category"]))
+
+    if not filtered:
+        st.info("No products found.")
+    else:
+        cols = st.columns(3)
+        for i, p in enumerate(filtered):
+            with cols[i % 3]:
+                st.image(p["image"])
+                st.subheader(p["name"])
+                st.write(f"₹{p['price']}")
+                st.caption(p.get("description", ""))
+                st.write(f"⭐ {avg_rating(p['id'])} / 5")
+                if st.button("Add To Cart", key=f"add_{p['id']}"):
+                    st.session_state.cart.append(p)
+                    st.success("Added")
+                with st.expander("AI Description"):
+                    st.write(ai_description(p["name"], p["category"]))
 
 elif page == "🛒 Cart":
     st.title("🛒 Cart")
@@ -191,9 +195,9 @@ elif page == "🛒 Cart":
         st.info("Cart is empty")
     else:
         total = sum(item["price"] for item in st.session_state.cart)
-        for item in st.session_state.cart:
+        for idx, item in enumerate(st.session_state.cart):
             st.write(f"{item['name']} - ₹{item['price']}")
-        promo_code = st.text_input("Promo Code", value=st.session_state.applied_promo)
+        promo_code = st.text_input("Promo Code", value=st.session_state.applied_promo, key="cart_promo")
         final_total, discount, note = apply_discount(total, promo_code, st.session_state.order_count)
         st.subheader(f"Total: ₹{round(final_total, 2)}")
         if discount:
@@ -201,11 +205,17 @@ elif page == "🛒 Cart":
         if note:
             st.info(note)
         st.session_state.applied_promo = promo_code
+
         whatsapp_message = "Hello CarryMe Store, I want to order:" + "".join(
             f"
 - {item['name']}" for item in st.session_state.cart
         )
-        if st.button("Place Order"):
+        st.link_button(
+            "Checkout on WhatsApp",
+            f"https://wa.me/919250036334?text={quote_plus(whatsapp_message)}",
+        )
+
+        if st.button("Place Order", key="place_order_btn"):
             st.session_state.order_count += 1
             orders.append(
                 {
@@ -217,23 +227,20 @@ elif page == "🛒 Cart":
             )
             save_json(FILES["orders"], orders)
             st.success("Order saved")
-        st.link_button(
-            "Checkout on WhatsApp",
-            f"https://wa.me/919250036334?text={quote_plus(whatsapp_message)}",
-        )
-        if st.button("Clear Cart"):
+
+        if st.button("Clear Cart", key="clear_cart_btn"):
             st.session_state.cart = []
             st.rerun()
 
 elif page == "⭐ Reviews":
     st.title("⭐ Product Reviews")
     mapping = {p["name"]: p["id"] for p in products}
-    selected_name = st.selectbox("Select Product", list(mapping.keys()))
+    selected_name = st.selectbox("Select Product", list(mapping.keys()), key="review_product")
     selected_id = mapping[selected_name]
     st.write(f"Average Rating: ⭐ {avg_rating(selected_id)} / 5")
-    rating = st.slider("Rating", 1, 5, 5)
-    review_text = st.text_area("Your Review")
-    if st.button("Submit Review"):
+    rating = st.slider("Rating", 1, 5, 5, key="review_rating")
+    review_text = st.text_area("Your Review", key="review_text")
+    if st.button("Submit Review", key="submit_review_btn"):
         reviews.append(
             {
                 "product_id": selected_id,
@@ -258,7 +265,7 @@ elif page == "👤 Login/Register":
     with tab1:
         email = st.text_input("Login Email", key="login_email")
         password = st.text_input("Password", type="password", key="login_password")
-        if st.button("Login"):
+        if st.button("Login", key="login_btn"):
             found = next((u for u in users if u["email"] == email and u["password"] == password), None)
             if found:
                 st.session_state.user = found["name"]
@@ -270,7 +277,7 @@ elif page == "👤 Login/Register":
         name = st.text_input("Name", key="reg_name")
         email = st.text_input("Email", key="reg_email")
         password = st.text_input("Password", type="password", key="reg_password")
-        if st.button("Register"):
+        if st.button("Register", key="register_btn"):
             users.append({"name": name, "email": email, "password": password})
             save_json(FILES["users"], users)
             st.success("Registered successfully")
@@ -282,13 +289,14 @@ elif page == "📞 Contact":
 
 elif page == "🔐 Admin":
     st.title("🔐 Admin Panel")
-    admin_pass = st.text_input("Admin Password", type="password")
-    if st.button("Enter Admin"):
+    admin_pass = st.text_input("Admin Password", type="password", key="admin_pass")
+    if st.button("Enter Admin", key="admin_enter_btn"):
         st.session_state.admin = admin_pass == "carrymeadmin"
         if st.session_state.admin:
             st.success("Admin Access Granted")
         else:
             st.error("Wrong password")
+
     if st.session_state.admin:
         st.markdown("### Products")
         for p in products:
