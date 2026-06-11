@@ -115,13 +115,6 @@ if "applied_promo" not in st.session_state:
     st.session_state.applied_promo = ""
 
 
-def get_product(pid):
-    for p in products:
-        if p["id"] == pid:
-            return p
-    return None
-
-
 def product_reviews(pid):
     return [r for r in reviews if r["product_id"] == pid]
 
