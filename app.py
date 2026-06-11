@@ -173,8 +173,8 @@ if page == "🏠 Home":
         "Towels",
         "Wall Decor"
     ]
-for i, product in enumerate(products[:6])
-        with cols[i]:
+
+for i, product in enumerate(products[:6]):        with cols[i]:
             st.info(cat)
 
     st.markdown("### Featured Products")
