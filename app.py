@@ -132,9 +132,14 @@ elif page == "🛍️ Shop":
 
     search = st.text_input("🔍 Search Products")
 
-    categories = ["All"] + sorted(
-        list({p["category"] for p in products})
-    )
+    categories = [
+    "All",
+    "Table Covers",
+    "Sofa Covers",
+    "Terracotta Jewellery",
+    "Towels",
+    "Wall Decor"
+]
 
     category = st.selectbox("Category", categories)
 
