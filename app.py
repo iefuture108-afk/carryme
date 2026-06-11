@@ -181,7 +181,7 @@ for i, product in enumerate(products[:6])
 
     cols = st.columns(3)
 
-    for i, product in enumerate(products[:3]):
+    for i, product in enumerate(products[:6]):
         with cols[i]:
             st.image(product["image"], use_container_width=True)
             st.write(product["name"])
