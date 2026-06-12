@@ -5,12 +5,13 @@ from urllib.parse import quote
 st.set_page_config(
     page_title="CarryMe Store",
     page_icon="🛍️",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
 # ---------- SESSION STATE INIT ----------
 if "cart" not in st.session_state:
-    st.session_state.cart = []          # each item: {"id": int, "quantity": int}
+    st.session_state.cart = []
 if "active_page" not in st.session_state:
     st.session_state.active_page = "🏠 Home"
 if "shop_search" not in st.session_state:
@@ -19,68 +20,162 @@ if "shop_category" not in st.session_state:
     st.session_state.shop_category = "All"
 
 # ---------- CONSTANTS ----------
-WHATSAPP_NUMBER = "91925035334"          # without '+' for wa.me link
+WHATSAPP_NUMBER = "91925035334"
 WHATSAPP_DISPLAY = "+91 9250035334"
 WHATSAPP_URL = f"https://wa.me/{WHATSAPP_NUMBER}"
 INSTAGRAM_URL = "https://www.instagram.com/carryme_stores?igsh=MWh1M2l3MHl5ZXYzMg=="
 
-# ---------- PRODUCT CATALOG (16 items, realistic image URLs) ----------
-# Using GitHub raw image placeholders that are category-appropriate
-# (Replace these with actual product images if available)
+# ---------- PRODUCT CATALOG (16 products) ----------
 products = {
-    # Table Covers (8)
-    1: {"id": 1, "name": "Floral Cotton Table Cover", "category": "Table Covers", "price": 299, "rating": 4.5,
-        "description": "100% cotton, floral print, machine washable. Perfect for daily use.",
-        "image": "https://picsum.photos/id/20/400/300"},
-    2: {"id": 2, "name": "Premium Jacquard Table Cover", "category": "Table Covers", "price": 449, "rating": 4.8,
-        "description": "Luxurious jacquard weave, elegant pattern, durable fabric.",
-        "image": "https://picsum.photos/id/30/400/300"},
-    3: {"id": 3, "name": "Traditional Block Print Table Cover", "category": "Table Covers", "price": 349, "rating": 4.6,
-        "description": "Hand block printed with natural dyes, unique design.",
-        "image": "https://picsum.photos/id/40/400/300"},
-    4: {"id": 4, "name": "Modern Geometric Table Cover", "category": "Table Covers", "price": 399, "rating": 4.4,
-        "description": "Contemporary geometric pattern, stain resistant, easy care.",
-        "image": "https://picsum.photos/id/50/400/300"},
-    5: {"id": 5, "name": "Linen Blend Table Cover", "category": "Table Covers", "price": 429, "rating": 4.7,
-        "description": "Premium linen blend, natural texture, wrinkle resistant.",
-        "image": "https://picsum.photos/id/60/400/300"},
-    6: {"id": 6, "name": "Festive Golden Table Cover", "category": "Table Covers", "price": 399, "rating": 4.5,
-        "description": "Golden accents, perfect for festivals and celebrations.",
-        "image": "https://picsum.photos/id/70/400/300"},
-    7: {"id": 7, "name": "Waterproof PVC Table Cover", "category": "Table Covers", "price": 299, "rating": 4.3,
-        "description": "Easy-clean waterproof, protects from spills and stains.",
-        "image": "https://picsum.photos/id/80/400/300"},
-    8: {"id": 8, "name": "Embroidered Table Cover", "category": "Table Covers", "price": 449, "rating": 4.9,
-        "description": "Hand-embroidered with intricate thread work, premium finish.",
-        "image": "https://picsum.photos/id/90/400/300"},
-    # Sofa Covers (1)
-    9: {"id": 9, "name": "Stretchable Velvet Sofa Cover", "category": "Sofa Covers", "price": 599, "rating": 4.7,
-        "description": "Premium velvet, stretchable, universal fit, includes cushion covers.",
-        "image": "https://picsum.photos/id/100/400/300"},
-    # Terracotta Jewellery (4)
-    10: {"id": 10, "name": "Terracotta Round Earrings", "category": "Terracotta Jewellery", "price": 149, "rating": 4.6,
-         "description": "Handcrafted, lightweight, traditional design, nickel-free.",
-         "image": "https://picsum.photos/id/110/400/300"},
-    11: {"id": 11, "name": "Terracotta Necklace Set", "category": "Terracotta Jewellery", "price": 149, "rating": 4.7,
-         "description": "Necklace with matching earrings, perfect for ethnic wear.",
-         "image": "https://picsum.photos/id/120/400/300"},
-    12: {"id": 12, "name": "Terracotta Bangles Set", "category": "Terracotta Jewellery", "price": 149, "rating": 4.5,
-         "description": "Set of 6 bangles with traditional paintings, comfortable.",
-         "image": "https://picsum.photos/id/130/400/300"},
-    13: {"id": 13, "name": "Terracotta Pendant", "category": "Terracotta Jewellery", "price": 149, "rating": 4.6,
-         "description": "Hand-painted pendant with adjustable chain, unique art piece.",
-         "image": "https://picsum.photos/id/140/400/300"},
-    # Towels (1)
-    14: {"id": 14, "name": "Premium Cotton Towel Pack (2 pcs)", "category": "Towels", "price": 99, "rating": 4.4,
-         "description": "Highly absorbent, quick drying, set of 2, ideal for daily use.",
-         "image": "https://picsum.photos/id/150/400/300"},
-    # Wall Decor (2)
-    15: {"id": 15, "name": "Wall Hanging Dreamcatcher", "category": "Wall Decor", "price": 60, "rating": 4.5,
-         "description": "Beautiful dreamcatcher with feathers and beads, boho decor.",
-         "image": "https://picsum.photos/id/160/400/300"},
-    16: {"id": 16, "name": "Wooden Wall Art", "category": "Wall Decor", "price": 60, "rating": 4.6,
-         "description": "Handcrafted wooden wall art with traditional Indian patterns.",
-         "image": "https://picsum.photos/id/170/400/300"},
+    # TABLE COVERS (8 products) – ₹299 to ₹449
+    1: {
+        "id": 1,
+        "name": "PVC Waterproof Floral Table Cover",
+        "category": "Table Covers",
+        "price": 299,
+        "rating": 4.5,
+        "description": "Waterproof PVC table cover with beautiful floral print. Easy to clean and perfect for daily use.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/file_00000000f900720ba80eca2293d8bd22.png"
+    },
+    2: {
+        "id": 2,
+        "name": "Premium Rose Print Table Cover",
+        "category": "Table Covers",
+        "price": 449,
+        "rating": 4.8,
+        "description": "Premium quality table cover with elegant rose print design. Adds a touch of luxury to your dining table.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/file_00000000f3887207953b80b42ae8aa39.png"
+    },
+    3: {
+        "id": 3,
+        "name": "PVC Basket Weave Table Cover",
+        "category": "Table Covers",
+        "price": 349,
+        "rating": 4.6,
+        "description": "Stylish PVC table cover with basket weave texture. Durable, waterproof, and easy to maintain.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/file_000000009eb0720bbc5b9d608913af84.png"
+    },
+    4: {
+        "id": 4,
+        "name": "Luxury Dining Table Cover",
+        "category": "Table Covers",
+        "price": 399,
+        "rating": 4.4,
+        "description": "Premium dining table cover with elegant finish. Perfect for special occasions and daily use.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/file_000000004d787207b430ff9fe69e5d20.png"
+    },
+    5: {
+        "id": 5,
+        "name": "Designer Floral Table Cover",
+        "category": "Table Covers",
+        "price": 429,
+        "rating": 4.7,
+        "description": "Beautiful designer floral print table cover. High-quality material with vibrant colors.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/file_00000000f900720ba80eca2293d8bd22.png"
+    },
+    6: {
+        "id": 6,
+        "name": "Premium Waterproof Table Cover",
+        "category": "Table Covers",
+        "price": 399,
+        "rating": 4.5,
+        "description": "Premium waterproof table cover that protects your table from spills and stains.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/file_00000000f3887207953b80b42ae8aa39.png"
+    },
+    7: {
+        "id": 7,
+        "name": "Modern PVC Table Cover",
+        "category": "Table Covers",
+        "price": 299,
+        "rating": 4.3,
+        "description": "Modern design PVC table cover. Easy to clean, waterproof, and durable for everyday use.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/file_000000009eb0720bbc5b9d608913af84.png"
+    },
+    8: {
+        "id": 8,
+        "name": "Elegant Dining Table Cover",
+        "category": "Table Covers",
+        "price": 449,
+        "rating": 4.9,
+        "description": "Elegant dining table cover that enhances your dining experience. Premium quality material.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/file_000000004d787207b430ff9fe69e5d20.png"
+    },
+    # SOFA COVERS (1 product) – ₹599
+    9: {
+        "id": 9,
+        "name": "Premium Quilted Sofa Cover",
+        "category": "Sofa Covers",
+        "price": 599,
+        "rating": 4.7,
+        "description": "Premium quilted sofa cover designed to protect and enhance your furniture. Soft, durable and easy to maintain for everyday use.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/Sofa%20cover.png"
+    },
+    # TERRACOTTA JEWELLERY (4 products) – ₹149 each
+    10: {
+        "id": 10,
+        "name": "Terracotta Beaded Necklace",
+        "category": "Terracotta Jewellery",
+        "price": 149,
+        "rating": 4.6,
+        "description": "Beautiful handcrafted terracotta beaded necklace. Perfect for ethnic wear and casual outings.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/IMG-20260608-WA0000.jpg"
+    },
+    11: {
+        "id": 11,
+        "name": "Terracotta Pendant Set",
+        "category": "Terracotta Jewellery",
+        "price": 149,
+        "rating": 4.7,
+        "description": "Handcrafted terracotta pendant with matching earrings. Unique traditional design.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/IMG-20260608-WA0010.jpg"
+    },
+    12: {
+        "id": 12,
+        "name": "Terracotta Earrings",
+        "category": "Terracotta Jewellery",
+        "price": 149,
+        "rating": 4.5,
+        "description": "Beautiful terracotta earrings with intricate designs. Lightweight and comfortable.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/IMG-20260608-WA0011.jpg"
+    },
+    13: {
+        "id": 13,
+        "name": "Terracotta Bangles Set",
+        "category": "Terracotta Jewellery",
+        "price": 149,
+        "rating": 4.6,
+        "description": "Set of 6 terracotta bangles with traditional paintings. Perfect for festivals.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/IMG-20260608-WA0001.jpg"
+    },
+    # TOWELS (1 product) – ₹99
+    14: {
+        "id": 14,
+        "name": "Premium Cotton Hand & Face Towel",
+        "category": "Towels",
+        "price": 99,
+        "rating": 4.4,
+        "description": "Soft cotton hand and face towel with excellent absorbency. Ideal for daily home use and quick drying.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/IMG-20260608-WA0013.jpg"
+    },
+    # WALL DECOR (2 products) – ₹60 each
+    15: {
+        "id": 15,
+        "name": "Decorative Wall Art - Floral",
+        "category": "Wall Decor",
+        "price": 60,
+        "rating": 4.5,
+        "description": "Decorative wall art crafted to enhance your living room, bedroom or office interiors with a modern aesthetic appeal.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/IMG-20260608-WA0001.jpg"
+    },
+    16: {
+        "id": 16,
+        "name": "Decorative Wall Art - Modern",
+        "category": "Wall Decor",
+        "price": 60,
+        "rating": 4.6,
+        "description": "Modern wall art piece that adds elegance to any room. Perfect for home and office decor.",
+        "image": "https://raw.githubusercontent.com/iefuture108-afk/carryme/af68f285b673ad84dd018c10b79e697c3450a910/images/IMG-20260608-WA0013.jpg"
+    }
 }
 
 categories = ["All", "Table Covers", "Sofa Covers", "Terracotta Jewellery", "Towels", "Wall Decor"]
@@ -248,7 +343,7 @@ if st.session_state.active_page == "🏠 Home":
     st.markdown("---")
 
     # Featured Products
-    featured_ids = [2, 9, 11, 16]
+    featured_ids = [2, 8, 9, 11]
     featured_products = [products[pid] for pid in featured_ids]
     st.markdown("## 🔥 Featured Products")
     cols = st.columns(4)
@@ -370,7 +465,7 @@ elif st.session_state.active_page == "🛍️ Cart":
         for idx, item in enumerate(cart_items):
             col_img, col_name, col_qty, col_price, col_remove = st.columns([1, 3, 1, 1, 1])
             with col_img:
-                st.image(item["image"], width=70 if st.session_state.get("is_mobile", False) else 80)
+                st.image(item["image"], width=70)
             with col_name:
                 st.markdown(f"**{item['name']}**")
                 st.caption(f"₹{item['price']} each")
@@ -443,4 +538,14 @@ elif st.session_state.active_page == "📞 Contact":
         st.info("💡 **Tip:** For fastest response, reach out via WhatsApp. We reply within 15 minutes during business hours!")
 
     st.markdown("---")
-    st.markd
+    st.markdown(f"""
+    <div style='text-align:center; padding:2rem; background: linear-gradient(135deg, #667eea, #764ba2); 
+                border-radius:20px; color:white;'>
+        <h3>✨ Let's Decorate Your Dream Home ✨</h3>
+        <p>We're here to help you find the perfect pieces for your space!</p>
+        <p>🇮🇳 Proudly serving homes across India</p>
+        <p><a href='{WHATSAPP_URL}' style='color:white;'>💬 WhatsApp</a> | <a href='{INSTAGRAM_URL}' style='color:white;'>📸 Instagram</a></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    render_footer()
