@@ -1,3 +1,4 @@
+# app.py
 import streamlit as st
 from urllib.parse import quote
 import requests
@@ -320,37 +321,25 @@ if selected_page != st.session_state.active_page:
     st.rerun()
 
 # ---------- JAVASCRIPT TO AUTO‑CLOSE SIDEBAR AFTER NAVIGATION ----------
-# This snippet listens for clicks on the sidebar radio buttons
-# and programmatically clicks Streamlit's native collapse button.
 st.markdown("""
 <script>
 function closeSidebarAutomatically() {
-    // Wait for the DOM to be fully loaded
     setTimeout(function() {
-        // Find the sidebar collapse button (Streamlit uses a button with data-testid="stSidebarCollapsedButton")
         const collapseButton = document.querySelector('[data-testid="stSidebarCollapsedButton"]');
         if (collapseButton) {
-            // Check if sidebar is expanded (i.e., not collapsed)
             const sidebar = document.querySelector('[data-testid="stSidebar"]');
             if (sidebar && !sidebar.classList.contains('collapsed')) {
                 collapseButton.click();
             }
         }
-    }, 200); // slight delay to ensure navigation rerun is complete
+    }, 200);
 }
-
-// Observe changes in the URL (or just run after every rerun)
-// We'll use a MutationObserver on the main content area.
 const observer = new MutationObserver(function(mutations) {
     closeSidebarAutomatically();
 });
 observer.observe(document.body, { childList: true, subtree: true });
 </script>
 """, unsafe_allow_html=True)
-
-# ---------- PAGE RENDERING (Home, Shop, AI Studio, Cart, Contact) ----------
-# (All page rendering code remains unchanged – only the sidebar JS is added above.)
-# For brevity, the page logic is copied from the previous version without modifications.
 
 # ---------- PAGE: HOME ----------
 if st.session_state.active_page == "🏠 Home":
@@ -474,4 +463,138 @@ elif st.session_state.active_page == "🎨 AI Marketing Studio":
                 st.session_state.generated = {"name": product_name, "features": features_list}
                 st.rerun()
             else:
-                st.error("Please fill both Product Name
+                st.error("Please fill both Product Name and Features")
+
+    with col2:
+        st.info("💡 **Tips:**\n- Be specific about material & design\n- List 3-5 key features\n- Mention unique selling points")
+
+    if "generated" in st.session_state:
+        gen = st.session_state.generated
+        st.markdown("---")
+        st.markdown("### 📝 Product Description")
+        desc = f"Introducing **{gen['name']}** from CarryMe Store! 🌟\n\n✨ **Features:**\n"
+        for f in gen["features"]:
+            desc += f"• {f}\n"
+        desc += "\n🏠 Perfect for your home decor\n🚚 Free Pan India delivery\n💬 Order via WhatsApp\n⭐ Quality assured"
+        st.markdown(desc)
+
+        st.markdown("### 📸 Instagram Caption")
+        caption = f"🌟 Elevate your space with {gen['name']}! 🌟\n\n"
+        caption += "Transform your home with our premium collection.\n\n✨ " + " ✨ ".join(gen["features"][:3]) + "\n\n"
+        caption += f"🛍️ Shop now at CarryMe Store\n💬 DM or WhatsApp to order: {WHATSAPP_DISPLAY}\n\n#HomeDecor #CarryMeStore"
+        st.markdown(caption)
+
+        st.markdown("### 💬 WhatsApp Message")
+        wa_msg = f"*✨ New Arrival at CarryMe Store! ✨*\n\n*Product:* {gen['name']}\n\n*Features:*\n"
+        for f in gen["features"]:
+            wa_msg += f"✓ {f}\n"
+        wa_msg += f"\n*Price:* Starting from ₹149\n*Order Now:* {WHATSAPP_URL}\n\n*Visit CarryMe Store!*"
+        st.markdown(wa_msg)
+
+        st.markdown("### 🔍 SEO Title")
+        seo = f"{gen['name']} | Premium Home Decor | CarryMe Store India"
+        st.markdown(f"**{seo}**")
+
+        if st.button("Clear Generated Content"):
+            del st.session_state.generated
+            st.rerun()
+
+    render_footer()
+
+# ---------- PAGE: CART ----------
+elif st.session_state.active_page == "🛍️ Cart":
+    st.markdown("# 🛍️ Your Shopping Cart")
+
+    if not st.session_state.cart:
+        st.info("Your cart is empty. Start shopping! 🛒")
+        if st.button("Browse Products"):
+            set_active_page("🛒 Shop")
+    else:
+        cart_items = get_cart_items_details()
+        for idx, item in enumerate(cart_items):
+            col_img, col_name, col_qty, col_price, col_remove = st.columns([1, 3, 1, 1, 1])
+            with col_img:
+                display_image_with_fallback(item["image"], width=70)
+            with col_name:
+                st.markdown(f"**{item['name']}**")
+                st.caption(f"₹{item['price']} each")
+            with col_qty:
+                new_qty = st.number_input("Qty", min_value=0, max_value=10, value=item['quantity'],
+                                          key=f"cart_qty_{item['id']}", label_visibility="collapsed")
+                if new_qty != item['quantity']:
+                    update_quantity(item['id'], new_qty)
+                    st.rerun()
+            with col_price:
+                st.markdown(f"**₹{item['subtotal']}**")
+            with col_remove:
+                if st.button("❌", key=f"cart_remove_{item['id']}"):
+                    remove_from_cart(item['id'])
+                    st.rerun()
+            st.divider()
+
+        total = get_cart_total()
+        st.markdown(f"## Total Amount: ₹{total}")
+
+        st.markdown("---")
+        st.markdown("### 📱 Complete your order via WhatsApp")
+        if st.button("💬 Generate WhatsApp Order Message", type="primary"):
+            message = generate_whatsapp_order_message()
+            encoded_msg = quote(message)
+            wa_url = f"https://wa.me/{WHATSAPP_NUMBER}?text={encoded_msg}"
+            st.markdown(f"""
+            <div style='background:#25D366; padding:1.5rem; border-radius:10px; margin:1rem 0; text-align:center;'>
+                <p style='color:white; font-size:1.2rem;'>✅ Click below to place your order on WhatsApp</p>
+                <a href='{wa_url}' target='_blank' style='background:white; color:#25D366; padding:0.8rem 2rem; 
+                text-decoration:none; border-radius:50px; font-weight:bold; display:inline-block;'>💬 Place Order on WhatsApp</a>
+            </div>
+            """, unsafe_allow_html=True)
+            with st.expander("Preview Order Message"):
+                st.text(message)
+
+        if st.button("Clear Cart", use_container_width=True):
+            st.session_state.cart = []
+            st.rerun()
+
+    render_footer()
+
+# ---------- PAGE: CONTACT ----------
+elif st.session_state.active_page == "📞 Contact":
+    st.markdown("# 📞 Contact Us")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown(f"""
+        ### 📱 Get in Touch
+        **WhatsApp:** {WHATSAPP_DISPLAY}  
+        **Instagram:** [@carryme_stores]({INSTAGRAM_URL})  
+        **Email:** care@carrymestore.com  
+        **Business Hours:** Mon-Sat, 10 AM – 7 PM
+        """)
+        col_a, col_b = st.columns(2)
+        with col_a:
+            st.link_button("💬 WhatsApp Us", WHATSAPP_URL, use_container_width=True)
+        with col_b:
+            st.link_button("📸 Follow on Instagram", INSTAGRAM_URL, use_container_width=True)
+
+    with col2:
+        st.markdown("""
+        ### 🏠 Visit Us
+        **CarryMe Store**  
+        India's Premium Home Decor & Lifestyle Store  
+        **Customer Support:** Order assistance, product info, returns, bulk orders.  
+        **Fastest response via WhatsApp!**
+        """)
+        st.info("💡 **Tip:** For fastest response, reach out via WhatsApp. We reply within 15 minutes during business hours!")
+
+    st.markdown("---")
+    st.markdown(f"""
+    <div style='text-align:center; padding:2rem; background: linear-gradient(135deg, #667eea, #764ba2); 
+                border-radius:20px; color:white;'>
+        <h3>✨ Let's Decorate Your Dream Home ✨</h3>
+        <p>We're here to help you find the perfect pieces for your space!</p>
+        <p>🇮🇳 Proudly serving homes across India</p>
+        <p><a href='{WHATSAPP_URL}' style='color:white;'>💬 WhatsApp</a> | <a href='{INSTAGRAM_URL}' style='color:white;'>📸 Instagram</a></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    render_footer()
