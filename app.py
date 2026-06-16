@@ -410,4 +410,345 @@ if st.session_state.active_page == "🏠 Home":
     st.markdown("## 🎁 Special Bundle Offer")
     st.markdown(f"**Buy Premium Rose Table Cover + Cotton Towel together and save ₹50!**")
     st.markdown(f"**Bundle Price: ₹{BUNDLE_PRICE}** (instead of ₹{449+99})")
-    if st.button("🛒 Add Bundle to Cart", use_container_width=True)
+    if st.button("🛒 Add Bundle to Cart", use_container_width=True):
+        # Add both products to cart
+        for pid in BUNDLE_PRODUCTS:
+            add_to_cart(pid, quantity=1, replace_cart=False)
+        st.toast("✅ Bundle added to cart! You saved ₹50.", icon="🎁")
+        st.rerun()
+    st.markdown("---")
+
+    # Why Choose
+    st.markdown("## 🌟 Why Choose CarryMe?")
+    cols = st.columns(5)
+    benefits = [
+        "🏠 Premium Home Decor Collection",
+        "🚚 Pan India Delivery",
+        "💬 Easy WhatsApp Ordering",
+        "⭐ Quality Assured Products",
+        "🛍️ Affordable Luxury For Every Home"
+    ]
+    for i, col in enumerate(cols):
+        with col:
+            st.info(benefits[i])
+    st.markdown("---")
+
+    # Testimonials (NEW)
+    st.markdown("## 💬 What Our Customers Say")
+    test_cols = st.columns(len(TESTIMONIALS))
+    for i, test in enumerate(TESTIMONIALS):
+        with test_cols[i]:
+            st.markdown(f"*“{test['text']}”*")
+            st.caption(f"— {test['name']}")
+    st.markdown("---")
+
+    # Shop by Category
+    st.markdown("## 📂 Shop by Category")
+    cat_cols = st.columns(len(categories))
+    for i, cat in enumerate(categories):
+        with cat_cols[i]:
+            if st.button(cat, key=f"home_cat_{cat}"):
+                st.session_state.shop_category = cat
+                st.session_state.shop_search = ""
+                set_active_page("🛒 Shop")
+    st.markdown("---")
+
+    # Featured Products
+    featured_ids = [2, 8, 9, 11]
+    featured_products = [products[pid] for pid in featured_ids]
+    st.markdown("## 🔥 Featured Products")
+    cols = st.columns(4)
+    for idx, prod in enumerate(featured_products):
+        with cols[idx]:
+            display_product_card(prod, key_prefix="featured")
+
+    # WhatsApp CTA + Broadcast Subscription (NEW)
+    st.markdown("---")
+    st.markdown(f"""
+    <div style='text-align:center; background: #25D366; padding: 2rem; border-radius: 20px; margin: 2rem 0;'>
+        <h2 style='color: white;'>Stay Updated!</h2>
+        <p style='color: white;'>Get exclusive offers and new arrivals on WhatsApp</p>
+        <a href='{BROADCAST_URL}' target='_blank' style='background:white; color:#25D366; padding:0.8rem 2rem; 
+                text-decoration:none; border-radius:50px; font-weight:bold; display:inline-block;'>📨 Join Our Broadcast List</a>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("💬 Chat Now on WhatsApp", WHATSAPP_URL, use_container_width=True)
+
+    render_footer()
+
+# ---------- PAGE: SHOP ----------
+elif st.session_state.active_page == "🛒 Shop":
+    st.markdown("# 🛒 Shop Our Collection")
+    col1, col2 = st.columns([2, 1])
+    with col1:
+        search = st.text_input("🔍 Search Products", value=st.session_state.shop_search, key="shop_search_input")
+        st.session_state.shop_search = search
+    with col2:
+        category = st.selectbox("Category", categories, index=categories.index(st.session_state.shop_category), key="shop_category_select")
+        st.session_state.shop_category = category
+
+    filtered = []
+    for prod in products.values():
+        if category != "All" and prod["category"] != category:
+            continue
+        if search and search.lower() not in prod["name"].lower() and search.lower() not in prod["description"].lower():
+            continue
+        filtered.append(prod)
+
+    st.markdown(f"**Showing {len(filtered)} products**")
+    st.markdown("---")
+
+    if len(filtered) == 0:
+        st.warning("😕 No products found. Try adjusting your search or category filter.")
+    else:
+        cols_per_row = 4
+        for i in range(0, len(filtered), cols_per_row):
+            row_cols = st.columns(cols_per_row)
+            for j in range(cols_per_row):
+                if i + j < len(filtered):
+                    with row_cols[j]:
+                        display_product_card(filtered[i + j], key_prefix=f"shop_{i+j}")
+
+    render_footer()
+
+# ---------- PAGE: AI MARKETING STUDIO ----------
+elif st.session_state.active_page == "🎨 AI Marketing Studio":
+    st.markdown("# 🎨 AI Marketing Studio")
+    st.markdown("Generate compelling marketing content for your products")
+
+    col1, col2 = st.columns(2)
+    with col1:
+        product_name = st.text_input("Product Name", placeholder="e.g., Premium Cotton Table Cover")
+        product_features = st.text_area("Product Features (one per line)",
+                                        placeholder="100% Cotton\nEasy to wash\nBeautiful design\nAvailable in 5 colors")
+        if st.button("✨ Generate Marketing Content", type="primary"):
+            if product_name and product_features.strip():
+                features_list = [line.strip() for line in product_features.split("\n") if line.strip()]
+                st.session_state.generated = {"name": product_name, "features": features_list}
+                st.rerun()
+            else:
+                st.error("Please fill both Product Name and Features")
+
+    with col2:
+        st.info("💡 **Tips:**\n- Be specific about material & design\n- List 3-5 key features\n- Mention unique selling points")
+
+    if "generated" in st.session_state:
+        gen = st.session_state.generated
+        st.markdown("---")
+        st.markdown("### 📝 Product Description")
+        desc = f"Introducing **{gen['name']}** from CarryMe Store! 🌟\n\n✨ **Features:**\n"
+        for f in gen["features"]:
+            desc += f"• {f}\n"
+        desc += "\n🏠 Perfect for your home decor\n🚚 Free Pan India delivery\n💬 Order via WhatsApp\n⭐ Quality assured"
+        st.markdown(desc)
+
+        st.markdown("### 📸 Instagram Caption")
+        caption = f"🌟 Elevate your space with {gen['name']}! 🌟\n\n"
+        caption += "Transform your home with our premium collection.\n\n✨ " + " ✨ ".join(gen["features"][:3]) + "\n\n"
+        caption += f"🛍️ Shop now at CarryMe Store\n💬 DM or WhatsApp to order: {WHATSAPP_DISPLAY}\n\n#HomeDecor #CarryMeStore"
+        st.markdown(caption)
+
+        st.markdown("### 💬 WhatsApp Message")
+        wa_msg = f"*✨ New Arrival at CarryMe Store! ✨*\n\n*Product:* {gen['name']}\n\n*Features:*\n"
+        for f in gen["features"]:
+            wa_msg += f"✓ {f}\n"
+        wa_msg += f"\n*Price:* Starting from ₹149\n*Order Now:* {WHATSAPP_URL}\n\n*Visit CarryMe Store!*"
+        st.markdown(wa_msg)
+
+        st.markdown("### 🔍 SEO Title")
+        seo = f"{gen['name']} | Premium Home Decor | CarryMe Store India"
+        st.markdown(f"**{seo}**")
+
+        if st.button("Clear Generated Content"):
+            del st.session_state.generated
+            st.rerun()
+
+    render_footer()
+
+# ---------- PAGE: CART ----------
+elif st.session_state.active_page == "🛍️ Cart":
+    st.markdown("# 🛍️ Your Shopping Cart")
+
+    if not st.session_state.cart:
+        st.info("Your cart is empty. Start shopping! 🛒")
+        if st.button("Browse Products"):
+            set_active_page("🛒 Shop")
+    else:
+        cart_items = get_cart_items_details()
+        for idx, item in enumerate(cart_items):
+            col_img, col_name, col_qty, col_price, col_remove = st.columns([1, 3, 1, 1, 1])
+            with col_img:
+                display_image_with_fallback(item["image"], width=70)
+            with col_name:
+                st.markdown(f"**{item['name']}**")
+                st.caption(f"₹{item['price']} each")
+            with col_qty:
+                new_qty = st.number_input("Qty", min_value=0, max_value=10, value=item['quantity'],
+                                          key=f"cart_qty_{item['id']}", label_visibility="collapsed")
+                if new_qty != item['quantity']:
+                    update_quantity(item['id'], new_qty)
+                    st.rerun()
+            with col_price:
+                st.markdown(f"**₹{item['subtotal']}**")
+            with col_remove:
+                if st.button("❌", key=f"cart_remove_{item['id']}"):
+                    remove_from_cart(item['id'])
+                    st.rerun()
+            st.divider()
+
+        total = get_cart_total()
+        st.markdown(f"## Total Amount: ₹{total}")
+
+        # Recommendations
+        st.markdown("---")
+        st.markdown("### 💡 You may also like")
+        recs = get_recommendations(cart_items, max_recs=3)
+        if recs:
+            rec_cols = st.columns(len(recs))
+            for idx, rec in enumerate(recs):
+                with rec_cols[idx]:
+                    st.image(rec["image"], use_container_width=True)
+                    st.markdown(f"**{rec['name']}**")
+                    st.markdown(f"⭐ {rec['rating']}/5.0")
+                    st.markdown(f"**₹{rec['price']}**")
+                    if st.button(f"➕ Add to Cart", key=f"rec_add_{rec['id']}"):
+                        add_to_cart(rec["id"], quantity=1)
+                        st.rerun()
+        else:
+            st.caption("No recommendations at the moment.")
+
+        st.markdown("---")
+        st.markdown("### 📱 Complete your order via WhatsApp")
+        if st.button("💬 Generate WhatsApp Order Message", type="primary"):
+            # Save order to history
+            order_data = {
+                "items": cart_items,
+                "total": total,
+                "date": time.strftime("%Y-%m-%d %H:%M:%S"),
+                "order_id": int(time.time())
+            }
+            st.markdown(f"""
+            <script>
+            let orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            orders.push({json.dumps(order_data)});
+            localStorage.setItem('orders', JSON.stringify(orders));
+            </script>
+            """, unsafe_allow_html=True)
+
+            message = generate_whatsapp_order_message()
+            encoded_msg = quote(message)
+            wa_url = f"https://wa.me/{WHATSAPP_NUMBER}?text={encoded_msg}"
+            st.markdown(f"""
+            <div style='background:#25D366; padding:1.5rem; border-radius:10px; margin:1rem 0; text-align:center;'>
+                <p style='color:white; font-size:1.2rem;'>✅ Click below to place your order on WhatsApp</p>
+                <a href='{wa_url}' target='_blank' style='background:white; color:#25D366; padding:0.8rem 2rem; 
+                text-decoration:none; border-radius:50px; font-weight:bold; display:inline-block;'>💬 Place Order on WhatsApp</a>
+            </div>
+            """, unsafe_allow_html=True)
+            with st.expander("Preview Order Message"):
+                st.text(message)
+
+        if st.button("Clear Cart", use_container_width=True):
+            st.session_state.cart = []
+            save_cart_to_localstorage()
+            st.rerun()
+
+    render_footer()
+
+# ---------- PAGE: ORDERS ----------
+elif st.session_state.active_page == "📦 Orders":
+    st.markdown("# 📦 Order History")
+    st.markdown("Your past orders are stored locally in your browser.")
+
+    st.markdown("""
+    <div id="order-history"></div>
+    <script>
+    (function() {
+        const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+        const container = document.getElementById('order-history');
+        if (orders.length === 0) {
+            container.innerHTML = '<p>No orders yet. Start shopping!</p>';
+            return;
+        }
+        let html = '';
+        orders.reverse().forEach(function(order) {
+            html += `<div style='border:1px solid #ddd; border-radius:10px; padding:15px; margin-bottom:15px;'>`;
+            html += `<p><strong>Order #${order.order_id}</strong> - ${order.date}</p>`;
+            html += `<p><strong>Total:</strong> ₹${order.total}</p>`;
+            html += `<ul>`;
+            order.items.forEach(function(item) {
+                html += `<li>${item.name} x ${item.quantity} = ₹${item.subtotal}</li>`;
+            });
+            html += `</ul></div>`;
+        });
+        container.innerHTML = html;
+    })();
+    </script>
+    """, unsafe_allow_html=True)
+
+    st.info("💡 Orders are stored only in your browser’s local storage. They will persist until you clear your browser data.")
+
+    render_footer()
+
+# ---------- PAGE: WISHLIST ----------
+elif st.session_state.active_page == "❤️ Wishlist":
+    st.markdown("# ❤️ Your Wishlist")
+
+    if not st.session_state.wishlist:
+        st.info("Your wishlist is empty. Browse products and click the heart icon to save them.")
+        if st.button("Start Shopping"):
+            set_active_page("🛒 Shop")
+    else:
+        wishlist_products = [products[pid] for pid in st.session_state.wishlist if pid in products]
+        if not wishlist_products:
+            st.info("Some wishlist items are no longer available.")
+        else:
+            cols = st.columns(3)
+            for idx, prod in enumerate(wishlist_products):
+                with cols[idx % 3]:
+                    display_product_card(prod, key_prefix=f"wish_{idx}")
+
+    render_footer()
+
+# ---------- PAGE: CONTACT ----------
+elif st.session_state.active_page == "📞 Contact":
+    st.markdown("# 📞 Contact Us")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown(f"""
+        ### 📱 Get in Touch
+        **WhatsApp:** {WHATSAPP_DISPLAY}  
+        **Instagram:** [@carryme_stores]({INSTAGRAM_URL})  
+        **Email:** care@carrymestore.com  
+        **Business Hours:** Mon-Sat, 10 AM – 7 PM
+        """)
+        col_a, col_b = st.columns(2)
+        with col_a:
+            st.link_button("💬 WhatsApp Us", WHATSAPP_URL, use_container_width=True)
+        with col_b:
+            st.link_button("📸 Follow on Instagram", INSTAGRAM_URL, use_container_width=True)
+
+    with col2:
+        st.markdown("""
+        ### 🏠 Visit Us
+        **CarryMe Store**  
+        India's Premium Home Decor & Lifestyle Store  
+        **Customer Support:** Order assistance, product info, returns, bulk orders.  
+        **Fastest response via WhatsApp!**
+        """)
+        st.info("💡 **Tip:** For fastest response, reach out via WhatsApp. We reply within 15 minutes during business hours!")
+
+    st.markdown("---")
+    st.markdown(f"""
+    <div style='text-align:center; padding:2rem; background: linear-gradient(135deg, #667eea, #764ba2); 
+                border-radius:20px; color:white;'>
+        <h3>✨ Let's Decorate Your Dream Home ✨</h3>
+        <p>We're here to help you find the perfect pieces for your space!</p>
+        <p>🇮🇳 Proudly serving homes across India</p>
+        <p><a href='{WHATSAPP_URL}' style='color:white;'>💬 WhatsApp</a> | <a href='{INSTAGRAM_URL}' style='color:white;'>📸 Instagram</a></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    render_footer()
+```
