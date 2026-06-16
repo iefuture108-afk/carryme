@@ -751,4 +751,3 @@ elif st.session_state.active_page == "📞 Contact":
     """, unsafe_allow_html=True)
 
     render_footer()
-```
