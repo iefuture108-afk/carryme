@@ -6,39 +6,6 @@ from io import BytesIO
 import json
 import time
 import uuid
-import pyrebase
-import firebase_admin
-from firebase_admin import credentials, firestore
-import os
-import hmac
-import hashlib
-
-# ---------- PAGE CONFIG ----------
-st.set_page_config(
-    page_title="CarryMe Store",
-    page_icon="🛍️",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
-# ---------- FIREBASE INIT ----------
-# Load secrets from Streamlit secrets or local .streamlit/secrets.toml
-try:
-    firebase_creds = st.secrets["firebase_creds"]
-    firebase_config = st.secrets["firebase_config"]
-except:
-    # Fallback for local development
-    firebase_creds = {
-  …
-[18:40, 18/06/2026] carryme store: # app.py – CarryMe.store v2.0 (Branded Edition)
-import streamlit as st
-from urllib.parse import quote
-import requests
-from PIL import Image
-from io import BytesIO
-import json
-import time
-import uuid
 import os
 import hmac
 import hashlib
