@@ -1,5 +1,5 @@
 streamlit>=1.36.0
 requests>=2.31.0
 Pillow>=10.0.0
-firebase-admin>=6.4.0
+firebase-admin>=6.0.0
 pyrebased>=4.5.0
