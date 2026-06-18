@@ -1,4 +1,3 @@
-# app.py – CarryMe.store v2.0 (Branded Edition) – PART 1/5
 import streamlit as st
 from urllib.parse import quote
 import requests
