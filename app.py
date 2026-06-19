@@ -965,7 +965,6 @@ elif st.session_state.active_page == "📊 Admin":
     st.markdown("# 📊 Admin Dashboard")
     if not st.session_state.user:
         st.warning("Please log in as admin.")
-        return
     if st.session_state.user.get("email") != "admin@carryme.store":
         st.error("Unauthorized access.")
         return
