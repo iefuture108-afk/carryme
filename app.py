@@ -880,7 +880,6 @@ elif st.session_state.active_page == "📦 Orders":
     st.markdown("# 📦 Order History")
     if not st.session_state.user:
         st.warning("Please log in to view your order history.")
-        return
     uid = st.session_state.user["uid"]
     doc = db.collection("users").document(uid).get()
     if doc.exists:
