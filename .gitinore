@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+
+# Virtual Environment
+venv/
+env/
+.venv/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Logs
+*.log
+
+# Cache
+.cache/
+.pytest_cache/
+
+# Environment Variables
+.env
+.env.*
+
+# Build
+dist/
+build/
+
+# Node (future)
+node_modules/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Temporary
+*.tmp
+*.bak
+
+# Images Generated
+generated/
+
+# AI Models
+models/
+
+# SQLite
+*.sqlite3
+
+# Secrets
+secret.json
+credentials.json
